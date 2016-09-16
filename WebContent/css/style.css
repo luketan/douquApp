@@ -1,0 +1,301 @@
+
+*{
+	margin：0；
+	padding:0;
+	border:0;
+	font-size: 1em;
+}
+body {
+  cursor: url('http://ionicframework.com/img/finger.png'), auto;
+  font-size: .6rem;
+  background-color:#A9A9A9;
+}
+a{
+	text-decoration: none;
+	color:#333;
+}
+.font-10{
+	font-size: 10px !important;
+}
+.font-12{
+	font-size: 12px !important;
+}
+.font-14{
+	font-size: 14px !important;
+}
+.font-18{
+	font-size: 18px !important;
+}
+.font-16{
+	font-size: 16px !important;
+}
+.font-20{
+	font-size: 20px !important;
+}
+.font-24{
+	font-size: 24px !important;
+}
+.font-28{
+	font-size: 28px!important;
+}
+.font-32{
+	font-size: 32px!important;
+}
+.font-36{
+	font-size: 36px!important;
+}
+.font-40{
+	font-size: 34px!important;
+}
+.ico-28{
+	font-size: 28px!important;
+}
+.ico-24{
+	font-size: 24px!important;
+}
+.font-color1{
+	color:#333!important;
+}
+.font-color2{
+	color:#999!important;
+}
+.dq_bg_color{
+	background-color:#c0ebd7; /*#A9A9A9 #F5F5F5*/
+}
+.dq_bg_white{
+	background-color: #FFF;
+}
+.dq_margin_top_10{
+	margin-top: 10px
+}
+.dq_margin_bottom_0{
+	margin-bottom: 0;
+}
+.dq_margin_bottom_10{
+	margin-bottom: 10px;
+}
+/***********************ionic原生改变*********************************/
+/*下拉更新字体  */
+.text-pulling,.text-refreshing{
+	font-size: 12px !important;
+}
+/*修改默认 */
+.action-sheet-option{
+	text-align:center!important;
+}
+.action-sheet-option{
+	border-bottom: 1px solid #d1d3d6!important;
+}
+div > img{
+    width: 100%;
+    vertical-align:bottom;
+}
+/***********************ionic原生改变end*********************************/
+/**************滑动固定栏的样式****************/
+nav,.sub_ul{
+	width: 100%;
+}
+.slide_sub_ul li{
+	float:left;
+	padding: 8px 0 6px 0;
+	z-index: 5;
+	min-width: 25%;
+	margin-left:0px;
+	margin-right:0px;
+	opacity: 0.6;
+}
+.slide_sub_ul .dq_slide_activated{
+	opacity: 1;
+}
+.slide_sub_ul .slide_sub_cursor {
+	height: 2px;
+	background: #11c1f3 !important;
+	position: absolute;
+	bottom: 0;
+	width: 25%;
+	z-index: 2;
+	-webkit-transition: all 0.35s;
+	-moz-transition: all 0.35s;
+	-ms-transition: all 0.35s;
+	transition: all 0.35s;
+}
+.slide_sub_ul li:nth-child(1).dq_slide_activated ul div {
+	-webkit-transform: translate(0, 0);
+	-moz-transform: translate(0, 0);
+	-ms-transform: translate(0, 0);
+	transform: translate(0, 0);
+}
+.slide_sub_ul li:nth-child(1).dq_slide_activated ~ .slide_sub_cursor {
+	-webkit-transform: translate(0%, 0);
+	-moz-transform: translate(0%, 0);
+	-ms-transform: translate(0%, 0);
+	transform: translate(0%, 0);
+}
+.slide_sub_ul li:nth-child(2).dq_slide_activated ul div {
+	-webkit-transform: translate(0, 0);
+	-moz-transform: translate(0, 0);
+	-ms-transform: translate(0, 0);
+	transform: translate(0, 0);
+}
+.slide_sub_ul li:nth-child(2).dq_slide_activated ~ .slide_sub_cursor {
+	-webkit-transform: translate(100%, 0);
+	-moz-transform: translate(100%, 0);
+	-ms-transform: translate(100%, 0);
+	transform: translate(100%, 0);
+}
+.slide_sub_ul li:nth-child(3).dq_slide_activated ul div {
+	-webkit-transform: translate(0, 0);
+	-moz-transform: translate(0, 0);
+	-ms-transform: translate(0, 0);
+	transform: translate(0, 0);
+}
+.slide_sub_ul li:nth-child(3).dq_slide_activated ~ .slide_sub_cursor {
+	-webkit-transform: translate(200%, 0);
+	-moz-transform: translate(200%, 0);
+	-ms-transform: translate(200%, 0);
+	transform: translate(200%, 0);
+}
+.slide_sub_ul li:nth-child(4).dq_slide_activated ul div {
+	-webkit-transform: translate(0, 0);
+	-moz-transform: translate(0, 0);
+	-ms-transform: translate(0, 0);
+	transform: translate(0, 0);
+}
+.slide_sub_ul li:nth-child(4).dq_slide_activated ~ .slide_sub_cursor {
+	-webkit-transform: translate(300%, 0);
+	-moz-transform: translate(300%, 0);
+	-ms-transform: translate(300%, 0);
+	transform: translate(300%, 0);
+}
+.slide_sub_ul li:nth-child(5).dq_slide_activated ul div {
+	-webkit-transform: translate(0, 0);
+	-moz-transform: translate(0, 0);
+	-ms-transform: translate(0, 0);
+	transform: translate(0, 0);
+}
+.slide_sub_ul li:nth-child(5).dq_slide_activated ~ .slide_sub_cursor {
+	-webkit-transform: translate(400%, 0);
+	-moz-transform: translate(400%, 0);
+	-ms-transform: translate(400%, 0);
+	transform: translate(400%, 0);
+}
+.slide_sub_ul li:nth-child(6).dq_slide_activated ul div {
+	-webkit-transform: translate(0, 0);
+	-moz-transform: translate(0, 0);
+	-ms-transform: translate(0, 0);
+	transform: translate(0, 0);
+}
+.slide_sub_ul li:nth-child(6).dq_slide_activated ~ .slide_sub_cursor {
+	-webkit-transform: translate(500%, 0);
+	-moz-transform: translate(500%, 0);
+	-ms-transform: translate(500%, 0);
+	transform: translate(500%, 0);
+}
+.slide_sub_ul li:nth-child(7).dq_slide_activated ul div {
+	-webkit-transform: translate(0, 0);
+	-moz-transform: translate(0, 0);
+	-ms-transform: translate(0, 0);
+	transform: translate(0, 0);
+}
+.slide_sub_ul li:nth-child(7).dq_slide_activated ~ .slide_sub_cursor {
+	-webkit-transform: translate(600%, 0);
+	-moz-transform: translate(600%, 0);
+	-ms-transform: translate(600%, 0);
+	transform: translate(600%, 0);
+}
+.slide_sub_ul li:nth-child(8).dq_slide_activated ul div {
+	-webkit-transform: translate(0, 0);
+	-moz-transform: translate(0, 0);
+	-ms-transform: translate(0, 0);
+	transform: translate(0, 0);
+}
+.slide_sub_ul li:nth-child(8).dq_slide_activated ~ .slide_sub_cursor {
+	-webkit-transform: translate(700%, 0);
+	-moz-transform: translate(700%, 0);
+	-ms-transform: translate(700%, 0);
+	transform: translate(700%, 0);
+}
+/**************滑动固定栏的样式 end****************/
+/************************************飞入购物车********************/
+.addShoppingCarWraper {
+	z-index:2;
+	width:50px;
+	height: 50px;
+	position:relative;
+	animation: vertical-animation 1s ease 1s both; 
+	-webkit-animation: vertical-animation 1s ease 1s both;
+	-moz-animation: vertical-animation 1s ease 1s both;
+}
+.addShoppingCarItem {
+	width:50px;
+	height: 50px;
+	position:relative;
+	animation: hor-animation 1s ease-in-out 1s both; 
+	-webkit-animation: hor-animation 1s ease-in-out 1s both;
+	-moz-animation: hor-animation 1s ease-in-out 1s both;
+}
+ 
+@-moz-keyframes hor-animation {
+	0% {transform: translateX(5px) scale(1);}
+	10% {transform:scale(0.5);} 
+	100% {transform: translateX(800px) scale(0.5);} 
+}
+ @-webkit-keyframes hor-animation {
+	0% {transform: translateX(5px) scale(0.5);} 
+	100% {transform: translateX(800px) scale(0.5);}
+}
+ 
+@-moz-keyframes vertical-animation {
+	0% {transform: translateY(441px) scale(0.5);}
+	100% {transform: translateY(0px) scale(0.5);;}
+}
+ @-webkit-keyframes vertical-animation {
+	0% {transform: translateY(441px) scale(0.5);}
+	100% {transform: translateY(0px) scale(0.5);}
+}
+/*********************************飞入购物车结束*******************/
+/*阿里巴巴矢量字体  */
+@font-face {font-family: 'iconfont';
+    src: url('iconfont/iconfont.eot'); /* IE9*/
+    src: url('iconfont/iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('iconfont/iconfont.woff') format('woff'), /* chrome、firefox */
+    url('iconfont/iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+    url('iconfont/iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+.iconfont{
+    font-family:"iconfont" !important;
+    font-size:16px;font-style:normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+}
+/*阿里巴巴矢量字体结束  */
+/*用户头部  */
+.userHeader{
+	-moz-border-radius: 100% !important;
+	-webkit-border-radius:100% !important;
+	border-radius:100% !important;
+	width:40px;
+	height:40px;
+}
+/*圆形 */
+.circle{
+	-moz-border-radius: 100% !important;
+	-webkit-border-radius: 100% !important;
+	border-radius: 100% !important;
+}
+/*横向居中  */
+.x_center{
+	position:fixed;
+	left:50%;
+	-webkit-transform: translate(-50%);
+	-moz-transform: translate(-50%);
+	-o-transform: translate(-50%);
+}
+.y_center{
+	position:fixed;
+	top:50%;
+	-webkit-transform: translate(-50%);
+	-moz-transform: translate(-50%);
+	-o-transform: translate(-50%);
+}

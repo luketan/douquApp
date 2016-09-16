@@ -1,0 +1,60 @@
+<ion-view title="goods"  hide-tabs="false" hide-nav-bar="true"><!--hide-nav-bar="true" hide-tabs="true" hide-back-button="true" -->
+		<ion-header-bar class="bar-calm">
+		  	<button ng-click="$ionicGoBack()" class="button back-button buttons button-clear header-item"><i class="icon ion-ios-arrow-left"></i> 
+	      		<span class="back-text" style="transform: translate3d(0px, 0px, 0px);"></span>
+	      	</button>
+	  		<h1 class="title" ng-bind="title" style="">商品列表</h1>
+		</ion-header-bar>
+		<ion-content padding="false" lazy-container class="dq_bg_color">
+			  <ion-refresher on-refresh="doRefresh()" pulling-text="下拉刷新..." refreshing-text="刷新" refreshing-icon="ion-loading-c">
+			  </ion-refresher>
+			 <!--  <div style="display: table;width: 100%;">
+			  	<div style="display:table-row;width: 100%;">
+			  		<div style="display: table-cell;width: 33.3333%">
+				  		<ion-item ng-repeat="item in results track by $index" ng-if="$index==0" style="width: 33.33%;float: left;padding:0;margin:10px 0 0 10px">
+				     		ng-click="goGoodsItem({{item.id}})" 
+				     		<a href="#/tab/{{action_flag}}_goodsItem?id={{item.id}}">
+				    	    <img class="full-image" style="width: 100%" lazy-src="{{item.imgUrl}}">
+				    	    </a>
+						    <h2>{{item.name}}</h2>
+						    <p>{{item.typeName}}</p>
+				    	 </ion-item>
+				  	</div>
+				  	<div style="display: table-cell;width: 33.3333%">
+				  		<ion-item ng-repeat="item in results track by $index" ng-if="$index==1" style="width: 33.33%;float: left;padding:0;margin:10px 0 0 10px">
+				     		ng-click="goGoodsItem({{item.id}})" 
+				     		<a href="#/tab/{{action_flag}}_goodsItem?id={{item.id}}">
+				    	    <img class="full-image" style="width: 100%" lazy-src="{{item.imgUrl}}">
+				    	    </a>
+						    <h2>{{item.name}}</h2>
+						    <p>{{item.typeName}}</p>
+				    	 </ion-item>
+				  	</div>
+				  	<div style="display: table-cell;">
+				  		<ion-item ng-repeat="item in results track by $index" ng-if="$index==2" style="width: 33.33%;float: left;padding:0;margin:10px 0 0 10px">
+				     		ng-click="goGoodsItem({{item.id}})" 
+				     		<a href="#/tab/{{action_flag}}_goodsItem?id={{item.id}}">
+				    	    <img class="full-image" style="width: 100%" lazy-src="{{item.imgUrl}}">
+				    	    </a>
+						    <h2>{{item.name}}</h2>
+						    <p>{{item.typeName}}</p>
+				    	 </ion-item>
+				  	</div>
+			  	</div>
+			  </div> -->
+			  <!-- <div ng-repeat="item in styleList">
+			  	{{item.name}}
+			  </div> -->
+			  <ion-list style="overflow:hidden; display:inliine-block;">
+			     <ion-item ng-repeat="item in results track by $index" style="width: 48%;float: left;padding:0;margin:8px 1% 0 1%;border:0;" >
+			     		<!-- ng-click="goGoodsItem({{item.id}})"  -->
+			     		<a href="#/tab/{{action_flag}}_goodsItem?id={{item.id}}">
+			    	    <img class="full-image" style="width: 100%;" lazy-src="{{item.imgUrl}}">
+			    	    </a>
+					    <h3>{{item.name}}</h3>
+					    <p class="font-12">{{item.typeName}}</p>
+			     </ion-item>
+			  </ion-list>
+			  <ion-infinite-scroll ng-if="moreData" on-infinite="loadMore()" distance="0%" ></ion-infinite-scroll>
+		</ion-content>
+</ion-view>

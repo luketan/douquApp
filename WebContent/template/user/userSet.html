@@ -1,0 +1,115 @@
+<style type="text/css">
+.dq_user_header_img{
+	width: 40px;
+	height: 40px;
+	-moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    border-radius: 20px;
+    position: absolute;
+    right: 40px;
+}
+
+#userSetContent .dq_userSet_header_h2{
+	line-height: 40px;
+}
+#userSetContent .dq_userSet_h2_value{
+	position: absolute;
+    right: 40px;
+    color: #cccccc;
+}
+#userSetContent .dq_userSet_address input{
+	/* position: absolute;
+    right: 40px;
+    top:8px; 
+    display:inline;*/
+    color: #cccccc;
+    text-align: right;
+    width: 100%;
+    padding-right: 0px;
+     position: absolute;
+}
+#userSetContent .activated input{
+	background-color: #D9D9D9;
+	width: 100%;
+    padding-right: 0px;
+     position: absolute;
+	
+}
+#userSetContent .xxx{
+	margin-right: 0;
+	padding-left: 0;
+	width: 100%;
+    margin: 0;
+    position: absolute;
+    right:20px;
+    /* padding-right: 40px; */
+    
+}
+
+.dq_actionSheetOption{
+	line-height: 20px!important;
+	min-height:0;
+}
+</style>
+<ion-view hide-nav-bar="true" title="userSet" hide-tabs="true">
+	<ion-header-bar class="bar-calm">
+	    <div class="buttons">
+	        <button ng-click="$ionicGoBack()" class="button button-icon ion-ios-arrow-left">
+	    	</button>
+        </div>
+ 		<h1 class="title">设置用户信息</h1>
+	</ion-header-bar>
+	<ion-content id="userSetContent" class="dq_bg_color" padding="false">
+		  <div class="list dq_margin_bottom_0">
+			  <a ng-click="chageHeadShow()" class="item item-icon-right">
+				<h2 class="dq_userSet_header_h2" style="height: 40px">头像<img class="dq_user_header_img ion-medkit" style="width: 40px;height: 40px" ng-src="{{userInfo.head}}"></h2>
+				<i class="icon ion-chevron-right icon-accessory"></i>
+			  </a>
+			  <label class="item item-input item-icon-right">
+		          <span class="input-label" style="width:auto;">昵称</span>
+		          <input type="text" style="color: #cccccc;text-align: right;padding-right: 40px;" value="{{userInfo.nickName}}">
+		          <i class="icon ion-chevron-right icon-accessory"></i>
+		      </label>
+		      <a ng-click="sexy()" class="item item-icon-right">
+			    <i class="icon ion-chevron-right icon-accessory"></i>
+			    <h2>性别<span class="dq_userSet_h2_value">{{userInfo.sex==1?'男':''}}{{userInfo.sex==2?'女':''}}</span></h2>
+			  </a>
+		      <label class="item item-input item-icon-right">
+		          <span class="input-label" style="width:auto;">个性签名</span>
+		          <input type="text" style="color: #cccccc;text-align: right;padding-right: 40px;" value='{{userInfo.sign}}'>
+		          <i class="icon ion-chevron-right icon-accessory"></i>
+		      </label>
+		  </div>
+		  <div class="list dq_margin_bottom_0" style="margin-top: 8px;margin-bottom:8px ">
+			  <a href="#/tab/{{action_flag}}_setAccountSafe" class="item item-icon-right">
+			    <i class="icon ion-chevron-right icon-accessory"></i>
+			    <h2>账号与安全<span class="dq_userSet_h2_value"></span></h2>
+			  </a>
+		  </div>
+		  <div class="list dq_margin_bottom_0">
+			  <label class="item item-input item-icon-right">
+			  	  <i class="icon ion-chevron-right icon-accessory"></i>
+		          <span class="input-label">年龄</span>
+		          <input type="date" class="font-16 dq_userSet_h2_value" style="color: #cccccc;text-align: right;padding-right: 0">
+		      </label>
+			  <div ng-click="sexuality()"  class="item item-icon-right">
+			    <i class="icon ion-chevron-right icon-accessory"></i>
+			    <h2>性取向<span class="dq_userSet_h2_value">{{userInfo.sexu==1?'爱好男':''}}{{userInfo.sexu==2?'爱好女':''}}{{userInfo.sexu==3?'双性恋':''}}{{userInfo.sexu==4?'无性恋':''}}{{userInfo.sexu==4?'无性恋':''}}{{userInfo.sexu==5?'保密':''}}</span></h2>
+			  </div>
+			  <div ng-click="marriage()" class="item item-icon-right">
+			    <i class="icon ion-chevron-right icon-accessory"></i>
+			    <h2>婚恋状况<span class="dq_userSet_h2_value">单身</span></h2>
+			  </div>
+		  </div>
+		  <label class="item item-input item-icon-right item-input dq_userSet_address">
+			  <i class="icon ion-chevron-right icon-accessory"></i>
+		      <span class="input-label" style="z-index: 2">所在地</span>
+		      <ionic-city-picker placeholder="所在城市" tag=" " backdrop=true backdrop-click-to-close=true css-class="xxx" class="xxx" okText="确定" citydata="citydata"  button-clicked="vm.cb()" ></ionic-city-picker>
+		  </label>
+		  <div class="list dq_margin_bottom_0" style="margin-top: 8px;">
+			  <div ng-click="loginout()" class="item">
+			    <h2 style="text-align: center;color: red;">退出登录</h2>
+			  </div>
+		  </div>
+	</ion-content>
+</ion-view>

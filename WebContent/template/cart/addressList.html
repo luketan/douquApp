@@ -1,0 +1,28 @@
+<style type="text/css">
+
+</style>
+<ion-view title="item" hide-nav-bar="true" hide-tabs="true">
+	<ion-header-bar class="bar-calm">
+		<div class="buttons">
+	        <button ng-click="$ionicGoBack()" class="button button-icon ion-ios-arrow-left">
+	    	</button>
+        </div>
+ 		<h1 class="title">选择收货地址</h1>
+ 		<div class="buttons">
+ 			<a class="button button-small" href="#tab/{{action_flag}}_address">管理</a>
+	        
+        </div>
+	</ion-header-bar>
+	<ion-content id="about" has-header="true" class="dq_bg_color" padding="false" style="">
+		  <div ng-repeat="item in addressList track by $index" class="font-14 item item-icon-right item-icon-left" style="margin-bottom: 8px;padding:12px 12px 12px 40px">
+			  <i ng-click="checkAddress(item)" class="icon font-24" ng-class="{true:'ion-ios-checkmark',false:'ion-ios-circle-outline'}[item.check==1]" style="color:red;left:4px;"></i>
+			  <h2 class="font-14" style="height:24px;"><label style="padding-right:12px">{{item.userName}}</label><span style="padding-right:12px">{{item.phone}}</span><span  ng-if="item.defaulIs==1" style="border-radius: 4px;padding:0px 6px 2px 6px;background-color:#FF7F00;color:#fff;">默认</span></h2>
+			  <p class="font-12 font-color2" style="white-space:pre-line;">{{item.address}} {{item.detail}}</p>
+		  </div>
+	</ion-content>
+	<ion-footer-bar class="bar bar-footer item-input-inset" style="background-color:#fff;">
+		<a href="#/tab/{{action_flag}}_newAddress" style="width: 100%">
+	    <button class="button button-calm button-block font-14" style="min-height:20px;"><i class="icon ion-ios-plus-outline font-14" style="margin-right:8px;"></i>新增地址</button>
+   		</a>
+   	</ion-footer-bar>
+</ion-view>

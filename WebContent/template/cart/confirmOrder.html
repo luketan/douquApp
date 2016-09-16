@@ -1,0 +1,76 @@
+<style type="text/css">
+
+</style>
+<ion-view id="confirmOrderView" hide-tabs="true" title="info" hide-nav-bar="true"><!--  hide-nav-bar="true"  hide-nav-bar="true" title="info" -->
+	<ion-header-bar align-title="center" class="bar-calm" >
+		<div class="buttons">
+	        <button ng-click="$ionicGoBack()" class="button button-icon ion-ios-arrow-left">
+	    	</button>
+        </div>
+		<h1 class="title">确认订单</h1>
+	</ion-header-bar>
+	
+	<ion-content id="confirmOrderContent" id="goodsContent" class="dq_bg_color" padding="false">
+		<div>
+			<a ng-if="!address" href="#/tab/{{action_flag}}_newAddress?id=" class="item item-icon-left item-icon-right">
+			  		<i class="icon ion-ios-location-outline font-28" style="color: #FFBBFF;"></i>
+			    	<h2 style="color: #333">请填写您的收货地址</h2>
+			    	<i class="icon ion-chevron-right icon-accessory"></i>
+			</a>
+			<a ng-if="address" href="#/tab/{{action_flag}}_addressList" class="item item-icon-left item-icon-right" style="padding:10px 40px 10px 40px;">
+			  		<i class="icon ion-ios-location-outline font-28" style="color: #FFBBFF;left:4px;"></i>
+			    	<h2 class="font-14" style="color: #333;margin-bottom:8px;">收货人：{{address.name}}&nbsp;&nbsp;{{address.phone}}</h2>
+			    	<p class="font-12" style="white-space:pre-line;">收货地址：{{address.address}}&nbsp;&nbsp;{{address.detail}}</p>
+			    	<i class="icon ion-chevron-right icon-accessory" style="right:4px;"></i>
+			</a>
+		</div>
+		<div style="margin-top:8px;">
+			<a ng-repeat="item in results track by $index" href="#/tab/society_societyType?typeId=12" class="item item-avatar item-icon-right" style="min-height:0px;padding-top:10px;padding-bottom:10px;">
+		          <img style="top:8px;left:5px;width:60px;height:60px;max-height:60px;max-width:60px; border-radius:0px;" src="http://ionicframework.com/img/docs/mcfly.jpg" alt="">
+		          <h3 class="ng-binding" style="height:16px;line-height:16px;">情趣试衣间</h3>
+		          <p class="font-12 ng-binding" style="color: #999;height:16px;line-height:16px;">规格：3只装</p>
+		          <p class="font-12 ng-binding" style="color: #999;height:16px;line-height:16px;">数量：1</p>
+		          <i class="icon font-10" style="right:0;"><span style="padding: 0px 6px 2px 6px;font-weight:700;position:relative;top:-20px;">¥19.90</span></i>
+		    </a>
+	    </div>
+	    <div class="font-14" style="padding:9px 0 8px 10px;color:#333;font-weight:600;">支付方式</div>
+	    <div >
+			<div class="item item-icon-right item-icon-left item-divider" style="padding:12px 0px 12px 48px;">
+				<i class="icon iconfont calm font-28" style="position:absolute;top:-1px;">&#xe61b;</i>
+		    	<h2 class="font-14" style="color: #333">支付宝</h2>
+		    	<i class="icon ion-ios-checkmark icon-accessory font-24" style="color:red;"></i>
+		 	</div>
+		 	<div class="item item-icon-right item-icon-left item-divider" style="padding:12px 0px 12px 48px;">
+		 		<i class="icon iconfont calm font-28 assertive" style="position:absolute;top:-1px;">&#xe61c;</i>
+		    	<h2 class="font-14" style="color: #333">微信支付</h2>
+		    	<i class="icon ion-ios-circle-outline icon-accessory font-24"></i>
+		 	</div>
+		 	<div class="item item-icon-right item-icon-left item-divider" style="padding:12px 0px 12px 10px;">
+		    	<h2 class="font-14" style="color: #333">使用余额支付<span style="position:absolute;right:40px">可用：<span style="color:red">14.2</span></span></h2>
+		    	<i class="icon ion-ios-circle-outline icon-accessory font-24"></i>
+		 	</div>
+	    </div>
+	    <div class="font-14" style="padding:9px 0 8px 10px;color:#333;font-weight:600;">结算详情</div>
+	    <div>
+		    <div class="item" style="padding:8px;">
+				<h2 class="font-14" style="color:#999;padding-bottom:2px;">商品总价：</h2>
+				<h2 class="font-14" style="color:#999;padding-bottom:2px;">运费：</h2>
+				<h2 class="font-14" style="color:#999;padding-bottom:2px;">运费减免：</h2>
+				<h2 class="font-14" style="color:#999;padding-bottom:2px;">优惠减免：</h2>
+				<h2 class="font-14" style="color:#999">红包抵扣：</h2>
+		    </div>
+	    </div>
+	    <label class="item item-input" style="padding-right:16px;">
+          <input type="text" style="background-color:#ccc;padding:8px;border-radius:4px;" placeholder="给我们留言">
+        </label>
+	</ion-content>
+	<ion-footer-bar align-title="left" class="bar-stable">
+		<div class="font-14" style="height:34px;line-height:34px;color:#999">
+			应付：<span style="color:red;">¥19.90</span>
+		</div>
+		<h1 class="title"></h1>
+		<div class="buttons">
+		  	<button class="button font-14" style="background-color:red;color: #FFF;margin-right: 10px" ng-click="submitOrder()">提交订单</button>
+		</div>
+	</ion-footer-bar>
+</ion-view>

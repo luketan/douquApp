@@ -1,0 +1,333 @@
+    <style>
+#societyTypeListContent .slide-tab{
+    display: table;
+    overflow: hidden;
+    margin: 0;
+    width: 100%;
+    background-color: #ddd;
+  /*   border-bottom: 2px solid #00897B; */
+
+}
+
+#societyTypeListContent .slide-tab li{
+    float: left;
+    line-height: 38px;
+    overflow: hidden;
+    padding: 0;
+}
+
+#societyTypeListContent .slide-tab a{
+    background-color: #ddd;
+    color: #999;
+    font-weight: 500;
+    display: block;
+    letter-spacing: 0;
+    outline: none;
+    padding: 0 8px;
+    text-decoration: none;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}
+#societyTypeListContent .current a{
+    color: #000;
+    background: #fff;
+}
+#societyTypeListContent .slide-tab li{
+	float:none;
+}
+</style> 
+<ion-view title="item" hide-nav-bar="true" hide-tabs="true"><!--hide-nav-bar="true" hide-tabs="true" hide-back-button="true" -->
+	 <ion-header-bar class="bar-calm">
+     <div class="buttons">
+        <button ng-click="$ionicGoBack()" class="button button-icon ion-ios-arrow-left">
+    	</button>
+      </div>
+      <h1 class="title">所有主题</h1>
+    </ion-header-bar>
+
+    <div id="societyTypeListContent" style="margin-top: 44px;height: 100%">
+       <div class="row" style="margin: 0;padding: 0;height:100%;width:100%;">
+       		<div class="col" style="width:120px;padding:0px;background-color: #ddd;">
+			     	<ul class="slide-tab">
+			            <li ng-class="slideIndex == 0 ? 'current':''"><a ng-click="activeSlide(0)">Tab01</a></li>
+			            <li ng-class="slideIndex == 1 ? 'current':''"><a ng-click="activeSlide(1)">Tab02</a></li>
+			            <li ng-class="slideIndex == 2 ? 'current':''"><a ng-click="activeSlide(2)">Tab03</a></li>
+			            <li ng-class="slideIndex == 3 ? 'current':''"><a ng-click="activeSlide(3)">Tab04</a></li>
+			            <li ng-class="slideIndex == 4 ? 'current':''"><a ng-click="activeSlide(4)">Tab01</a></li>
+			            <li ng-class="slideIndex == 5 ? 'current':''"><a ng-click="activeSlide(5)">Tab02</a></li>
+			        </ul>
+       		</div>
+       		<div class="col" style="padding:0px;margin-left:8px;">
+       			<ion-slide-box on-slide-changed="slideChanged(index)" show-pager="false" active-slide="slideIndex" style="width:100%">
+		            <ion-slide>
+			             <div class="item item-avatar item-icon-right" style="padding-top:10px;padding-bottom:10px;min-height:0px;border-left:0;">
+				          <img style="top:5px;border-radius: 0px" src="http://ionicframework.com/img/docs/mcfly.jpg"  alt="" />
+				          <h3>不帅你抽我</h3>
+				          <p class="font-12" style="color: #999">型男自拍，达人点评，教你逆袭白富美</p>
+				          <i class="icon ion-plus-circled font-16"></i>
+				         </div>
+				         <div class="item item-avatar item-icon-right" style="padding-top:10px;padding-bottom:10px;min-height:0px;border-left:0;">
+				          <img style="top:5px;border-radius: 0px" src="http://ionicframework.com/img/docs/mcfly.jpg"  alt="" />
+				          <h3>不帅你抽我</h3>
+				          <p class="font-12" style="color: #999">型男自拍，达人点评，教你逆袭白富美</p>
+				          <i class="icon ion-plus-circled font-16"></i>
+				         </div>
+				         <div class="item item-avatar item-icon-right" style="padding-top:10px;padding-bottom:10px;min-height:0px;border-left:0;">
+				          <img style="top:5px;border-radius: 0px" src="http://ionicframework.com/img/docs/mcfly.jpg"  alt="" />
+				          <h3>不帅你抽我</h3>
+				          <p class="font-12" style="color: #999">型男自拍，达人点评，教你逆袭白富美</p>
+				          <i class="icon ion-plus-circled font-16"></i>
+				        </div>
+				        <div class="item item-avatar item-icon-right" style="padding-top:10px;padding-bottom:10px;min-height:0px;border-left:0;">
+				          <img style="top:5px;border-radius: 0px" src="http://ionicframework.com/img/docs/mcfly.jpg"  alt="" />
+				          <h3>不帅你抽我</h3>
+				          <p class="font-12" style="color: #999">型男自拍，达人点评，教你逆袭白富美</p>
+				          <i class="icon ion-plus-circled font-16"></i>
+				        </div>
+				        <div class="item item-avatar item-icon-right" style="padding-top:10px;padding-bottom:10px;min-height:0px;border-left:0;">
+				          <img style="top:5px;border-radius: 0px" src="http://ionicframework.com/img/docs/mcfly.jpg"  alt="" />
+				          <h3>不帅你抽我</h3>
+				          <p class="font-12" style="color: #999">型男自拍，达人点评，教你逆袭白富美</p>
+				          <i class="icon ion-plus-circled font-16"></i>
+				        </div>
+				        <div class="item item-avatar item-icon-right" style="padding-top:10px;padding-bottom:10px;min-height:0px;border-left:0;">
+				          <img style="top:5px;border-radius: 0px" src="http://ionicframework.com/img/docs/mcfly.jpg"  alt="" />
+				          <h3>不帅你抽我</h3>
+				          <p class="font-12" style="color: #999">型男自拍，达人点评，教你逆袭白富美</p>
+				          <i class="icon ion-plus-circled font-16"></i>
+				        </div>
+		            </ion-slide>
+		            <ion-slide>
+		              <div class="item item-avatar item-icon-right" style="padding-top:10px;padding-bottom:10px;min-height:0px;border-left:0;">
+				          <img style="top:5px;border-radius: 0px" src="http://ionicframework.com/img/docs/mcfly.jpg"  alt="" />
+				          <h3>不帅你抽我</h3>
+				          <p class="font-12" style="color: #999">型男自拍，达人点评，教你逆袭白富美</p>
+				          <i class="icon ion-plus-circled font-16"></i>
+				         </div>
+				         <div class="item item-avatar item-icon-right" style="padding-top:10px;padding-bottom:10px;min-height:0px;border-left:0;">
+				          <img style="top:5px;border-radius: 0px" src="http://ionicframework.com/img/docs/mcfly.jpg"  alt="" />
+				          <h3>不帅你抽我</h3>
+				          <p class="font-12" style="color: #999">型男自拍，达人点评，教你逆袭白富美</p>
+				          <i class="icon ion-plus-circled font-16"></i>
+				         </div>
+				         <div class="item item-avatar item-icon-right" style="padding-top:10px;padding-bottom:10px;min-height:0px;border-left:0;">
+				          <img style="top:5px;border-radius: 0px" src="http://ionicframework.com/img/docs/mcfly.jpg"  alt="" />
+				          <h3>不帅你抽我</h3>
+				          <p class="font-12" style="color: #999">型男自拍，达人点评，教你逆袭白富美</p>
+				          <i class="icon ion-plus-circled font-16"></i>
+				        </div>
+				        <div class="item item-avatar item-icon-right" style="padding-top:10px;padding-bottom:10px;min-height:0px;border-left:0;">
+				          <img style="top:5px;border-radius: 0px" src="http://ionicframework.com/img/docs/mcfly.jpg"  alt="" />
+				          <h3>不帅你抽我</h3>
+				          <p class="font-12" style="color: #999">型男自拍，达人点评，教你逆袭白富美</p>
+				          <i class="icon ion-plus-circled font-16"></i>
+				        </div>
+				        <div class="item item-avatar item-icon-right" style="padding-top:10px;padding-bottom:10px;min-height:0px;border-left:0;">
+				          <img style="top:5px;border-radius: 0px" src="http://ionicframework.com/img/docs/mcfly.jpg"  alt="" />
+				          <h3>不帅你抽我</h3>
+				          <p class="font-12" style="color: #999">型男自拍，达人点评，教你逆袭白富美</p>
+				          <i class="icon ion-plus-circled font-16"></i>
+				        </div>
+				        <div class="item item-avatar item-icon-right" style="padding-top:10px;padding-bottom:10px;min-height:0px;border-left:0;">
+				          <img style="top:5px;border-radius: 0px" src="http://ionicframework.com/img/docs/mcfly.jpg"  alt="" />
+				          <h3>不帅你抽我</h3>
+				          <p class="font-12" style="color: #999">型男自拍，达人点评，教你逆袭白富美</p>
+				          <i class="icon ion-plus-circled font-16"></i>
+				        </div>
+		            </ion-slide>
+		            <ion-slide>
+		             <div class="item item-avatar item-icon-right" style="padding-top:10px;padding-bottom:10px;min-height:0px;border-left:0;">
+				          <img style="top:5px;border-radius: 0px" src="http://ionicframework.com/img/docs/mcfly.jpg"  alt="" />
+				          <h3>不帅你抽我</h3>
+				          <p class="font-12" style="color: #999">型男自拍，达人点评，教你逆袭白富美</p>
+				          <i class="icon ion-plus-circled font-16"></i>
+				         </div>
+				         <div class="item item-avatar item-icon-right" style="padding-top:10px;padding-bottom:10px;min-height:0px;border-left:0;">
+				          <img style="top:5px;border-radius: 0px" src="http://ionicframework.com/img/docs/mcfly.jpg"  alt="" />
+				          <h3>不帅你抽我</h3>
+				          <p class="font-12" style="color: #999">型男自拍，达人点评，教你逆袭白富美</p>
+				          <i class="icon ion-plus-circled font-16"></i>
+				         </div>
+				         <div class="item item-avatar item-icon-right" style="padding-top:10px;padding-bottom:10px;min-height:0px;border-left:0;">
+				          <img style="top:5px;border-radius: 0px" src="http://ionicframework.com/img/docs/mcfly.jpg"  alt="" />
+				          <h3>不帅你抽我</h3>
+				          <p class="font-12" style="color: #999">型男自拍，达人点评，教你逆袭白富美</p>
+				          <i class="icon ion-plus-circled font-16"></i>
+				        </div>
+				        <div class="item item-avatar item-icon-right" style="padding-top:10px;padding-bottom:10px;min-height:0px;border-left:0;">
+				          <img style="top:5px;border-radius: 0px" src="http://ionicframework.com/img/docs/mcfly.jpg"  alt="" />
+				          <h3>不帅你抽我</h3>
+				          <p class="font-12" style="color: #999">型男自拍，达人点评，教你逆袭白富美</p>
+				          <i class="icon ion-plus-circled font-16"></i>
+				        </div>
+				        <div class="item item-avatar item-icon-right" style="padding-top:10px;padding-bottom:10px;min-height:0px;border-left:0;">
+				          <img style="top:5px;border-radius: 0px" src="http://ionicframework.com/img/docs/mcfly.jpg"  alt="" />
+				          <h3>不帅你抽我</h3>
+				          <p class="font-12" style="color: #999">型男自拍，达人点评，教你逆袭白富美</p>
+				          <i class="icon ion-plus-circled font-16"></i>
+				        </div>
+				        <div class="item item-avatar item-icon-right" style="padding-top:10px;padding-bottom:10px;min-height:0px;border-left:0;">
+				          <img style="top:5px;border-radius: 0px" src="http://ionicframework.com/img/docs/mcfly.jpg"  alt="" />
+				          <h3>不帅你抽我</h3>
+				          <p class="font-12" style="color: #999">型男自拍，达人点评，教你逆袭白富美</p>
+				          <i class="icon ion-plus-circled font-16"></i>
+				        </div>
+		            </ion-slide>
+		            <ion-slide>
+		               <div class="item item-avatar item-icon-right" style="padding-top:10px;padding-bottom:10px;min-height:0px;border-left:0;">
+				          <img style="top:5px;border-radius: 0px" src="http://ionicframework.com/img/docs/mcfly.jpg"  alt="" />
+				          <h3>不帅你抽我</h3>
+				          <p class="font-12" style="color: #999">型男自拍，达人点评，教你逆袭白富美</p>
+				          <i class="icon ion-plus-circled font-16"></i>
+				         </div>
+				         <div class="item item-avatar item-icon-right" style="padding-top:10px;padding-bottom:10px;min-height:0px;border-left:0;">
+				          <img style="top:5px;border-radius: 0px" src="http://ionicframework.com/img/docs/mcfly.jpg"  alt="" />
+				          <h3>不帅你抽我</h3>
+				          <p class="font-12" style="color: #999">型男自拍，达人点评，教你逆袭白富美</p>
+				          <i class="icon ion-plus-circled font-16"></i>
+				         </div>
+				         <div class="item item-avatar item-icon-right" style="padding-top:10px;padding-bottom:10px;min-height:0px;border-left:0;">
+				          <img style="top:5px;border-radius: 0px" src="http://ionicframework.com/img/docs/mcfly.jpg"  alt="" />
+				          <h3>不帅你抽我</h3>
+				          <p class="font-12" style="color: #999">型男自拍，达人点评，教你逆袭白富美</p>
+				          <i class="icon ion-plus-circled font-16"></i>
+				        </div>
+				        <div class="item item-avatar item-icon-right" style="padding-top:10px;padding-bottom:10px;min-height:0px;border-left:0;">
+				          <img style="top:5px;border-radius: 0px" src="http://ionicframework.com/img/docs/mcfly.jpg"  alt="" />
+				          <h3>不帅你抽我</h3>
+				          <p class="font-12" style="color: #999">型男自拍，达人点评，教你逆袭白富美</p>
+				          <i class="icon ion-plus-circled font-16"></i>
+				        </div>
+				        <div class="item item-avatar item-icon-right" style="padding-top:10px;padding-bottom:10px;min-height:0px;border-left:0;">
+				          <img style="top:5px;border-radius: 0px" src="http://ionicframework.com/img/docs/mcfly.jpg"  alt="" />
+				          <h3>不帅你抽我</h3>
+				          <p class="font-12" style="color: #999">型男自拍，达人点评，教你逆袭白富美</p>
+				          <i class="icon ion-plus-circled font-16"></i>
+				        </div>
+				        <div class="item item-avatar item-icon-right" style="padding-top:10px;padding-bottom:10px;min-height:0px;border-left:0;">
+				          <img style="top:5px;border-radius: 0px" src="http://ionicframework.com/img/docs/mcfly.jpg"  alt="" />
+				          <h3>不帅你抽我</h3>
+				          <p class="font-12" style="color: #999">型男自拍，达人点评，教你逆袭白富美</p>
+				          <i class="icon ion-plus-circled font-16"></i>
+				        </div>
+		            </ion-slide>
+		            <ion-slide>
+		              <div class="item item-avatar item-icon-right" style="padding-top:10px;padding-bottom:10px;min-height:0px;border-left:0;">
+				          <img style="top:5px;border-radius: 0px" src="http://ionicframework.com/img/docs/mcfly.jpg"  alt="" />
+				          <h3>不帅你抽我</h3>
+				          <p class="font-12" style="color: #999">型男自拍，达人点评，教你逆袭白富美</p>
+				          <i class="icon ion-plus-circled font-16"></i>
+				         </div>
+				         <div class="item item-avatar item-icon-right" style="padding-top:10px;padding-bottom:10px;min-height:0px;border-left:0;">
+				          <img style="top:5px;border-radius: 0px" src="http://ionicframework.com/img/docs/mcfly.jpg"  alt="" />
+				          <h3>不帅你抽我</h3>
+				          <p class="font-12" style="color: #999">型男自拍，达人点评，教你逆袭白富美</p>
+				          <i class="icon ion-plus-circled font-16"></i>
+				         </div>
+				         <div class="item item-avatar item-icon-right" style="padding-top:10px;padding-bottom:10px;min-height:0px;border-left:0;">
+				          <img style="top:5px;border-radius: 0px" src="http://ionicframework.com/img/docs/mcfly.jpg"  alt="" />
+				          <h3>不帅你抽我</h3>
+				          <p class="font-12" style="color: #999">型男自拍，达人点评，教你逆袭白富美</p>
+				          <i class="icon ion-plus-circled font-16"></i>
+				        </div>
+				        <div class="item item-avatar item-icon-right" style="padding-top:10px;padding-bottom:10px;min-height:0px;border-left:0;">
+				          <img style="top:5px;border-radius: 0px" src="http://ionicframework.com/img/docs/mcfly.jpg"  alt="" />
+				          <h3>不帅你抽我</h3>
+				          <p class="font-12" style="color: #999">型男自拍，达人点评，教你逆袭白富美</p>
+				          <i class="icon ion-plus-circled font-16"></i>
+				        </div>
+				        <div class="item item-avatar item-icon-right" style="padding-top:10px;padding-bottom:10px;min-height:0px;border-left:0;">
+				          <img style="top:5px;border-radius: 0px" src="http://ionicframework.com/img/docs/mcfly.jpg"  alt="" />
+				          <h3>不帅你抽我</h3>
+				          <p class="font-12" style="color: #999">型男自拍，达人点评，教你逆袭白富美</p>
+				          <i class="icon ion-plus-circled font-16"></i>
+				        </div>
+				        <div class="item item-avatar item-icon-right" style="padding-top:10px;padding-bottom:10px;min-height:0px;border-left:0;">
+				          <img style="top:5px;border-radius: 0px" src="http://ionicframework.com/img/docs/mcfly.jpg"  alt="" />
+				          <h3>不帅你抽我</h3>
+				          <p class="font-12" style="color: #999">型男自拍，达人点评，教你逆袭白富美</p>
+				          <i class="icon ion-plus-circled font-16"></i>
+				        </div>
+		            </ion-slide>
+		            <ion-slide>
+		               <div class="item item-avatar item-icon-right" style="padding-top:10px;padding-bottom:10px;min-height:0px;border-left:0;">
+				          <img style="top:5px;border-radius: 0px" src="http://ionicframework.com/img/docs/mcfly.jpg"  alt="" />
+				          <h3>不帅你抽我</h3>
+				          <p class="font-12" style="color: #999">型男自拍，达人点评，教你逆袭白富美</p>
+				          <i class="icon ion-plus-circled font-16"></i>
+				         </div>
+				         <div class="item item-avatar item-icon-right" style="padding-top:10px;padding-bottom:10px;min-height:0px;border-left:0;">
+				          <img style="top:5px;border-radius: 0px" src="http://ionicframework.com/img/docs/mcfly.jpg"  alt="" />
+				          <h3>不帅你抽我</h3>
+				          <p class="font-12" style="color: #999">型男自拍，达人点评，教你逆袭白富美</p>
+				          <i class="icon ion-plus-circled font-16"></i>
+				         </div>
+				         <div class="item item-avatar item-icon-right" style="padding-top:10px;padding-bottom:10px;min-height:0px;border-left:0;">
+				          <img style="top:5px;border-radius: 0px" src="http://ionicframework.com/img/docs/mcfly.jpg"  alt="" />
+				          <h3>不帅你抽我</h3>
+				          <p class="font-12" style="color: #999">型男自拍，达人点评，教你逆袭白富美</p>
+				          <i class="icon ion-plus-circled font-16"></i>
+				        </div>
+				        <div class="item item-avatar item-icon-right" style="padding-top:10px;padding-bottom:10px;min-height:0px;border-left:0;">
+				          <img style="top:5px;border-radius: 0px" src="http://ionicframework.com/img/docs/mcfly.jpg"  alt="" />
+				          <h3>不帅你抽我</h3>
+				          <p class="font-12" style="color: #999">型男自拍，达人点评，教你逆袭白富美</p>
+				          <i class="icon ion-plus-circled font-16"></i>
+				        </div>
+				        <div class="item item-avatar item-icon-right" style="padding-top:10px;padding-bottom:10px;min-height:0px;border-left:0;">
+				          <img style="top:5px;border-radius: 0px" src="http://ionicframework.com/img/docs/mcfly.jpg"  alt="" />
+				          <h3>不帅你抽我</h3>
+				          <p class="font-12" style="color: #999">型男自拍，达人点评，教你逆袭白富美</p>
+				          <i class="icon ion-plus-circled font-16"></i>
+				        </div>
+				        <div class="item item-avatar item-icon-right" style="padding-top:10px;padding-bottom:10px;min-height:0px;border-left:0;">
+				          <img style="top:5px;border-radius: 0px" src="http://ionicframework.com/img/docs/mcfly.jpg"  alt="" />
+				          <h3>不帅你抽我</h3>
+				          <p class="font-12" style="color: #999">型男自拍，达人点评，教你逆袭白富美</p>
+				          <i class="icon ion-plus-circled font-16"></i>
+				        </div>
+		            </ion-slide>
+		           <ion-slide>
+		              <div class="item item-avatar item-icon-right" style="padding-top:10px;padding-bottom:10px;min-height:0px;border-left:0;">
+				          <img style="top:5px;border-radius: 0px" src="http://ionicframework.com/img/docs/mcfly.jpg"  alt="" />
+				          <h3>不帅你抽我</h3>
+				          <p class="font-12" style="color: #999">型男自拍，达人点评，教你逆袭白富美</p>
+				          <i class="icon ion-plus-circled font-16"></i>
+				         </div>
+				         <div class="item item-avatar item-icon-right" style="padding-top:10px;padding-bottom:10px;min-height:0px;border-left:0;">
+				          <img style="top:5px;border-radius: 0px" src="http://ionicframework.com/img/docs/mcfly.jpg"  alt="" />
+				          <h3>不帅你抽我</h3>
+				          <p class="font-12" style="color: #999">型男自拍，达人点评，教你逆袭白富美</p>
+				          <i class="icon ion-plus-circled font-16"></i>
+				         </div>
+				         <div class="item item-avatar item-icon-right" style="padding-top:10px;padding-bottom:10px;min-height:0px;border-left:0;">
+				          <img style="top:5px;border-radius: 0px" src="http://ionicframework.com/img/docs/mcfly.jpg"  alt="" />
+				          <h3>不帅你抽我</h3>
+				          <p class="font-12" style="color: #999">型男自拍，达人点评，教你逆袭白富美</p>
+				          <i class="icon ion-plus-circled font-16"></i>
+				        </div>
+				        <div class="item item-avatar item-icon-right" style="padding-top:10px;padding-bottom:10px;min-height:0px;border-left:0;">
+				          <img style="top:5px;border-radius: 0px" src="http://ionicframework.com/img/docs/mcfly.jpg"  alt="" />
+				          <h3>不帅你抽我</h3>
+				          <p class="font-12" style="color: #999">型男自拍，达人点评，教你逆袭白富美</p>
+				          <i class="icon ion-plus-circled font-16"></i>
+				        </div>
+				        <div class="item item-avatar item-icon-right" style="padding-top:10px;padding-bottom:10px;min-height:0px;border-left:0;">
+				          <img style="top:5px;border-radius: 0px" src="http://ionicframework.com/img/docs/mcfly.jpg"  alt="" />
+				          <h3>不帅你抽我</h3>
+				          <p class="font-12" style="color: #999">型男自拍，达人点评，教你逆袭白富美</p>
+				          <i class="icon ion-plus-circled font-16"></i>
+				        </div>
+				        <div class="item item-avatar item-icon-right" style="padding-top:10px;padding-bottom:10px;min-height:0px;border-left:0;">
+				          <img style="top:5px;border-radius: 0px" src="http://ionicframework.com/img/docs/mcfly.jpg"  alt="" />
+				          <h3>不帅你抽我</h3>
+				          <p class="font-12" style="color: #999">型男自拍，达人点评，教你逆袭白富美</p>
+				          <i class="icon ion-plus-circled font-16"></i>
+				        </div>
+		            </ion-slide>
+		        </ion-slide-box>
+       		</div>
+       </div>
+       </div>
+</ion-view>

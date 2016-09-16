@@ -1,0 +1,42 @@
+<style type="text/css">
+
+</style>
+<!--之前版本 从下到上载入效果  -->
+<ion-modal-view id="loginTemplate">
+   <ion-header-bar class="bar-calm">
+		<div class="buttons">
+	        <button ng-click="$ionicGoBack()" class="button button-icon ion-ios-arrow-left">
+	    	</button>
+        </div>
+ 		<h1 class="title">登录</h1>
+	</ion-header-bar>
+	<ion-content id="loginContent" has-header="false" has-tabs="true" padding="false" class="dq_bg_color">
+			<div class="item-head">
+				<img ng-src="{{ consultAvatar || './img/main/39dc41f96634710a4c5c69e250b54257.jpg'}}" />
+			</div>
+			<div class="list list-login">
+				<div class="item item-input">
+					<i class="icon ion-ios-person-outline placeholder-icon font-20" style="padding-right: 20px;"></i>
+					<input type="text" ng-model="user.login" placeholder="手机号">
+				</div>
+				<div class="item item-input">
+					<i class="icon ion-ios-locked placeholder-icon font-20" style="padding-right: 20px;"></i>
+					<input type="{{pwdType}}" ng-model="user.pwd" type="password" placeholder="密码">
+					<i ng-if="showPwd" ng-click="clickPwd()"  style="padding-right: 20px;" class="icon ion-ios-eye font-20"></i>
+					<i ng-if="!showPwd" ng-click="clickPwd()" style="padding-right: 20px;" class="icon ion-ios-eye-outline placeholder-icon font-20"></i>
+				</div>
+				<div class="padding">
+		        	<button ng-if="user.login!='' && user.pwd!=''" class="button button-calm button-block" style="min-height:30px" ng-click="login()">登录</button>
+		        	<button ng-if="user.login=='' || user.pwd==''" class="button button-calm button-block disabled" style="min-height:30px;">登录</button>
+			        <a href="#/tab/{{action_flag}}_forgetPwd" class="font-14" style="text-align:center;color:red;width: 100%;display:inline-block;">
+			        	忘记密码？
+			        </a>
+		        </div>
+			</div>
+	</ion-content>
+	<ion-footer-bar align-title="center" class="bar-stable" >
+	  <a href="#tab/user_register1">
+	  	<h3 class="title font-14"><span style="color:#999">没有账户？</span><span style="color:red ">立即注册</span></h3>
+	  </a>
+	</ion-footer-bar>
+ </ion-modal-view>

@@ -1,0 +1,146 @@
+<style type="text/css">
+#goodsItemContent.has-header{/*内容置顶  */
+ top:0;
+}
+#goodsItemHeader.bar-header{
+	opacity:0; 
+}
+.heade-button-left{
+	z-index:99999;
+	position: absolute;
+	top:4.5px !important;
+	left: 0;
+	color: #FFF !important;
+  	width:34px;
+	height:34px;
+	line-height:30px;
+	overflow:hidden;
+	min-width: 34px;
+    min-height:34px;
+	background-color:#f47983 !important;
+	-moz-border-radius: 17px;       
+    -webkit-border-radius:17px;    
+    border-radius:17px;
+    text-align: center;    
+}
+.heade-button-right{
+	z-index:99999;
+	position: absolute;
+	top:4.5px !important;
+	right: 0;
+	color: #FFF !important;
+  	width:34px;
+	height:34px;
+	line-height:34px;
+	overflow:hidden;
+	min-width: 34px;
+    min-height:34px;
+	background-color:#f47983 !important;
+	-moz-border-radius: 17px;       
+    -webkit-border-radius:17px;    
+    border-radius:17px;
+    text-align: center;            
+}
+.goodItem-header{/*头部样式  */
+	background-color: #f47983;
+}
+#goodsItemContent .bind-html *{
+	max-width: 100%;
+}
+#goodsItemContent .bind-html{
+	padding: 0;
+	margin: 0;
+	padding: 0;
+	margin-top: 0px !important;
+}
+#goodsItemContent .bind-html img{display:block;}
+#goodsItemContent .bind-html p{margin-top: 0px}
+</style>
+<ion-view hide-tabs="true" title="info" hide-nav-bar="true"><!--  hide-nav-bar="true"  hide-nav-bar="true" title="info" -->
+	<ion-header-bar id="goodsItemHeader" align-title="center" class="goodItem-header" >
+		<h1 class="title">商品详情</h1>
+	</ion-header-bar>
+	<button ng-click="$ionicGoBack()" class="heade-button-left font-28">
+			<i class="icon ion-ios-arrow-left"></i> 
+      		<span class="back-text"></span>
+    </button>
+	<a href="#/tab/{{action_flag}}_cart" class="heade-button-right font-28">
+			<i class="ion-ios-cart-outline"></i> 
+      		<span class="back-text"></span>
+    </a>
+	<ion-content id="goodsItemContent" id="goodsContent" padding="false" lazy-container header-shrink>
+		<ion-slide-box auto-play="true" does-continue="true" slide-interval=3000 show-pager="true" delegate-handle="goodItemdelegateHandler">
+		 		<!-- <ion-slide>
+				  		<a href="#/tab/{{action_flag}}_societyItem?id=10">
+						    <div class="box">
+							    	<img src="img/zbgj_img.png">
+							    	<img ng-src="img/main/39dc41f96634710a4c5c69e250b54257.jpg" style="width:100%;display:none;" onload="this.style.display = 'inline';$(this).prev().remove()">
+						    </div>
+					    </a>
+				  </ion-slide>
+				  <ion-slide>
+					    <div class="box">
+					    	<img src="img/zbgj_img.png">
+					    	<img src="img/main/a77f88d71a0ac277230d067da1be2b7e.jpg" style="width:100%;display:none;" onload="this.style.display = 'inline';$(this).prev().remove()">
+					    </div>
+				  </ion-slide>
+				  <ion-slide>
+					    <div class="box">
+					    	<img src="img/zbgj_img.png">
+					    	<img src="img/main/c0941c32bab2a063fd94ce1fcd710e89.jpg" style="width:100%;display:none;" onload="this.style.display = 'inline';$(this).prev().remove()">
+					    </div>
+				  </ion-slide>
+				  <ion-slide>
+					    <div class="box">
+					    	<img src="img/zbgj_img.png">
+					    	<img ng-src="img/main/9298f2101fb7d8423ea1d7443ebac2d1.jpg" style="width:100%;display:none;" onload="this.style.display = 'inline';$(this).prev().remove()">
+					    </div>
+				  </ion-slide>
+				  <ion-slide>
+					    <div class="box">
+					    	<img src="img/zbgj_img.png">
+					    	<img src="img/main/96c858c99f4b116e9c85aabc7a0baa3e.jpg" style="width:100%;display:none;" onload="this.style.display = 'inline';$(this).prev().remove()">
+					    </div>
+				  </ion-slide>
+				  <ion-slide>
+					    <div class="box">
+					    	<img src="img/zbgj_img.png">
+					    	<img src="img/main/9bcce5cd870e95734441caf6d210a2ee.jpg" style="width:100%;display:none;" onload="this.style.display = 'inline';$(this).prev().remove()">
+					    </div>
+				  </ion-slide> -->
+			   	  <ion-slide ng-repeat="item in result.tPicList">
+				    <div class="box">
+				    	<img  class="full-image" style="width: 100%;" src="img/zbgj_img.png">
+				    	<img ng-src="{{item.picUrl}}" style="width:100%;display:none;" onload="$(this).prev().remove();this.style.display = 'block';">
+				    	<!-- <img class="full-image" style="width: 100%;" lazy-src={{item.picUrl}}"  onload="this.style.display = 'block';$(this).prev().remove();"> -->
+				    </div>
+			  	  </ion-slide>
+		</ion-slide-box>
+	    <div class="list ">
+	        <div class="item item-avatar" style="padding-left:10px;">
+	          <h2 style="white-space: normal;">{{result.name}}</h2>
+	          <h3 style="color: red;white-space: normal;margin-top: 5px;" ng-if="result.subName">{{result.subName}}</h3>
+	          <h2 class="font-20" style="color: red;font-weight: 700;margin-top: 10px;">¥{{result.price|number:2}}&nbsp;&nbsp;<span class="font-12" style="text-decoration:line-through;font-weight:normal;color: #999">市场价：¥{{result.markPrice|number:2}}</span></h2>
+	          <h2 class="font-12" style="color: #999;text-align: right;height:20px;line-height: 20px;overflow:hidden;">&nbsp;&nbsp;{{result.salesNum}}人已购买</h2>
+	        </div>
+		    <ion-item class="item-divider dq_bg_white">
+			  	<h2>商品详情</h2>
+			</ion-item>
+	        <div class="item item-body hide-goodItem-header-mark" style="padding: 0;border-top: 0px;">	
+	          <p class="bind-html" class="" ng-bind-html="result.detail">
+	          </p>
+	        </div>
+	     </div>
+	</ion-content>
+	<ion-footer-bar align-title="left" class="bar-stable">
+	  <div>
+	  <i class="ion-android-favorite-outline font-24" style="margin-left: 10px;position: relative;top:3px"></i> <span class="font-10">客服</span>
+	  <i class="ion-android-star-outline font-24" style="margin-left: 10px;position: relative;top:3px"></i> <span class="font-14">收藏</span>
+	  </div>
+	  <h1 class="title"></h1>
+	  <div class="buttons">
+	  	<button class="button" style="background-color:red;color: #FFF;margin-right: 10px" ng-click="modal.show()">立即购买</button>
+	    <button class="button" style="border: 1px solid red;color:red;margin-right: 10px" ng-click="modal.show()">加入购物车</button>
+	  </div>
+	</ion-footer-bar>
+</ion-view>

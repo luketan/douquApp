@@ -1,0 +1,101 @@
+<style type="text/css">
+.dq_user_header_img{
+	width: 80px;
+	height: 80px;
+	-moz-border-radius: 40px;
+    -webkit-border-radius: 40px;
+    border-radius: 40px;
+}
+.dq_user_header_h2{
+}
+</style>
+<ion-view hide-nav-bar="true" title="用户中心" hide-tabs="false"><!--has-tabs="true"   -->
+	<ion-header-bar class="bar-calm">
+ 		<h1 class="title">用户中心</h1>
+	</ion-header-bar>
+	<ion-content id="user" class="dq_bg_color" padding="false">
+		<ion-slide-box>
+		</ion-slide-box>
+		<div class="list dq_margin_bottom_0">
+			  <ion-item ng-if="userInfo && userInfo.id" class="item-remove-animate item-avatar item-icon-right" href="#/tab/{{action_flag}}_userSet"><!-- -->
+					<img class="ion-medkit dq_user_header_img" src="http://resources.honglinktech.com/product/1458140676621.png">
+					<h2 class="dq_user_header_h2 font-14" style="line-height: 20px">{{userInfo.nickName}}<i class="font-18" style="position:relative;top:2px;margin-left:8px;{{userInfo.sex==2?'color:red':'color:#999'}}" ng-class="{1:'ion-male',2:'ion-female'}[userInfo.sex]"></i></h2>
+					<p class="font-12" style="color: #999">{{userInfo.sign}}</p>
+					<i class="icon ion-chevron-right icon-accessory"></i>
+			  </ion-item>
+			  <ion-item ng-if="!userInfo || !userInfo.id" class="item-remove-animate item-avatar item-icon-right" style="text-align: center;"><!-- -->
+			 		<a href="#tab/user_login" class="button button-small font-14" style="color:#11c1f3;border: 1px solid #11c1f3;min-height:0;margin-right:10px;min-width:80px">登录</a>
+			  		<a href="#tab/user_register1" class="button button-small button-calm font-14" style="min-height:0;margin-left: 10px;min-width:80px">注册</a> 
+			  </ion-item>
+			  <div class="item row " style="text-align: center;margin: 0px;border-bottom: 0px;border-left: 0px;border-right: 0px;">
+			  		<div class="col-25">
+			  			{{userInfo.virtualMoney}}<br><span class="font-14">币</span>
+			  		</div>
+			  		<div class="col-25">
+			  			{{userInfo.money}}<br><span class="font-14">余额</span>
+			  		</div>
+			  		<div class="col-25">
+			  			{{userInfo.level}}<br><span class="font-14">社区等级</span>
+			  		</div>
+			  		<div class="col-25">
+			  			11<br><span class="font-14">我的发言</span>
+			  		</div>
+			   </div>
+		 <!--  <div class="item row" style="text-align: center;border: 0px;padding:8px 0px 0px 0px;margin:0;">
+		  		<div class="col-50">
+		  			88<br>我关注的
+		  		</div>
+		  		<div class="col-50">
+		  			4<br>关注我的
+		  		</div>
+		  </div> -->
+		</div>
+		<div class="list dq_margin_bottom_0" style="margin-top: 8px;">
+		  <a href="#/tab/user_userGou" class="item item-icon-left item-icon-right">
+		  		<i class="icon ion-checkmark-circled font-28" style="color: #FFBBFF;"></i>
+		    	<h2 style="color: #333">一元购</h2>
+		    	<i class="icon ion-chevron-right icon-accessory"></i>
+		  </a>
+		  <a href="#/tab/user_order?id={{userInfo.id}}" class="item item-icon-left item-icon-right">
+		  		<i class="icon ion-ios-copy-outline font-28" style="color: #FFBBFF;"></i>
+		    	<h2 style="color: #333">我的订单</h2>
+		    	<i class="icon ion-chevron-right icon-accessory"></i>
+		  </a>
+		  <a href="#/tab/user_coupon?id={{userInfo.id}}" class="item item-icon-left item-icon-right">
+		  		<i class="icon ion-card font-28" style="color: #FFBBFF"></i><!-- ion-ios-copy-outline -->
+		    	<h2 style="color: #333">我的券包</h2>
+		    	<i class="icon ion-chevron-right icon-accessory"></i>
+		  </a>
+		  <a href="#tab/user_keep?id={{userInfo.id}}" class="item item-icon-left item-icon-right">
+		  		<i class="icon ion-star font-28" style="color: #FFBBFF"></i>
+		    	<h2 style="color: #333">我的收藏</h2>
+		    	<i class="icon ion-chevron-right icon-accessory" ></i><!-- ion-android-star ion-android-favorite-outline ion-android-favorite --></i>
+		  </a>
+		  <a href="#tab/user_address?id={{userInfo.id}}" class="item item-icon-left item-icon-right">
+		  		<i class="icon ion-ios-location-outline font-28" style="color: #FFBBFF"></i>
+		    	<h2 style="color: #333">地址管理</h2>
+		    	<i class="icon ion-chevron-right icon-accessory"></i>
+		  </a>
+		  <a href="#" class="item item-icon-left item-icon-right">
+		  		<i class="icon ion-ios-people-outline font-28" style="color: #FFBBFF"></i>
+		    	<h2 style="color: #333">客服中心</h2>
+		    	<i class="icon ion-chevron-right icon-accessory"></i>
+		  </a>
+		  <a href="#" class="item item-icon-left item-icon-right" style="margin-top: 8px;">
+		  		<i class="icon ion-ios-locked-outline font-28" style="color: #FFBBFF"></i>
+		    	<h2 style="color: #333">隐私密码</h2>
+		    	<i class="icon ion-chevron-right icon-accessory"></i>
+		  </a>
+		  <a href="#tab/user_about" class="item item-icon-left item-icon-right" style="margin-top: 8px;">
+		  		<i class="icon ion-ios-gear-outline font-28" style="color: #FFBBFF"><!-- ion-ios-gear-outline --></i>
+		    	<h2 style="color: #333">关于我们</h2>
+		    	<i class="icon ion-chevron-right icon-accessory"></i>
+		  </a>
+		  <a href="#tab/user_feedBack?id={{userInfo.id}}" class="item item-icon-left item-icon-right">
+		  		<i class="icon ion-compose font-28" style="color: #FFBBFF"><!-- ion-ios-gear-outline --></i>
+		    	<h2 style="color: #333">意见和反馈</h2>
+		    	<i class="icon ion-chevron-right icon-accessory"></i>
+		  </a>
+		</div>
+	</ion-content>
+</ion-view>

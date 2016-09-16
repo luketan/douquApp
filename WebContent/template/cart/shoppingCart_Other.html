@@ -1,0 +1,90 @@
+<style type="text/css">
+.dq_cart_item{
+}
+.dq_cart_item > .item-content{
+	padding-top: 8px;
+	padding-bottom: 8px;
+	padding-right: 10px;
+	padding-left: 32px !important;
+}
+.dq_cart_item .icon{
+	left:0px !important;
+}
+.dq_cart_item .textline{
+	padding-left: 12px;
+	white-space:nowrap;
+	text-overflow:ellipsis; 
+	-o-text-overflow:ellipsis;
+	overflow: hidden;
+}
+.dq_cart_item_num_table td{
+	border: 1px solid #999;width: 20px;text-align: center;
+}
+
+.dq_cart_jiesuan{
+	position: absolute;
+	left: 0px;
+	bottom: 0px;
+	z-index: 5px;
+	width: 100%;
+	border-right: 0px;
+	background-color: #FFF;
+}
+.dq_cart_jiesuan.item-icon-left{
+	padding-left: 30px !important;
+}
+.dq_cart_jiesuan.item-icon-right{
+	padding-left: 30px !important;
+}
+
+</style>
+<ion-view title="购物车"  hide-nav-bar="false" hide-tabs="true"><!--hide-nav-bar="true" hide-tabs="true" hide-back-button="true" -->
+		<ion-content padding="false" lazy-container class="dq_bg_color">
+			  <ion-refresher on-refresh="doRefresh()" pulling-text="下拉刷新..." refreshing-text="刷新" refreshing-icon="ion-loading-c">
+			  </ion-refresher>
+			  <ion-list>
+				  <ion-item ng-repeat="item in results track by $index" item="item" class="item-icon-left dq_cart_item">
+			          <i ng-if="!item.checkbox" class="icon ion-ios-circle-outline font-24" style="color: #E4E4E4;" ng-click="checkboxCart($event,$index)">
+			          </i>
+			          <i ng-if="item.checkbox" class="icon ion-ios-checkmark font-24" style="color: red;" ng-click="checkboxCart($event,$index)">
+			          </i>
+			          <div>
+				          <div style="width:60px;height:60px;float: left;"><a href="#/tab/{{action_flag}}_goodsItem?id={{item.goodsId}}"><img style="width: 100%" class="ion-medkit" ng-src="{{item.imageUrl}}"></a></div>
+				          <div style="display: inline;">
+				          	<div class="textline font-14" style="line-height:16px;height:16px;"><a style="color: #333;line-height:16px;height:16px;" href="#/tab/{{action_flag}}_goodsItem?id={{item.goodsId}}" ng-bind="item.goodsName">商品名</a></div>
+				          	<div class="textline font-12" style="line-height:16px;height:16px;"><a style="color: #999;line-height:16px;height:16px;" href="#/tab/{{action_flag}}_goodsItem?id={{item.goodsId}}" ng-bind="item.formatName">规格</a></div>
+				          	<div class="textline" style="color: #999;position:relative;bottom: -5px">
+				          		<table class="dq_cart_item_num_table font-18">
+				          		<tr><td ng-if="item.num>1" ng-click="subNum($index)">&ndash;</td><td ng-if="item.num==1" style="background-color: #e4e4e4;color: #000">&ndash;</td><td class=" font-14" style="width: 28px;color: #000" ng-bind="item.num"><input type="number" ng-bind="item.num"></td><td ng-click="addNum($index)">+</td></tr>
+				          		</table>
+				          		<div class="font-18" style="position: absolute;right: 0px;bottom: -5px;color: #000;color:red;font-weight: 500;">
+					          		<span class="font-12" style="text-decoration:line-through;font-weight:normal;color: #999" >¥{{item.markPrice*item.num|number:2 }}</span>
+					          		<span >¥{{item.price*item.num|number:2 }}</span><!-- ¥ -->
+				          		</div>
+				          	</div>
+				          </div>
+			          </div>
+			          <ion-option-button class="button-calm" ng-click="keepItem($index)">
+					    	收藏
+					  </ion-option-button>
+			          <ion-option-button class="button-assertive" ng-click="deleteItem($index)">
+					    	删除
+					  </ion-option-button>
+			      </ion-item>
+			      <div style="margin-bottom: 56px"></div>
+			  </ion-list>
+		</ion-content>
+		<ion-item class="item-icon-left item-button-right dq_cart_jiesuan dq_cart_item ">
+		     <i ng-if="!checkboxAll" class="icon ion-ios-circle-outline font-24" style="color: #E4E4E4;" ng-click="checkboxALL($event)">
+		     </i>
+		     <i ng-if="checkboxAll" class="icon ion-ios-checkmark font-24" style="color: red;" ng-click="checkboxALL($event)">
+		     </i>
+		     <div>
+		     	全选<span class="font-18" style="position:relative;left:10px;color: red;font-weight: 500;">合计:
+		     	<span style="color: red;font-weight: 500;">¥<span ng-bind="totalPrice|number:2"></span></span></span>
+		     </div>
+		     <button class="button button-assertive" ng-click="goPay()">
+	          	  去结算
+	         </button>
+		</ion-item>
+</ion-view>

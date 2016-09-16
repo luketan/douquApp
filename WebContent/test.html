@@ -1,0 +1,98 @@
+<html>  
+  <head>  
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />   
+	  <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+	  <link href="lib/ionic-citypicker/src/style.css" rel="stylesheet">
+	  <link href="css/style.css" rel="stylesheet">
+	  <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+	  <link href="css/ionic.app.css" rel="stylesheet">
+	  -->
+	  <!-- ionic/angularjs js -->
+	  <script src="lib/jquery/jquery-1.12.0.min.js"></script> 
+	  <script src="lib/ionic/js/ionic.bundle.js"></script> 
+  <style>  
+    /*nowrap不让img换行*/  
+    .picturesholder{  
+        background-color:#fff;  
+        margin:20px;  
+        width:400px;  
+        height:80px;  
+        overflow: hidden;  
+        white-space: nowrap;  
+    }  
+      
+    /**图片占满画廊*/  
+    .picturesholder img{  
+        width:100px;  
+        height:81px;  
+    }  
+    </style>  
+  
+    <script>  
+    var testModule = angular.module('testApp', ['ionic']);  
+    testModule.controller('MyController', function($scope, $ionicScrollDelegate) {  
+        $scope.pictures=["imgs/1.png","imgs/2.png","imgs/3.png","imgs/4.png","imgs/5.png","imgs/6.png","imgs/7.png","imgs/8.png"];  
+    });  
+      
+    $(function(){  
+        angular.bootstrap($("#body"), ["testApp"]);   
+          
+        // do for left-right scroll  
+      var startX = 0;  
+		var startY = 0;  
+		var $gallery = $(".picturesholder");  
+		  
+		$gallery.on("touchstart", function(e) {  
+		     startX = e.originalEvent.changedTouches[0].pageX,  
+		     startY = e.originalEvent.changedTouches[0].pageY;  
+		});  
+		  
+		$gallery.on("touchmove", function(e) {  
+		    var X = e.originalEvent.changedTouches[0].pageX - startX;  
+		    var Y = e.originalEvent.changedTouches[0].pageY - startY;  
+		       
+		    if ( Math.abs(X) > Math.abs(Y) && X > 0 ) {  
+		        var cur_scroll = $(this).scrollLeft();  
+		        $(this).scrollLeft(parseInt(cur_scroll) - X);  
+		        e.preventDefault();  
+		        e.stopPropagation();  
+		    }  
+		    else if ( Math.abs(X) > Math.abs(Y) && X < 0 ) {  
+		        var cur_scroll = $(this).scrollLeft();  
+		        $(this).scrollLeft(parseInt(cur_scroll) - X);  
+		        e.preventDefault();  
+		        e.stopPropagation();  
+		    }  
+		    else if ( Math.abs(Y) > Math.abs(X) && Y > 0) {  
+		    }  
+		    else if ( Math.abs(Y) > Math.abs(X) && Y < 0 ) {  
+		    }  
+		    else{  
+		    }  
+		}); 
+        // do for left-right scroll  
+    })
+    </script>  
+</head>  
+  
+<body id="body" ng-controller="MyController">  
+    
+    <ion-header-bar class="bar-positive">  
+        <h1 class="title">bar-positive</h1>  
+    </ion-header-bar>  
+    
+    <ion-content class="has-header" style="background-color: #ebebeb;">  
+      
+        <div class="picturesholder">  
+            <!--<ion-scroll direction="x">-->  
+                <img ng-src="{{each}}" ng-repeat="each in pictures"></img>  
+            <!--</ion-scroll>-->      
+        </div>  
+          
+    </ion-content>  
+      
+    <ion-footer-bar class="bar-balanced">  
+        <div class="title">Footer</div>  
+    </ion-footer-bar>  
+</body>  
+</html>  

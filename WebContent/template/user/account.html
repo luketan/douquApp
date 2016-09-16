@@ -1,0 +1,190 @@
+<style type="text/css">
+#accountContent .dq_account_header_img{
+	width: 80px;
+	height: 80px;
+	-moz-border-radius: 40px;
+    -webkit-border-radius: 40px;
+    border-radius: 40px;
+}
+#accountContent .dq_activated{
+	display:inline-block;
+	border-bottom:1px solid #333;
+	opacity: 1!important;
+	height: 40px;
+	line-height: 40px;
+	-webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}
+#accountContent .span_value{
+	position:absolute;
+	left: 100px;
+	color:#333;
+	font-size: 14px;
+}
+#accountContent .span_key{
+	color:#999;
+	font-size: 14px;
+}
+
+#accountView .slide_sub_ul li{
+	min-width:12.5% !important;
+	width:12.5%;
+}
+#accountView .slide_sub_ul .slide_sub_cursor {
+	width:12.5%;
+}
+</style>
+<ion-view id="accountView" title="item" hide-nav-bar="true" hide-tabs="true">
+	<ion-header-bar class="bar-calm">
+		<div class="buttons">
+	        <button ng-click="$ionicGoBack()" class="button button-icon ion-ios-arrow-left">
+	    	</button>
+        </div>
+ 		<h1 class="title">{{item.userName}}</h1>
+ 		
+ 		<div class="buttons">
+	        <button ng-click="clickAccount()" class="button button-icon ion-ios-more">
+	    	</button>
+        </div>
+	</ion-header-bar>
+	<ion-item class="font-14 fixedBarFixed " style="margin-top:44px;border-left-width: 0px; border-right-width: 0px; text-align: center; padding: 0px;display:none;">
+		 <nav>
+			 <ul class="slide_sub_ul">
+				<li></li>
+				<li></li>
+			    <li ng-class="{'dq_slide_activated':slide_type==1}" ng-click="changeSlideType(1)">资料</li>
+			    <li></li>
+			    <li></li>
+			    <li ng-class="{'dq_slide_activated':slide_type==2}" ng-click="changeSlideType(2)">帖子</li>
+			    <li></li>
+			    <li></li>
+			    <div class="slide_sub_cursor"></div>
+			 </ul>
+		 </nav>
+	</ion-item>
+	<ion-content id="accountContent" class="dq_bg_color" padding="false" fixed-bar>
+		<div style="text-align: center;padding:8px 0px 8px 0px;position:relative;">
+			<img class="ion-medkit dq_account_header_img"  ng-src="{{item.head}}">
+			<div style="position:absolute;top:20%;right: 10px;text-align:left;">
+				<i class="ion-eye font-20"style="color:#11c1f3;position:relative;top:2px"></i><span class="font-14" style="color: #333">&nbsp;12123121231233</span><br>
+				<i class="ion-ios-heart font-20"style="color:red;position:relative;top:2px"></i><span class="font-14" style="color: #333;">&nbsp;432</span>
+			</div>
+		</div>
+		<div class="font-14" style="text-align:center;">
+			<i ng-if="item.sex!='女'" class="ion-male font-20"style="color:#11c1f3;position:relative;top:2px"></i><i ng-if="item.sex=='女'" class="ion-female font-20"style="color:#11c1f3;position:relative;top:2px"></i>&nbsp;{{item.userName}}
+		</div>
+		<div class="font-12" style="text-align:center;margin: 8px 0 10px 0;">
+			<span style="-moz-border-radius:10px;-webkit-border-radius:10px;border-radius:10px;background-color: red;color:#fff">
+				&nbsp;&nbsp;LV{{item.level}}&nbsp;白毛鼠精&nbsp;&nbsp;
+			</span>
+		</div>
+		<div class="row font-14" style="text-align: center;">
+			<a class="col-33">
+			<i class="ion-ios-rose font-24"style="color:red"></i><br>
+			打赏TA
+			</a>
+			<a class="col-33">
+			<i class="ion-ios-email-outline font-24"></i><br>
+			私信TA
+			</a>
+			<a class="col-33">
+			<i class="ion-heart font-24" style="color:#FF69B4"></i>
+			<!-- <i class="ion-ios-heart font-24" style="color:#FF69B4"></i> -->
+			<br>
+			喜欢TA<!--ion-heart  ion-female ion-male ion-eye ion-ios-heart ion-ios-email-outline ion-ios-heart-outline-->
+			</a>
+		</div>
+		<ion-item class="font-14 fixedBar" style="margin-top:8px;border-left-width: 0px; border-right-width: 0px; text-align: center; padding: 0px; visibility: visible;">
+			 <nav>
+				 <ul class="slide_sub_ul">
+					<li></li>
+					<li></li>
+				    <li ng-class="{'dq_slide_activated':slide_type==1}" ng-click="changeSlideType(1)">资料</li>
+				    <li></li>
+				    <li></li>
+				    <li ng-class="{'dq_slide_activated':slide_type==2}" ng-click="changeSlideType(2)">帖子</li>
+				    <li></li>
+				    <li></li>
+				    <div class="slide_sub_cursor"></div>
+				 </ul>
+			 </nav>
+		 </ion-item>
+	     <!-- 帖子列表  -->
+	     <div id="slideScroll">
+	 		 <div ng-if="slide_type==1" class="" style="margin-top: 8px;">
+				 <div class="item item-divider">
+			       	  基本信息
+			     </div>
+			     <a href="#/tab/{{action_flag}}_signature?id={{item.id}}" class="item item-divider item-icon-right">
+		 			<span class="span_key">个性签名</span>
+		          	<span class="item-note span_value">
+			           {{item.signature}}
+			        </span>
+			        <i class="icon ion-chevron-right icon-accessory"></i>
+			     </a>
+			     <div class="item item-divider">
+		 			<span class="span_key">趣币</span>
+		          	<span class="item-note span_value">
+			           {{item.vmoney}}
+			        </span>
+			     </div>
+			     <div class="item item-divider">
+		 			<span class="span_key">性别</span>
+		          	<span class="item-note span_value">
+			           {{item.sex}}
+			        </span>
+			     </div>
+			     <div class="item item-divider">
+		 			<span class="span_key">性取向</span>
+		          	<span class="item-note span_value">
+			           {{item.sexu}}
+			        </span>
+			     </div>
+			     <div class="item item-divider">
+		 			<span class="span_key">年龄</span>
+		          	<span class="item-note span_value">
+			           {{item.age}}
+			        </span>
+			     </div>
+			     <div class="item item-divider">
+		 			<span class="span_key">星座</span>
+		          	<span class="item-note span_value">
+			           {{item.xingzuo}}
+			        </span>
+			     </div>
+			     <div class="item item-divider">
+		 			<span class="span_key">婚恋状况</span>
+		          	<span class="item-note span_value">
+			           {{item.marriage}}
+			        </span>
+			     </div>
+			     <div class="item item-divider">
+		 			<span class="span_key">所在地</span>
+		          	<span class="item-note span_value">
+			           {{item.address}}
+			        </span>
+			     </div>
+			     
+	 		 </div>
+	 		 <div ng-if="slide_type==2">
+	 			 <div style="margin-left:10px;color: #333">{{societySize}}篇帖子</div>
+			  	 <div ng-repeat="society in item.societys track by $index" class="item item-body" style="padding: 8px 5px 5px 5px;">
+			          <a href="#/tab/{{action_flag}}_societyItem?id={{society.id}}">
+			          <p style="margin:5px;overflow:hidden;text-overflow: ellipsis;display:-webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;">
+			             <span style="color: #fff;background-color: #99CC00;">&nbsp;{{society.statusName}} </span>&nbsp;{{society.title}}
+					  </p>
+			          <div>
+			          	 <img ng-repeat="img in society.images" style="width: 30%;margin: 5px 0 0 5px;vertical-align: bottom;" ng-src="{{img}}">
+			          </div>
+			          <p class="row" style="color: #CCC;margin-top:5px;">
+				         <span class="col-50">{{society.typeName}}</span>
+				         <span class="col-50" style="padding-right: 12px;text-align:right;"><span style="margin-right: 20px">{{item.time}}</span><i class="ion-chatbox-working" style="margin-right: 5px"></i>{{society.disNum}}</span>
+			          </p>
+			          </a>
+		         </div>
+		         <ion-infinite-scroll ng-if="moreData" on-infinite="loadMore()" distance="0%" ></ion-infinite-scroll>
+	 		 </div>
+ 		 </div>
+	</ion-content>
+</ion-view>

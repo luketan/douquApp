@@ -1,0 +1,105 @@
+<style type="text/css">
+	#shoppingCartModal.modal{
+		top:auto;
+		bottom: 0px;
+		height: auto;
+		min-height:300px !important;
+		max-height: 300px !important;
+	}
+	#shoppingCartModal .shoppingCartModalHead{
+		height: 80px;
+		border: 0px;
+		background-position:0;
+		background-size:0
+	}
+	#shoppingCartModal .shoppingCartModalHead img{
+		width: 70px;
+	}
+	#shoppingCartModal .shoppingCartModalHead .title{
+		height: 80px;
+		text-align: left;
+		color:red;
+	}
+	#shoppingCartModal .shoppingCartModalHead .title p{
+		color:#333;
+	}
+	#shoppingCartModal .shoppingCartModalContent{
+		top:80px !important;
+	}
+	#shoppingCartModal .shoppingCartModalContent td{
+		border: 1px solid #999;width: 20px;text-align: center;
+	}
+	#shoppingCartModal .shoppingCartModalFoot{
+		padding: 0;
+	}
+	
+	#shoppingCartModal .shoppingCartModalButton{
+		margin: 0;
+	}
+	#shoppingCartModal .goodsItemSheetStyle{
+		top:2px;
+		border:0;
+		border-radius: 0px;
+		padding: 10px;
+		text-align: left;
+		border-bottom: 1px solid #d1d3d6;
+		
+	}
+	#shoppingCartModal .goodsItemSheetStyle span{
+		display:inline-block;
+		padding:0 5px 0 5px;
+		margin:5px 5px 5px 5px;
+		border: 1px solid #ccc;
+		-moz-border-radius: 2px;
+		-webkit-border-radius:2px;
+		border-radius:2px;
+	}
+	#shoppingCartModal .goodsItemSheetStyle .active{
+		color:red;
+	}
+	.modal-backdrop-bg {
+	    -webkit-transition: opacity 300ms ease-in-out;
+	    transition: opacity 300ms ease-in-out;
+	    background-color: #000;
+	    opacity: 0.5;
+	}
+</style>
+<ion-modal-view id="shoppingCartModal">
+  <ion-header-bar class="bar shoppingCartModalHead">
+  	<img id="goodsImgId" ng-src="{{result.imgUrl}}"/>
+    <h1 class="title">
+    	¥{{formatPrice}}<br><p class="font-14">已选：{{formatName}}</p>
+    </h1>
+    <button class="button button-clear button-primary ion-android-close" ng-click="modal.hide()"></button>
+  </ion-header-bar>
+  <ion-content class="shoppingCartModalContent">
+    <div class="list">
+      <div class="goodsItemSheetStyle">
+			<span ng-click="changeFormat($event,name,value)">类型</span>
+			<span ng-click="changeFormat($event,name,value)">类型2</span>
+			<span ng-click="changeFormat($event,name,value)">类型3</span>
+			<span ng-click="changeFormat($event,name,value)">类型4</span>
+			<span ng-click="changeFormat($event,name,value)">类型5</span>
+			<span ng-click="changeFormat($event,name,value)">类型5</span>
+			<span ng-click="changeFormat($event,name,value)">类型5</span>
+			<span ng-click="changeFormat($event,name,value)">类型5</span>
+			<span ng-click="changeFormat($event,name,value)">类型5</span>
+			<span ng-click="changeFormat($event,name,value)">类型5</span>
+			<span ng-click="changeFormat($event,name,value)">类型5</span>
+			<span ng-click="changeFormat($event,name,value)">类型5</span>
+			<span ng-click="changeFormat($event,name,value)">类型5</span>
+			<span ng-click="changeFormat($event,name,value)">类型5</span>
+      </div>
+      <div class="item item-input">
+	        <span class="input-label">购买数量</span>
+			<table class="font-18">
+	   		<tr><td ng-if="result.num>1" ng-click="subNum()">&ndash;</td><td ng-if="result.num==1" style="background-color: #e4e4e4;color: #000">&ndash;</td>
+	   		<td class=" font-14" style="width: 28px;color: #000;text-align: center;" ng-bind="result.num">11</td><td class="" ng-click="addNum()">+</td></tr>
+	   		</table>
+      </div>
+    </div>
+  </ion-content>
+  <ion-footer-bar align-title="left" class="shoppingCartModalFoot">
+  	<button class="button button-full button-assertive shoppingCartModalButton font-18" ng-click="addCart()">{{btnText?btnText:"确认"}}</button>
+  </ion-footer-bar>
+</ion-modal-view>

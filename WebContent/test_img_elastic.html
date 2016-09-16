@@ -1,0 +1,88 @@
+<html ng-app="example">
+<head>
+	<meta charset="utf-8">
+	<title>Elastic image</title>
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+<!-- 	<link href="//code.ionicframework.com/1.0.0-rc.5/css/ionic.css" rel="stylesheet">
+	<script src="//code.ionicframework.com/1.0.0-rc.5/js/ionic.bundle.js"></script> -->
+	  <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+      <script src="lib/ionic/js/ionic.bundle.js"></script>
+</head>
+<style>
+.elastic-image {
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	margin-top: 44px;
+	/* Initial image height: */
+	height: 300px;
+}
+
+.the-content {
+	/* Same as initial image height: */
+	padding-top: 200px;
+}
+
+body {
+	cursor: url('http://ionicframework.com/img/finger.png'), auto;
+}
+</style>
+<body>
+	<ion-header-bar class="bar-positive">
+		<div class="buttons">
+			<button class="button button-icon ion-navicon"></button>
+		</div>
+		<h1 class="title">Elastic image</h1>
+	</ion-header-bar>
+
+	<div id="the-image-id" class="elastic-image" style="background-image: url(https://ununsplash.imgix.net/photo-1421091242698-34f6ad7fc088?fit=crop&fm=jpg&h=650&q=75&w=950)"></div>
+	
+	<ion-content elastic-image="the-image-id" class="padding">
+		<div class="the-content">
+				<h2>Elastic image</h2>
+				<p>This is an experiment with an elastic image in Ionic Framework. Note that this is a quick hack, see it as a proof of concept. If some ionic/angular-guru could refine this into something production ready you are welcome to do so.</p>
+			<p>Note: This implementation works by using a combination of background-size: cover and a variable height. This is not great performance wise. It should be re-written using only GPU-friendly properties (i.e. Translate, Scale) so the browser won't have to re-paint on scroll.</p>
+			<p>It should also be improved by using Request Animation Frame for the animation.</p>
+			<div class="list">
+				<div class="item">1</div>
+				<div class="item">2</div>
+				<div class="item">3</div>
+				<div class="item">4</div>
+				<div class="item">5</div>
+				<div class="item">6</div>
+				<div class="item">7</div>
+				<div class="item">8</div>
+				<div class="item">9</div>
+				<div class="item">10</div>
+				<div class="item">12</div>
+				<div class="item">13</div>
+				<div class="item">14</div>
+				<div class="item">15</div>
+			</div>
+		</div>
+	</ion-content>
+
+</body>
+<script>
+angular.module('example', ['ionic'])
+
+.directive('elasticImage', function($ionicScrollDelegate) {
+	return {
+		restrict: 'A',
+		link: function($scope, $scroller, $attr) {
+			var image = document.getElementById($attr.elasticImage);
+            var imageHeight = image.offsetHeight;
+			
+			$scroller.bind('scroll', function(e) {
+				var scrollTop = e.detail.scrollTop;
+				var newImageHeight = imageHeight - scrollTop;
+				if (newImageHeight < 0) {
+					newImageHeight = 0;
+				}
+				image.style.height = newImageHeight + 'px';
+			});
+		}
+	}
+});
+</script>
+</html>

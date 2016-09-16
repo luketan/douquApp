@@ -1,0 +1,33 @@
+<style type="text/css">
+
+</style>
+<ion-view hide-nav-bar="true" hide-tabs="true">
+	<ion-header-bar class="bar-calm">
+		<div class="buttons">
+	        <button ng-click="$ionicGoBack()" class="button button-icon ion-ios-arrow-left">
+	    	</button>
+        </div>
+ 		<h1 class="title">忘记密码</h1>
+	</ion-header-bar>
+	<ion-content id="about" has-header="true" class="dq_bg_color" padding="false" style="height:100%">
+		<label class="item item-input" style="margin-bottom: 10px">
+          <span class="input-label">原  密  码：</span>
+          <input type="password" ng-model="item.pwd">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">新  密  码：</span>
+          <input type="password" ng-model="item.nPwd" placeholder="6-8位字符">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">确认密码：</span>
+          <input type="password" ng-model="item.nPwds" placeholder="再输一次密码">
+        </label>
+        <div style="padding: 6px 0 5px 16px;">
+        	忘记原密码，请退出账号后，在登录界面重置
+        </div>
+        <div style="margin: 16px 16px 0px 16px;text-align:center;">
+        	<button ng-if="item.nPwds!='' && item.nPwd!='' && item.pwd!=''" ng-click="setPwd()" class="button button-calm button-block" style="min-height:30px">完成</button>
+        	<button ng-if="item.nPwds=='' || item.nPwd=='' || item.pwd==''" class="button button-calm full button-block" style="min-height:30px;color:#D3D3D3">完成</button>
+        </div>
+	</ion-content>
+</ion-view>

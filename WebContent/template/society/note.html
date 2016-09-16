@@ -1,0 +1,35 @@
+<style type="text/css">
+#noteView .item-content{
+	padding-top: 5px;
+    padding-bottom: 5px;
+    min-height:0px;
+}
+#noteView .item-content img{
+	top: 5px;
+}
+</style>
+<ion-view id="noteView" title="item" hide-nav-bar="true" hide-tabs="true"><!--hide-nav-bar="true" hide-tabs="true" hide-back-button="true" -->
+	<ion-header-bar class="bar-calm">
+	    <div class="buttons">
+	    	<button ng-click="$ionicGoBack()" class="button button-icon ion-ios-arrow-left"></button>
+	    </div>
+	    <h1 class="title">关注</h1>
+	    <!-- <div class="buttons">
+	       <button class="button button-icon ion-navicon"></button>
+	    </div> -->
+    </ion-header-bar>
+    <ion-content class="dq_bg_color">
+				  <ion-refresher on-refresh="refresh()" pulling-text="下拉刷新..." refreshing-text="刷新" refreshing-icon="ion-loading-c">
+				  </ion-refresher>
+				  <ion-list show-delete="data.showDelete" show-option="data.showOption">
+					  <ion-item ng-repeat="item in noteUsers track by $index" href="#/tab/{{action_flag}}_account?id={{item.userId}}" class="item item-avatar" style="min-height:0px;">
+				          <img class="userHeader" ng-src="{{item.img}}" alt="">
+				          <h3 class="ng-binding">{{item.userName}}</h3>
+				          <p class="font-12 ng-binding" style="color: #999">{{item.motto}}</p>
+				          <ion-option-button class="button-assertive" ng-click="deleteUserItem($index,userId)">
+						    	删除
+						  </ion-option-button>
+				      </ion-item>
+				  </ion-list>
+    </ion-content>
+</ion-view>

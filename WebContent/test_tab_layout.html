@@ -1,0 +1,171 @@
+<html ng-app="app">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>Tabs Issue</title>
+    <link href="http://code.ionicframework.com/1.0.0-beta.13/css/ionic.min.css" rel="stylesheet">
+    <script src="http://code.ionicframework.com/1.0.0-beta.13/js/ionic.bundle.min.js"></script>
+    <style>
+	.header-logo {
+  width: 68px;
+  height: 30px;
+}
+i.header-avatar {
+  font-size: 42px;
+  vertical-align: middle;
+}
+i.header-avatar>img {
+  display: inline-block;
+  height: 36px;
+  width: 36px;
+}
+.row.header-row>.header-col:first-child {
+  text-align: left;
+}
+.row.header-row>.header-col:last-child {
+  text-align: right;
+}
+.row.header-row,.col.header-col {
+  padding: 0;
+  margin: 0;
+}
+.col.header-col {
+  height: 43px;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.tab-item-active {
+  border-bottom: 4px #333 solid;
+}
+
+	
+  </style>  
+  </head>
+
+   <body class="platform-ios">             
+    <ion-nav-view animation="slide-left-right"></ion-nav-view>
+
+    <script id="templates/tabs.html" type="text/ng-template">
+      <ion-nav-bar class="bar-stable">
+        <ion-nav-buttons>
+          <img class="header-logo" src="http://placehold.it/68x34">
+        </ion-nav-buttons>
+        <ion-nav-buttons side="right">
+          <button class="button button-clear">
+            <i class="icon ion-search"></i>
+          </button>
+        </ion-nav-buttons>
+      </ion-nav-bar>
+
+      <ion-header-bar class="bar-stable bar-subheader">
+        <div class="row header-row">
+          <div class="col header-col">
+              <i class="header-avatar">
+                <img src="http://placehold.it/42x42">
+              </i>
+              User Name
+          </div>
+          <div class="col header-col">
+              <i class="header-avatar">
+                <img src="http://placehold.it/42x42">
+              </i>
+              3.000 pts
+          </div>
+        </div>
+      </ion-header-bar>
+
+      <ion-tabs class="tabs-top tabs-icon-only tabs-defaul bar-subheader has-header">
+        <ion-tab title="TAB 1" icon="icon icon-mini ion-speakerphone" href="#/app/dash">
+          <ion-nav-view name="tab-dash"></ion-nav-view>
+        </ion-tab>
+
+        <ion-tab title="TAB 2" icon="icon icon-mini ion-person-stalker" href="#/">
+          <ion-nav-view name="tab-dash"></ion-nav-view>
+        </ion-tab>
+
+        <ion-tab title="TAB 3" icon="icon icon-mini ion-chatbox" href="#/">
+          <ion-nav-view name="tab-dash"></ion-nav-view>
+        </ion-tab>
+
+        <ion-tab title="TAB 4" icon="icon icon-mini ion-earth" href="#/">
+          <ion-nav-view name="tab-dash"></ion-nav-view>
+        </ion-tab>
+
+        <ion-tab title="POPOVER" icon="icon icon-mini ion-navicon" ng-click="popover.show($event)"></ion-tab>
+      </ion-tabs>
+    </script>
+
+    <script id="templates/tab-dash.html" type="text/ng-template">
+      <ion-view title="Dashboard">
+        <ion-content padding="true">
+          <p>Example of Ionic tabs. Navigate to each tab, and
+          navigate to child views of each tab and notice how
+          each tab has its own navigation history.</p>
+        </ion-content>
+      </ion-view>
+    </script>
+    
+    <script id="templates/popover.html" type="text/ng-template">
+      <ion-popover-view>
+        <ion-content>
+          <div class="list">
+            <a class="item">
+              Learn Ionic
+            </a>
+            <a class="item" href="http://ionicframework.com/docs/" target="_blank">
+              Documentation
+            </a>
+            <a class="item" href="http://showcase.ionicframework.com/" target="_blank">
+              Showcase
+            </a>
+            <a class="item" href="http://ionicframework.com/submit-issue/" target="_blank">
+              Submit an Issue
+            </a>
+            <a class="item" href="https://github.com/driftyco/ionic" target="_blank">
+              Github Repo
+            </a>
+          </div>
+        </ion-content>
+      </ion-popover-view>
+    </script>
+    <script>
+    angular.module('app', ['ionic'])
+
+    .controller('AppCtrl', function ($scope, $ionicPopover) {
+      $ionicPopover.fromTemplateUrl('templates/popover.html', function (popover) {
+        $scope.popover = popover;
+      });
+    })
+
+    .controller('DashCtrl', function ($scope) {
+      $scope.hidenavbar = false;
+    })
+
+    .controller('AccountCtrl', function ($scope, hoodieAccount) {
+    })
+
+    .config(function ($stateProvider, $urlRouterProvider) {
+      $stateProvider
+        .state('app', {
+          url: '/app',
+          abstract: true,
+          controller: 'AppCtrl',
+          templateUrl: 'templates/tabs.html'
+        })
+        .state('app.dash', {
+          url: '/dash',
+          views: {
+            'tab-dash': {
+              templateUrl: 'templates/tab-dash.html',
+              controller: 'DashCtrl'
+            }
+          }
+        });
+      
+      $urlRouterProvider.otherwise('/app/dash');
+    });
+    </script>
+  </body>
+</html>

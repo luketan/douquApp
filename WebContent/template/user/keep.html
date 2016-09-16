@@ -1,0 +1,109 @@
+<style type="text/css">
+.dq_keep_item > .item-content{
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-right: 10px;
+	padding-left: 5px !important;
+}
+.dq_keep_item .icon{
+	/* left:2px !important; */
+}
+.dq_keep_item .textline{
+	padding-left: 12px;
+	white-space:nowrap;
+	-o-text-overflow:ellipsis;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display:-webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	 white-space:pre-line;
+	 color: #333;
+}
+
+#keep_society .item-content{
+	    padding: 10px 10px 10px 10px;
+}
+#keepView .slide_sub_ul li{
+	min-width:12.5% !important;
+	width:12.5%;
+}
+#keepView .slide_sub_ul .slide_sub_cursor {
+	width:12.5%;
+}
+</style>
+<ion-view id="keepView" hide-nav-bar="true" hide-tabs="true">
+	<ion-header-bar class="bar-calm">
+		<div class="buttons">
+	        <button ng-click="$ionicGoBack()" class="button button-icon ion-ios-arrow-left">
+	    	</button>
+        </div>
+ 		<div class="title " style="">
+ 			收藏
+ 		</div>
+ 		<div class="buttons">
+	        <button ng-click="data.showDelete = !data.showDelete; data.showReorder = false" class="button">
+	       	 编辑
+	    	</button>
+        </div>
+	</ion-header-bar>
+	<div class="bar bar-subheader item row" style="border:0; text-align:center; padding:0px; position:fixed; margin:0; height:34px; min-height:34px;">
+		<nav>
+			<ul class="slide_sub_ul">
+				<li></li>
+				<li></li>
+			    <li ng-class="{'dq_slide_activated':slide_type==1}" ng-click="changeSlideType(1)">商品</li>
+			    <li></li>
+			    <li></li>
+			    <li ng-class="{'dq_slide_activated':slide_type==2}" ng-click="changeSlideType(2)">帖子</li>
+			    <li></li>
+			    <li></li>
+			    <div class="slide_sub_cursor"></div>
+			</ul>
+	  	</nav>
+  	</div>
+	<ion-content id="keepContent" padding="false" class="dq_bg_color" style="margin-top:34px;">
+              <ion-refresher ng-if="slide_type==1" on-refresh="goodsRefresh()" pulling-text="下拉刷新..." refreshing-text="刷新" refreshing-icon="ion-loading-c">
+			  </ion-refresher>
+              <ion-refresher ng-if="slide_type==2" on-refresh="societyRefresh()" pulling-text="下拉刷新..." refreshing-text="刷新" refreshing-icon="ion-loading-c">
+			  </ion-refresher>
+			  <div ng-if="slide_type==1" style="margin-top:8px;">
+				  <ion-list show-delete="data.showDelete" show-option="data.showOption">
+					  <ion-item ng-repeat="item in keepGoodss track by $index" class="item-icon-left dq_keep_item" href="#/tab/{{action_flag}}_goodsItem?id={{item.objId}}">
+					  	  <ion-delete-button class="ion-minus-circled" ng-click="deleteGoodsItem($index,item)">
+          				  </ion-delete-button>
+				          <div>
+					          <div style="width:60px;height:60px;float: left;"><img style="width: 100%" class="ion-medkit" ng-src="{{item.imgUrl}}"></div>
+					          <div style="display: inline;">
+					          	  <div class="textline font-14" ng-bind="item.name">商品名</div>
+					          </div>
+					          <div style="display: inline;text-align: right;">
+					          	  <div class="textline font-14">¥{{item.price}}</div>
+					          </div>
+				          </div>
+				          <ion-option-button class="button-assertive" ng-click="deleteGoodsItem($index,item)">
+						    	删除
+						  </ion-option-button>
+				      </ion-item>
+				      <ion-infinite-scroll ng-if="goodsMoreData" on-infinite="goodsLoadMore()" distance="0%" ></ion-infinite-scroll>
+				  </ion-list>
+			  </div>
+			  <div id="keep_society" ng-if="slide_type==2" style="margin-top:8px;">
+				  <ion-list show-delete="data.showDelete" show-option="data.showOption">
+				  	  <ion-item style="min-height:65px;" ng-repeat="item in keepSoietys track by $index" href="#/tab/{{action_flag}}_societyItem?id={{item.id}}">
+				  	  	  <ion-delete-button class="ion-minus-circled" ng-click="deleteSocietyItem($index,item)">
+          				  </ion-delete-button>
+				          <h3>{{item.name}}</h3>
+				          <div style="position:relative; bottom:-6px;">
+				          	<button class="button button-small button-calm font-10" style="height:18;line-height:18px;min-height:0;min-width:60px;padding: 1px 4px 2px 4px;background-color:#A9A9A9">{{item.typeName}}</button>
+				          	<span style="position:absolute;right:8px;color:#A9A9A9;"><i class="ion-chatbox-working" style="margin-right: 5px"></i>48</span>
+				          </div>
+				          <ion-option-button class="button-assertive" ng-click="deleteSocietyItem($index,item)">
+						    	删除
+						  </ion-option-button>
+				      </ion-item>
+				      <ion-infinite-scroll ng-if="societyMoreData" on-infinite="societyLoadMore()" distance="0%" ></ion-infinite-scroll>
+				  </ion-list>
+			  </div>
+		</ion-content>
+</ion-view>

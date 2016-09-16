@@ -1,0 +1,210 @@
+<style type="text/css">
+@-webkit-keyframes scrollText2 {
+      0%{
+          -webkit-transform: translateY(0px);
+      }
+      20%{
+         -webkit-transform: translateY(-20px);
+      }
+      40%{
+          -webkit-transform: translateY(-40px);
+     }
+     60%{
+         -webkit-transform: translateY(-60px);
+     }
+     80%{
+         -webkit-transform: translateY(-80px);
+     }
+     100%{
+         -webkit-transform: translateY(-100px);
+     }
+}
+@keyframes scrollText2 {
+     0%{
+         transform: translateY(0px);
+     }
+     20%{
+         transform: translateY(-20px);
+     }
+     40%{
+         transform: translateY(-40px);
+     }
+     60%{
+         transform: translateY(-60px);
+     }
+     80%{
+         transform: translateY(-80px);
+     }
+     100%{
+         transform: translateY(-100px);
+     }
+}
+#mainContent .broadcastItem{
+    position: relative;
+    width: 100%;
+    height: 20px; 
+   	overflow: hidden;
+}
+#mainContent .broadcast{
+   -webkit-animation:scrollText2 12s infinite  cubic-bezier(1,0,0.5,0) ;
+   animation:scrollText2 12s infinite  cubic-bezier(1,0,0.5,0) ;
+}
+#mainContent .broadcast a{
+   height: 20px;
+   width: 100%;
+   overflow: hidden;
+  
+}
+#mainContent .broadcast:hover{
+   animation-play-state:paused;
+   -webkit-animation-play-state:paused;
+}
+
+#mainContent .picks-item{
+    position: relative;
+    margin: 0;
+    padding: 0;
+    border-right:1px solid #ddd;
+    border-bottom:1px solid #ddd;
+}
+#main_propover .picks-item:last-child{
+	border-right: 0;
+}
+#mainContent .picks-item-title {
+    position: absolute;
+    left: .9rem;
+    top: .7rem;
+    color: #595857;
+    font-size: 14px;
+    overflow: hidden;
+    margin: 0 0 0 0;
+    letter-spacing:1px;
+}
+#mainContent .picks-item-describe {
+    color: #b4b4b4;
+    position: absolute;
+    left: .9rem;
+    top: 2.2rem;
+    font-size: 10px;
+    height: 16px;
+    line-height: 16px;
+    overflow: hidden;
+    margin: 0 0 0 0;
+    letter-spacing:1px;
+}
+</style>
+<ion-view title="main" hide-nav-bar="true"><!--hide-nav-bar="true" hide-tabs="true" hide-back-button="true" -->
+	  <ion-header-bar class="bar-calm">
+		  <h1 class="title">逗趣</h1>
+		   <div class="buttons">
+		  		<a ng-click="popover.show($event)" class="button button-icon icon ion-chatbubble-working"></a>
+		  </div>
+	  </ion-header-bar>
+      <ion-content id="mainContent" class="dq_bg_color">
+      		 <ion-refresher on-refresh="doRefresh()" pulling-text="道具选的好，老公回家早" refreshing-text="道具选的好，老公回家早" refreshing-icon="ion-loading-c">
+	 		 </ion-refresher>
+	 		 
+	 		 <!--首页轮播图  -->
+        	 <ion-slide-box auto-play="true" does-continue="true" slide-interval=3000 show-pager="true" delegate-handle="delegateHandler">
+				  <ion-slide ng-repeat="img in homeImgs track by $index" >
+				  		<a href="{{img.url}}">
+						    <div class="box">
+							    	<img src="img/zbgj_img.png">
+							    	<img ng-src="{{img.imgUrl}}" style="width:100%;display:none;" onload="this.style.display = 'inline';$(this).prev().remove()">
+						    </div>
+					    </a>
+				  </ion-slide>
+			  </ion-slide-box>
+			  <!--首页类别 -->
+			  <div class="row dq_bg_white" style="padding:0;" ng-repeat="subs in subsList track by $index">
+			 	  <div class="col-25" ng-repeat="sub in subs track by $index" style="padding: 8px 8px 8px 8px;text-align: center;">
+		     			<a href="{{sub.url}}">
+		     				<img ng-src="{{sub.imgUrl}}" style="width: 40px;height: 40px"><br>{{sub.title}}
+		     			</a>
+		     	  </div>
+		      </div>
+		      <!--首页广播-->
+			  <ion-item ng-if="broadcasts && broadcasts.length>0" class="item-icon-left item-divider dq_bg_white" style="padding-left: 44px;">
+			  		<i class="icon ion-speakerphone font-18"></i>
+			  		<div class="broadcastItem font-14" style="padding-left: 10px;border-left: 1px solid red;">
+			  			<div class="broadcast" ng-repeat="broadcast in broadcasts track by $index">
+			  				<a href="{{broadcast.url}}" ng-bind-html="broadcast.title|trustHtml"></a>
+			  			</div>
+			  		</div>
+			  </ion-item>
+			  <!--一元购   -->
+			  <div ng-repeat="main in mainList track by $index" class="dq_bg_white" style="margin-top: 8px;">
+			  		  <div class="row" ng-if="main.title">
+					  	 	<div class="col">
+					  	 		<span style="display:block; text-align: center;">
+					  	 		<span class="font-16" style="color: #000;font-weight: 600;">{{main.title}}</span>
+					  	 		<a ng-if="main.url" href="{{main.url}}" style="position: absolute;right: 10px;color: #000">更多></a></span>
+					  	 	</div>
+					  </div>
+					  <div>
+						  <ion-slide-box ng-if="main.imgsList && main.imgsList.length>=3" auto-play="true" does-continue="true" slide-interval=3000 show-pager="true" delegate-handle="{{main.slideName}}">
+							  <ion-slide ng-repeat="img in main.imgsList track by $index" >
+							  		<a href="{{img.url}}">
+									    <div class="box">
+										    	<img src="img/zbgj_img.png">
+										    	<img ng-src="{{img.imgUrl}}" style="width:100%;display:none;" onload="this.style.display = 'inline';$(this).prev().remove()">
+									    </div>
+								    </a>
+							  </ion-slide>
+						  </ion-slide-box>
+						  <div ng-if="main.imgsList && main.imgsList.length<3" class="row" style="margin: 0;padding: 0;border: 0">
+						  	 	<div ng-repeat="img in main.imgsList track by $index" class="col picks-item" ng-click="gouForwarding('{{img.url}}')">
+								    	<img src="img/zbgj_img.png" style="width:100%;vertical-align:bottom;">
+								    	<img ng-src="{{img.imgUrl}}" style="width:100%;vertical-align:bottom;display:none;" onload="this.style.display = 'inline';$(this).prev().remove()">
+						  	 	</div>
+						  </div>
+					  	  <div class="row" style="margin: 0;padding: 0;border: 0" ng-repeat="subs in main.subsList track by $index">
+						  	 	<div ng-repeat="sub in subs track by $index" class="{{sub.col?('col-'+sub.col):'col'}} picks-item" ng-click="gouForwarding('{{sub.url}}')">
+							  	 	<img src="img/zbgj_img.png" style="width:100%;vertical-align:bottom;">
+							  	 	<img ng-src="{{sub.imgUrl}}" style="width:100%;vertical-align:bottom;display:none;" onload="this.style.display='inline';$(this).prev().remove()"/>
+							  	 	<p class="picks-item-title" ng-bind-html="sub.itemTitle|trustHtml"></p>
+						  	 		<p class="picks-item-describe" ng-bind-html="sub.itemDesc|trustHtml"></p>
+						  	 	</div>
+						  </div>
+					  </div>
+			  </div>
+			  <div style="margin-top: 8px;">
+		  		  <div ng-if="mainItems && mainItems.length>0" class="row dq_bg_white">
+				  	 	<div class="col">
+				  	 		<span style="display:block; text-align: center;">
+				  	 		<span class="font-16" style="color: #000;font-weight: 600;">嗨购</span>
+				  	 		</span>
+				  	 	</div>
+				  </div>
+				  <div class="row font-14" style="padding: 0px 5px 0 5px;margin-top: 5px;">
+					  	<div class="col-50" style="padding-right: 5px;">
+					  		<div class="dq_bg_white" ng-repeat="item in mainItems track by $index" ng-if="$index%2==0" style="width:100%;padding:0;margin:0 0 5px 0;">
+					    	    <a href="#/tab/{{action_flag}}_goodsItem?id={{item.id}}" >
+					    	   		<img src="img/zbgj_img.png" style="width:100%;vertical-align:bottom;">
+						    	    <img ng-src="{{item.imgUrl}}" style="width:100%;vertical-align: bottom;display:none;" onload="this.style.display='inline';$(this).prev().remove()">
+								    <div class="font-12" style="padding:0px 5px 0px 5px;">
+									    <div style="padding:5px 0px 0px 0px;overflow:hidden;text-overflow: ellipsis;display:-webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;line-height:16px;color:#333">{{item.name}}</div>
+									    <!-- <div ng-if="item.subName" style="color:#FFA500;margin:0px 0px 5px 0px;overflow:hidden;text-overflow: ellipsis;display:-webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;line-height:16px;">{{item.subName}}</div>
+						    			 --><div class="row" style="padding: 0 0 5px 0;"><div class="col-50 font-14" style="color:#FF6347;text-align:left;">¥{{item.price|number:2}}</div><div class="col-50" style="color:#CCC;text-align: right;">销量：{{item.salesNum}}</div></div>
+					    			</div>
+					    		</a>
+					    	</div>
+					  	</div>
+					  	<div class="col-50">
+				  			<div class="dq_bg_white" ng-repeat="item in mainItems track by $index" ng-if="$index%2==1" style="width:100%;padding:0;margin:0 0 5px 0;">
+					    	    <a href="#/tab/{{action_flag}}_goodsItem?id={{item.id}}" >
+						    	    <img src="img/zbgj_img.png" style="width:100%;vertical-align:bottom;">
+						    	    <img ng-src="{{item.imgUrl}}" style="width:100%;vertical-align:bottom;display:none;" onload="this.style.display='inline';$(this).prev().remove()">
+						    	    <div class="font-12" style="padding:0px 5px 0px 5px;">
+									    <div style="padding:5px 0px 0px 0px;overflow:hidden;text-overflow: ellipsis;display:-webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;line-height:16px;color:#333">{{item.name}}</div>
+									    <!-- <div ng-if="item.subName" style="color:#FFA500;margin:0px 0px 5px 0px;overflow:hidden;text-overflow: ellipsis;display:-webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;line-height:16px;">{{item.subName}}</div>
+						    			 --><div class="row" style="padding: 0 0 5px 0;"><div class="col-50 font-14" style="color:#FF6347;text-align:left;">¥{{item.price|number:2}}</div><div class="col-50" style="color:#CCC;text-align: right;">销量：{{item.salesNum}}</div></div>
+					    			</div>
+					    		</a>
+					    	</div> 
+					  	</div>
+				  </div>
+			  </div>
+			  <ion-infinite-scroll ng-if="mainMoreData" on-infinite="mainLoadMore()" distance="0%" ></ion-infinite-scroll>
+      </ion-content>
+</ion-view>

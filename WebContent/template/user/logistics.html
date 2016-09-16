@@ -1,0 +1,44 @@
+<style type="text/css">
+#logisticsContent .firstCircle{
+	height:0;
+	top:auto;
+	bottom:50%;
+	background-color: #fff;
+	padding-top:50%;
+}
+#logisticsContent .statusYes{
+	font-size:14px;
+	color:#0a9dc7;
+}
+#logisticsContent .lastCircle{
+	height:0;
+	top:50%;
+	bottom:0px;
+	background-color: #fff;
+	padding-bottom:50%;
+}
+</style>
+<ion-view title="item" hide-nav-bar="true" hide-tabs="true">
+	<ion-header-bar class="bar-calm">
+		<div class="buttons">
+	        <button ng-click="$ionicGoBack()" class="button button-icon ion-ios-arrow-left">
+	    	</button>
+        </div>
+ 		<h1 class="title">查看物流</h1>
+	</ion-header-bar>
+	<ion-content id="logisticsContent" has-header="true" class="dq_bg_color" padding="false" style="color:#666;">
+		  <div class="font-14 item" style="padding: 10px;color:#999;margin-bottom:1px;">
+			 <div style="margin-bottom:2px;">快递公司: {{express.companyName}}</div>
+			 <div>快递编号: {{express.expressNo}}</div>
+		  </div>
+		  <div class="font-12 item item-icon-left express" ng-repeat="item in results track by $index" style="padding:0px;color:#aaa;border:0px">
+		  	 <i class="icon font-16 {{$index==results.length-1?'ion-ios-circle-filled lastCircle':''}}" 
+		  	 	ng-class="{true:'ion-checkmark-circled firstCircle',false:'ion-ios-circle-filled'}[item.status=='Y']"
+		  		style="left:5px;z-index:999;color:#aaa;{{($index==0||$index==(results.length-1))?'color:red':''}}"></i>
+		  	 <div style="margin-left:20px;border-top:0;border-bottom:0;border-right:0;padding:10px 10px 10px 20px;color:#aaa;" class="item font-12">
+				 <div style="white-space:pre-line;" ng-class="{true:'statusYes'}[item.status=='Y']">{{item.content}}</div>
+				 <div ng-class="{true:'statusYes'}[item.status=='Y']">{{item.time}}</div>
+			 </div>
+		  </div>
+	</ion-content>
+</ion-view>

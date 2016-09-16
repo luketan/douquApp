@@ -1,0 +1,285 @@
+<style type="text/css">
+#goodsItemContent.has-header{/*内容置顶  */
+ top:0;
+}
+#goodsItemHeader.bar-header{
+	opacity:0; 
+}
+.heade-button-left{
+	z-index:99999;
+	position: absolute;
+	top:4.5px !important;
+	left: 0;
+	color: #FFF !important;
+  	width:34px;
+	height:34px;
+	line-height:30px;
+	overflow:hidden;
+	min-width: 34px;
+    min-height:34px;
+	background-color: #11c1f3 !important;
+	-moz-border-radius: 17px;       
+    -webkit-border-radius:17px;    
+    border-radius:17px;
+    text-align: center;    
+}
+.heade-button-right{
+	z-index:99999;
+	position: absolute;
+	top:4.5px !important;
+	right: 0;
+	color: #FFF !important;
+  	width:34px;
+	height:34px;
+	line-height:34px;
+	overflow:hidden;
+	min-width: 34px;
+    min-height:34px;
+	background-color: #11c1f3 !important;
+	-moz-border-radius: 17px;       
+    -webkit-border-radius:17px;    
+    border-radius:17px;
+    text-align: center;            
+}
+
+#goodsItemContent .bind-html *{
+	max-width: 100%;
+}
+#goodsItemContent .bind-html{
+	padding: 0;
+	margin: 0;
+	padding: 0;
+	margin-top: 0px !important;
+}
+#goodsItemContent .bind-html img{display:block;}
+#goodsItemContent .bind-html p{margin-top: 0px}
+
+#goodsItemView .slide_sub_ul li{
+	min-width:20%;
+	width:20%;
+}
+#goodsItemView .slide_sub_ul .slide_sub_cursor {
+	width:20%;
+}
+</style>
+<ion-view id="goodsItemView" hide-tabs="true" title="info" hide-nav-bar="true"><!--  hide-nav-bar="true"  hide-nav-bar="true" title="info" -->
+	<ion-header-bar id="goodsItemHeader" align-title="center" class="goodItem-header bar-calm" >
+			<h1 class="title">商品详情</h1>
+	</ion-header-bar>
+	<button ng-click="$ionicGoBack()" class="heade-button-left font-28">
+			<i class="icon ion-ios-arrow-left"></i> 
+    </button>
+	<a href="#/tab/{{action_flag}}_cart" class="heade-button-right font-24" style="right: 40px;">
+			<i class="ion-ios-cart-outline"></i> 
+    </a>
+    <div ng-click="shareModal.show()" class="heade-button-right font-24" >
+			<i class="ion-ios-upload-outline"></i> 
+    </div>
+    <ion-item class="font-14 fixedBarFixed " style="margin-top:44px;text-align: center; padding: 0px;display:none;">
+		 <nav>
+			 <ul class="slide_sub_ul">
+			 	<li></li>
+			    <li ng-class="{'dq_slide_activated':slide_type==1}" ng-click="changeSlideType(1)">商品详情</li>
+			    <li></li>
+			    <li ng-class="{'dq_slide_activated':slide_type==2}" ng-click="changeSlideType(2)">商品评论</li>
+			    <li></li>
+			    <div class="slide_sub_cursor"></div>
+			 </ul>
+		 </nav>
+	</ion-item>
+	<ion-content id="goodsItemContent" class="dq_bg_color" padding="false" header-shrink fixed-bar='{"minus":44}'>
+		<ion-slide-box auto-play="true" does-continue="true" slide-interval=3000 show-pager="true" delegate-handle="goodItemdelegateHandler">
+		   	<ion-slide ng-repeat="item in result.tPicList">
+			    <div class="box">
+			    	<img  class="full-image" style="width: 100%;" src="img/zbgj_img.png">
+			    	<img ng-src="{{item.picUrl}}" style="width:100%;display:none;" onload="$(this).prev().remove();this.style.display = 'block';">
+			    </div>
+		  	</ion-slide>
+		</ion-slide-box>
+        <div class="item item-avatar" style="padding:8px 10px 0px 10px;">
+          <h2 class="font-14" style="white-space: normal;color:#333">{{result.name}}</h2>
+          <h3 style="color:#999;white-space: normal;margin-top: 5px;" ng-if="result.subName">{{result.subName}}</h3>
+          <h2 class="font-20" style="color: red;font-weight: 700;margin-top: 8px;position:relative;">¥{{result.price|number:2}}&nbsp;
+	          	<span class="font-12" style="text-decoration:line-through;font-weight:normal;color: #999">市场价：¥{{result.markPrice|number:2}}</span>
+	          	<span class="font-12" style="position:absolute;right:0;bottom:4px;color: #999;font-weight:normal;"><i class="ion ion-ios-people-outline font-24" style="position:relative;top:4px;right:8px;"></i>{{result.salesNum}}人已购买</span>
+          </h2>
+          <div class="font-10 row"><div class="col" style="-webkit-box-flex:0;-webkit-flex:0;-moz-box-flex:0;-moz-flex:0;-ms-flex:0;flex:0;">
+						           		<span style="line-height:16px;background-color:#99CC00;color:#FFF;padding:1px 4px 3px 4px;border-radius:2px;">减免</span>
+						           </div>
+          						   <div class="col" style="color:#999">
+          								<div style="line-height:16px;">开学季满299减50</div>
+          								<div style="line-height:16px;">开学季满299减50</div>
+          								<div style="line-height:16px;">开学季满299减50</div>
+          						   </div>
+          </div>
+          <div class="font-10 row"><div class="col" style="-webkit-box-flex:0;-webkit-flex:0;-moz-box-flex:0;-moz-flex:0;-ms-flex:0;flex:0;">
+						           		<span style="line-height:16px;background-color:#99CC00;color:#FFF;padding:1px 4px 3px 4px;border-radius:2px;">包邮</span>
+						           </div>
+          						   <div class="col" style="color:#999">
+          								<div style="line-height:16px;">单品包邮</div>
+          								<div style="line-height:16px;">开学季*满69包邮</div>
+          						   </div>
+          </div>
+        </div>
+        <div class="item row font-12" style="margin-top:8px;padding-bottom:8px;">
+        	<div class="col-25" ><i class="ion-ios-checkmark-outline font-18" style="color:red;position:relative;top:2px;"></i> 正品保证</div>
+        	<div class="col-25" ><i class="ion-ios-checkmark-outline font-18" style="color:red;position:relative;top:2px;"></i> 七天包退</div>
+        	<div class="col-25" ><i class="ion-ios-checkmark-outline font-18" style="color:red;position:relative;top:2px;"></i> 隐私包装</div>
+        </div>
+	    <ion-item id="slideScroll" class="font-14 fixedBar hide-goodItem-header-mark" style="margin-top:8px;text-align:center; padding:0px; visibility:visible;">
+			 <nav>
+				 <ul class="slide_sub_ul">
+				    <li></li>
+				    <li ng-class="{'dq_slide_activated':slide_type==1}" ng-click="changeSlideType(1)">商品详情</li>
+				    <li></li>
+				    <li ng-class="{'dq_slide_activated':slide_type==2}" ng-click="changeSlideType(2)">商品评论</li>
+				    <li></li>
+				    <div class="slide_sub_cursor"></div>
+				 </ul>
+			 </nav>
+		</ion-item>
+		<div id="slideScroll">
+	        <div ng-if="slide_type==1" class="item item-body" style="padding: 0;">	
+			    <p class="bind-html" class="" ng-bind-html="result.detail">
+			    </p>
+	        </div>
+	        <div ng-if="slide_type==2" class="item item-body" style="padding: 0;">
+	        	<div>
+				    <div class="row font-14" style="padding:8px 8px 0px 8px;"><span class="col-50">综合评级:4.9</span><span class="col-50 font-18" style="text-align:right;color:#ADFF2F;"><i class="icon ion-star"></i><i class="icon ion-star"></i><i class="icon ion-star "></i><i class="icon ion-ios-star-half"></i></span></div>
+		        	<div style="padding:0px 8px 8px 8px;border-bottom:1px solid #ddd;">
+		        		<button class="button button-small" style="background-color:#eee;color:#777;margin-right:8px;margin-top:8px;">全部(319)</button>
+		        		<button class="button button-small" style="background-color:#eee;color:#777;margin-right:8px;margin-top:8px;">有图(319)</button>
+		        		<button class="button button-small" style="background-color:#eee;color:#777;margin-right:8px;margin-top:8px;">满意(319)</button>
+		        		<button class="button button-small" style="background-color:#eee;color:#777;margin-right:8px;margin-top:8px;">一般(319)</button>
+		        		<button class="button button-small" style="background-color:#eee;color:#777;margin-right:8px;margin-top:8px;">不满意(1)</button>
+		        	</div>
+	        	</div>
+	        	<div style="border-bottom:1px solid #ddd;">
+	        		<div class="row font-14" style="padding:5px 8px 5px 8px;">
+	        			<span class="col-50 font-14" style="color:#ADFF2F;"><i class="icon ion-star"></i><i class="icon ion-star"></i><i class="icon ion-star "></i><i class="icon ion-star"></i></span>
+	        			<span class="col-50 font-12" style="text-align:right;color:#999"><span style="margin-right:10px;">期**喊</span><span>2016-07-20</span></span>
+	        		</div>
+	        		<div class="row font-14" style="padding:0px 8px 5px 8px;">
+	        			<span class="col-100 font-12" style="color:#999">规格|野豹纹</span>
+	        		</div>
+	        		<div class="row font-14" style="padding:0px 8px 5px 8px;">
+	        			<span class="col-100 font-12" style="color:#333">质量不错。就是有点小贵</span>
+	        		</div>
+	        	</div>
+	        	<div style="border-bottom:1px solid #ddd;">
+	        		<div class="row font-14" style="padding:5px 8px 5px 8px;">
+	        			<span class="col-50 font-14" style="color:#ADFF2F;"><i class="icon ion-star"></i><i class="icon ion-star"></i><i class="icon ion-star "></i><i class="icon ion-star"></i></span>
+	        			<span class="col-50 font-12" style="text-align:right;color:#999"><span style="margin-right:10px;">期**喊</span><span>2016-07-20</span></span>
+	        		</div>
+	        		<div class="row font-14" style="padding:0px 8px 5px 8px;">
+	        			<span class="col-100 font-12" style="color:#999">规格|野豹纹</span>
+	        		</div>
+	        		<div class="row font-14" style="padding:0px 8px 5px 8px;">
+	        			<span class="col-100 font-12" style="color:#333">质量不错。就是有点小贵</span>
+	        		</div>
+	        	</div>
+	        	<div style="border-bottom:1px solid #ddd;">
+	        		<div class="row font-14" style="padding:5px 8px 5px 8px;">
+	        			<span class="col-50 font-14" style="color:#ADFF2F;"><i class="icon ion-star"></i><i class="icon ion-star"></i><i class="icon ion-star "></i><i class="icon ion-star"></i></span>
+	        			<span class="col-50 font-12" style="text-align:right;color:#999"><span style="margin-right:10px;">期**喊</span><span>2016-07-20</span></span>
+	        		</div>
+	        		<div class="row font-14" style="padding:0px 8px 5px 8px;">
+	        			<span class="col-100 font-12" style="color:#999">规格|野豹纹</span>
+	        		</div>
+	        		<div class="row font-14" style="padding:0px 8px 5px 8px;">
+	        			<span class="col-100 font-12" style="color:#333">质量不错。就是有点小贵</span>
+	        		</div>
+	        	</div>
+	        	<div style="border-bottom:1px solid #ddd;">
+	        		<div class="row font-14" style="padding:5px 8px 5px 8px;">
+	        			<span class="col-50 font-14" style="color:#ADFF2F;"><i class="icon ion-star"></i><i class="icon ion-star"></i><i class="icon ion-star "></i><i class="icon ion-star"></i></span>
+	        			<span class="col-50 font-12" style="text-align:right;color:#999"><span style="margin-right:10px;">期**喊</span><span>2016-07-20</span></span>
+	        		</div>
+	        		<div class="row font-14" style="padding:0px 8px 5px 8px;">
+	        			<span class="col-100 font-12" style="color:#999">规格|野豹纹</span>
+	        		</div>
+	        		<div class="row font-14" style="padding:0px 8px 5px 8px;">
+	        			<span class="col-100 font-12" style="color:#333">质量不错。就是有点小贵</span>
+	        		</div>
+	        	</div>
+	        	<div style="border-bottom:1px solid #ddd;">
+	        		<div class="row font-14" style="padding:5px 8px 5px 8px;">
+	        			<span class="col-50 font-14" style="color:#ADFF2F;"><i class="icon ion-star"></i><i class="icon ion-star"></i><i class="icon ion-star "></i><i class="icon ion-star"></i></span>
+	        			<span class="col-50 font-12" style="text-align:right;color:#999"><span style="margin-right:10px;">期**喊</span><span>2016-07-20</span></span>
+	        		</div>
+	        		<div class="row font-14" style="padding:0px 8px 5px 8px;">
+	        			<span class="col-100 font-12" style="color:#999">规格|野豹纹</span>
+	        		</div>
+	        		<div class="row font-14" style="padding:0px 8px 5px 8px;">
+	        			<span class="col-100 font-12" style="color:#333">质量不错。就是有点小贵</span>
+	        		</div>
+	        	</div>
+	        	<div style="border-bottom:1px solid #ddd;">
+	        		<div class="row font-14" style="padding:5px 8px 5px 8px;">
+	        			<span class="col-50 font-14" style="color:#ADFF2F;"><i class="icon ion-star"></i><i class="icon ion-star"></i><i class="icon ion-star "></i><i class="icon ion-star"></i></span>
+	        			<span class="col-50 font-12" style="text-align:right;color:#999"><span style="margin-right:10px;">期**喊</span><span>2016-07-20</span></span>
+	        		</div>
+	        		<div class="row font-14" style="padding:0px 8px 5px 8px;">
+	        			<span class="col-100 font-12" style="color:#999">规格|野豹纹</span>
+	        		</div>
+	        		<div class="row font-14" style="padding:0px 8px 5px 8px;">
+	        			<span class="col-100 font-12" style="color:#333">质量不错。就是有点小贵</span>
+	        		</div>
+	        	</div>
+	        	<div style="border-bottom:1px solid #ddd;">
+	        		<div class="row font-14" style="padding:5px 8px 5px 8px;">
+	        			<span class="col-50 font-14" style="color:#ADFF2F;"><i class="icon ion-star"></i><i class="icon ion-star"></i><i class="icon ion-star "></i><i class="icon ion-star"></i></span>
+	        			<span class="col-50 font-12" style="text-align:right;color:#999"><span style="margin-right:10px;">期**喊</span><span>2016-07-20</span></span>
+	        		</div>
+	        		<div class="row font-14" style="padding:0px 8px 5px 8px;">
+	        			<span class="col-100 font-12" style="color:#999">规格|野豹纹</span>
+	        		</div>
+	        		<div class="row font-14" style="padding:0px 8px 5px 8px;">
+	        			<span class="col-100 font-12" style="color:#333">质量不错。就是有点小贵</span>
+	        		</div>
+	        	</div>
+	        	<div style="border-bottom:1px solid #ddd;">
+	        		<div class="row font-14" style="padding:5px 8px 5px 8px;">
+	        			<span class="col-50 font-14" style="color:#ADFF2F;"><i class="icon ion-star"></i><i class="icon ion-star"></i><i class="icon ion-star "></i><i class="icon ion-star"></i></span>
+	        			<span class="col-50 font-12" style="text-align:right;color:#999"><span style="margin-right:10px;">期**喊</span><span>2016-07-20</span></span>
+	        		</div>
+	        		<div class="row font-14" style="padding:0px 8px 5px 8px;">
+	        			<span class="col-100 font-12" style="color:#999">规格|野豹纹</span>
+	        		</div>
+	        		<div class="row font-14" style="padding:0px 8px 5px 8px;">
+	        			<span class="col-100 font-12" style="color:#333">质量不错。就是有点小贵</span>
+	        		</div>
+	        	</div>
+	        	<div style="border-bottom:1px solid #ddd;">
+	        		<div class="row font-14" style="padding:5px 8px 5px 8px;">
+	        			<span class="col-50 font-14" style="color:#ADFF2F;"><i class="icon ion-star"></i><i class="icon ion-star"></i><i class="icon ion-star "></i><i class="icon ion-star"></i></span>
+	        			<span class="col-50 font-12" style="text-align:right;color:#999"><span style="margin-right:10px;">期**喊</span><span>2016-07-20</span></span>
+	        		</div>
+	        		<div class="row font-14" style="padding:0px 8px 5px 8px;">
+	        			<span class="col-100 font-12" style="color:#999">规格|野豹纹</span>
+	        		</div>
+	        		<div class="row font-14" style="padding:0px 8px 5px 8px;">
+	        			<span class="col-100 font-12" style="color:#333">质量不错。就是有点小贵</span>
+	        		</div>
+	        	</div>
+	        	
+	        </div>
+        </div>
+	</ion-content>
+	<ion-footer-bar align-title="left" class="bar-stable">
+		<div>
+			<i class="ion-android-favorite-outline font-24" style="margin-left: 10px;position: relative;top:5px"></i> <span class="font-10">客服</span>
+			<i class="ion-android-star-outline font-24" style="margin-left: 10px;position: relative;top:3px"></i> <span class="font-14">收藏</span>
+		</div>
+		<h1 class="title"></h1>
+		<div class="buttons">
+		  	<button class="button" style="background-color:red;color: #FFF;margin-right: 10px" ng-click="showFormat(2)">立即购买</button>
+		    <button class="button" style="border: 1px solid red;color:red;margin-right: 10px" ng-click="showFormat(1)">加入购物车</button>
+		</div>
+	</ion-footer-bar>
+</ion-view>
+<!-- <div id="addShoppingCarWraper" style="z-index:2">
+	<div id="addShoppingCarItem" style="z-index:2">
+		<img style="width:70px;height:70px" ng-src="{{result.imgUrl}}">
+	</div>
+</div> -->

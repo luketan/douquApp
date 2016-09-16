@@ -1,0 +1,98 @@
+<html ng-app="ionicApp">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>Tabs Issue</title>
+     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+      <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <style>
+.modal.bottom-sheet {
+  bottom: 0;  
+  min-height: initial;
+  top: initial;
+  height: 50%;
+  border-width: 1px;
+  border-style: solid;
+}
+  </style>  
+  </head>
+
+  <body ng-controller="AppCtrl">
+    
+    <ion-header-bar class="bar-positive">
+      <h1 class="title">Particles</h1>
+      <div class="buttons">
+        <button class="button button-icon ion-compose" ng-click="modal.show()">
+        </button>
+      </div>
+    </ion-header-bar>
+    <ion-content>
+      <ion-list>
+        <ion-item ng-repeat="particle in particles">
+          {{particle.name}}
+        </ion-item>
+      </ion-list>
+    </ion-content>
+    
+    <script id="templates/bottom-sheet.html" type="text/ng-template">
+      <ion-bottom-sheet-view>
+         <ion-header-bar align-title="left">
+            <h1 class="title">购物车</h1>
+            <button class="button button-icon icon ion-android-close" ng-click="modal.hide()"></button>
+        </ion-header-bar>
+        <ion-content class="padding">
+          <div class="list">
+            <label class="item item-input">
+              <span class="input-label">Name</span>
+              <input ng-model="newParticle.name" type="text">
+            </label>           
+            <button class="button button-full button-positive" ng-click="createParticle(newParticle)">Add</button>
+          </div>
+        </ion-content>
+      </ion-bottom-sheet-view>
+    </script>
+    <script>
+    angular.module('ionicApp', ['ionic'])
+
+    .controller('AppCtrl', function($scope, $ionicModal) {
+      
+      $scope.particles = [
+        { name: 'Electron' },
+        { name: 'Neutron' },
+        { name: 'Proton' },
+      ];
+
+      $ionicModal.fromTemplateUrl('templates/bottom-sheet.html', {
+        scope: $scope,
+        viewType: 'bottom-sheet',
+        animation: 'slide-in-up'
+      }).then(function(modal) {
+        $scope.modal = modal;
+      });
+      
+      $scope.createParticle = function(u) {        
+        $scope.particles.push({ name: u.name});
+        $scope.modal.hide();
+      };
+
+    })
+    .directive('ionBottomSheet', [function() {
+        return {
+          restrict: 'E',
+          transclude: true,
+          replace: true,
+          controller: [function() {}],
+          template: '<div class="modal-wrapper" ng-transclude></div>'  
+        };
+      }])
+    .directive('ionBottomSheetView', function() {
+      return {
+        restrict: 'E',
+        compile: function(element) {
+          element.addClass('bottom-sheet modal');
+        }
+      };
+    });
+    </script>
+  </body>
+</html>

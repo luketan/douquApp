@@ -1,0 +1,142 @@
+<style type="text/css">
+	#societyTypeView .slide_sub_ul li{
+		min-width:11.11% !important;
+		width:11.11%;
+	}
+	#societyTypeView .slide_sub_ul .slide_sub_cursor {
+		width:11.11%;
+	}
+</style>
+<ion-view id="societyTypeView" title="item" hide-nav-bar="true" hide-tabs="true"><!--hide-nav-bar="true" hide-tabs="true" hide-back-button="true" -->
+	 <ion-header-bar class="bar-calm">
+      <div class="buttons">
+        <button ng-click="$ionicGoBack()" class="button button-icon ion-ios-arrow-left">
+    	</button>
+      </div>
+      <h1 class="title">主题</h1>
+      <div class="buttons">
+    	<div class="buttons">
+			<a href="#/tab/{{action_flag}}_msg" class="button font-24 ion-chatbubble-working"></a>
+		</div>
+      </div>
+     
+    </ion-header-bar>
+    <ion-item class="font-14 fixedBarFixed" style="margin:0;border-left:0;border-right:0;text-align:center;padding:0px;display:fixed;top: 44px;display:none;">
+    	<nav>
+			 <ul class="slide_sub_ul">
+			 	<li ></li>
+			    <li ng-class="{'dq_slide_activated':slide_type==1}" ng-click="changeSlideType(1)">全部</li>
+			    <li ></li>
+			    <li ng-class="{'dq_slide_activated':slide_type==2}" ng-click="changeSlideType(2)">新鲜</li>
+			    <li ></li>
+			    <li ng-class="{'dq_slide_activated':slide_type==3}" ng-click="changeSlideType(3)">精华</li>
+			    <li ></li>
+			    <li ng-class="{'dq_slide_activated':slide_type==4}" ng-click="changeSlideType(4)">女生</li>
+			    <li ></li>
+			    <div class="slide_sub_cursor"></div>
+			 </ul>
+		 </nav>
+    </ion-item>
+    <ion-content class="dq_bg_color" fixed-bar><!-- scroll-event-interval="5"  -->
+	      <div class="list">
+		 		<div class="item item-avatar" style="padding-top:10px;padding-bottom:10px;min-height:0px">
+			          <img class="userHeader" style="top:10px;" ng-src="http://ionicframework.com/img/docs/mcfly.jpg"/>
+			          <h3>qingqushiyijian<span>LV3</span><span></span></span></h3>
+			          <p class="font-12">qingquneiyishaidan，zuobutongdeziji </p>
+			    </div>
+			    <ion-item class="font-14 fixedBar" style="margin:0;border-left:0;border-right:0;text-align:center;padding:0px;">
+					 <nav>
+						 <ul class="slide_sub_ul">
+						 	<li ></li>
+						    <li ng-class="{'dq_slide_activated':slide_type==1}" ng-click="changeSlideType(1)">全部</li>
+						    <li ></li>
+						    <li ng-class="{'dq_slide_activated':slide_type==2}" ng-click="changeSlideType(2)">新鲜</li>
+						    <li ></li>
+						    <li ng-class="{'dq_slide_activated':slide_type==3}" ng-click="changeSlideType(3)">精华</li>
+						    <li ></li>
+						    <li ng-class="{'dq_slide_activated':slide_type==4}" ng-click="changeSlideType(4)">女生</li>
+						    <li ></li>
+						    <div class="slide_sub_cursor"></div>
+						 </ul>
+					 </nav>
+				</ion-item>
+				<div id="slideScroll">
+				    <ion-item class="item-divider dq_bg_white font-12" style="margin-top:8px">
+						 <span style="height: 20px;line-height: 20px;background-color:#11c1f3;-moz-border-radius:3px;-webkit-border-radius:3px;border-radius:3px;margin-right: 10px;display:inline-block;color: #fff;">&nbsp;置顶&nbsp;</span>
+						 <a href="#/tab/{{action_flag}}_societyItem?id=10011" style="height: 20px;line-height: 20px;">版规</a>
+					</ion-item>
+					<ion-item class="item-divider dq_bg_white font-12" style="margin-top:0px">
+						 <span style="height: 20px;line-height: 20px;background-color:#11c1f3;-moz-border-radius:3px;-webkit-border-radius:3px;border-radius:3px;margin-right: 10px;display:inline-block;color: #fff;">&nbsp;置顶&nbsp;</span>
+						 <a href="#/tab/{{action_flag}}_societyItem?id=10011" style="height: 20px;line-height: 20px;">制服诱惑日系和服</a>
+					</ion-item>
+					<!-- 帖子列表  -->
+					<div class="item item-avatar" style="min-height:0px;margin-top:8px;padding:8px 0 8px 48px;line-height: 16px;">
+				          <img class="userHeader" style="top:8px;left:8px;width: 30px;height: 30px;" ng-src="http://ionicframework.com/img/docs/mcfly.jpg"/>
+				          <h3 class="font-10" style="margin-bottom: 0px">版规<span>LV3</span><span></span></h3>
+				          <p class="font-12" style="color: #ccc;">版规</p>
+				    </div>
+			        <div class="item item-body font-12" style="padding: 0;border-top: 0px;">
+			          <p class="font-12" style="margin:0px 10px 5px 10px;overflow:hidden;text-overflow: ellipsis;display:-webkit-box;-webkit-line-clamp: 4;-webkit-box-orient: vertical;">
+			            <a href="#/tab/{{action_flag}}_societyItem?id=10011">
+			            	<!-- <span style="color: #fff;background-color: #996699;">&nbsp;荐 </span>&nbsp; -->
+			            	<span style="color: #fff;background-color: #99CC00;">&nbsp;精 </span>&nbsp;
+			            	<span>国青进球功臣遭足协重罚 踩踏对手被禁6场+罚款3万<br></span>
+			            	<span>根据比赛监督、裁判评议组报告，比赛录像及有关当事人、俱乐部代表的陈述、书面说明等，当比赛进行到第36分钟，大连一方球员汪晋贤使用鞋底踩踏对方球员（奥特森）的腿部，导致对方球员腿部受伤。
+
+20岁的汪晋贤1996年1月2日出生于湖北省武汉市，身高175cm，是一名中场球员，因为娴熟的过人技术而被称为“盘带王”。现效力于大连一方足球俱乐部。2012入选中国男足国少队，2014年入选国青队。</span>
+			    		</a>     
+					  </p>
+			          <div style="margin:0px 10px 5px 5px;">
+			          	 <a href="#/tab/{{action_flag}}_societyItem?id=10011">
+			          	  <img style="width: 30%;margin: 5px 0 0 5px;vertical-align: bottom;" ng-src="http://ionicframework.com/img/docs/delorean.jpg">
+				          <img style="width: 30%;margin: 5px 0 0 5px;vertical-align: bottom;" ng-src="http://ionicframework.com/img/docs/delorean.jpg">
+				          <img style="width: 30%;margin: 5px 0 0 5px;vertical-align: bottom;" ng-src="http://ionicframework.com/img/docs/delorean.jpg">
+				          <img style="width: 30%;margin: 5px 0 0 5px;vertical-align: bottom;" ng-src="http://ionicframework.com/img/docs/delorean.jpg">
+				          <img style="width: 30%;margin: 5px 0 0 5px;vertical-align: bottom;" ng-src="http://ionicframework.com/img/docs/delorean.jpg">
+				          <img style="width: 30%;margin: 5px 0 0 5px;vertical-align: bottom;" ng-src="http://ionicframework.com/img/docs/delorean.jpg">
+			          	</a>
+			          </div>
+			          <p style="margin: 10px 10px 0px 10px;padding:10px 0 10px 0;color: #CCC;border-top: 1px solid #CCC;">
+			            <a style="color: #CCC;" href="#/tab/{{action_flag}}_societyItem?id=10011" >
+				          	<span style="margin-right: 8px"><i class="ion-ios-eye" style="margin-right: 5px"></i>2711</span>
+				          	<span style="margin-right: 8px"><i class="ion-chatbox-working" style="margin-right: 5px"></i>48</span>
+				          	<span style="margin-right: 8px"><i class="ion-thumbsup" style="margin-right: 5px"></i>12</span>
+			          	</a>
+			          </p>
+			        </div>
+			       <!-- 帖子列表  -->
+					<div class="item item-avatar" style="min-height:0px;margin-top:8px;padding:10px 0 10px 50px;line-height: 16px;">
+				          <img style="top:10px;left:10px;border-radius: 5px;width: 30px;height: 30px;" ng-src="http://ionicframework.com/img/docs/mcfly.jpg"/>
+				          <h3 style="margin-bottom: 0px">版规<span>LV3</span><span></span></h3>
+				          <p class="font-12" style="color: #ccc;">版规</p>
+				    </div>
+			        <div class="item item-body font-12" style="padding: 0;border-top: 0px;">
+				          <p style="margin:0px 10px 5px 10px;overflow:hidden;text-overflow: ellipsis;display:-webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">
+					          <a href="#/tab/{{action_flag}}_societyItem?id=10011">
+					            	<!-- <span style="color: #fff;background-color: #996699;">&nbsp;荐 </span>&nbsp; -->
+					            	<span style="color: #fff;background-color: #99CC00;">&nbsp;精 </span>&nbsp;This is a "Facebook" styled Card. The header is created from a Thumbnail List item, the content is from a card-body consisting of an image and paragraph text. The footer consists of tabs, icons aligned left, within the card-footer.
+					    	  </a>     
+						  </p>
+				          <div style="margin:0px 10px 5px 5px;">
+				          	  <a href="#/tab/{{action_flag}}_societyItem?id=10011">
+					          	  <img style="width: 30%;margin: 5px 0 0 5px;vertical-align: bottom;" ng-src="http://ionicframework.com/img/docs/delorean.jpg">
+						          <img style="width: 30%;margin: 5px 0 0 5px;vertical-align: bottom;" ng-src="http://ionicframework.com/img/docs/delorean.jpg">
+						          <img style="width: 30%;margin: 5px 0 0 5px;vertical-align: bottom;" ng-src="http://ionicframework.com/img/docs/delorean.jpg">
+						          <img style="width: 30%;margin: 5px 0 0 5px;vertical-align: bottom;" ng-src="http://ionicframework.com/img/docs/delorean.jpg">
+						          <img style="width: 30%;margin: 5px 0 0 5px;vertical-align: bottom;" ng-src="http://ionicframework.com/img/docs/delorean.jpg">
+						          <img style="width: 30%;margin: 5px 0 0 5px;vertical-align: bottom;" ng-src="http://ionicframework.com/img/docs/delorean.jpg">
+				          	  </a>
+				          </div>
+				          <p style="margin: 10px 10px 0px 10px;padding:10px 0 10px 0;color: #CCC;border-top: 1px solid #CCC;">
+					          <a style="color: #CCC;" href="#/tab/{{action_flag}}_societyItem?id=10011" >
+						          <span style="margin-right: 8px"><i class="ion-ios-eye" style="margin-right: 5px"></i>2711</span>
+						          <span style="margin-right: 8px"><i class="ion-chatbox-working" style="margin-right: 5px"></i>48</span>
+						          <span style="margin-right: 8px"><i class="ion-thumbsup" style="margin-right: 5px"></i>12</span>
+					          </a>
+				          </p>
+			        </div>
+		        </div>
+	      </div>
+    </ion-content>
+    <div ng-click="posts()" class="circle x_center" style="background-color:#ADFF2F;color:#FFF;bottom:10px;text-align:center;width:30px;height:30px;line-height:30px;"><i class="icon ion-plus-round font-18"></i></div>
+</ion-view>

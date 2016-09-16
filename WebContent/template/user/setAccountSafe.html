@@ -1,0 +1,25 @@
+<ion-view hide-nav-bar="true" title="userSet" hide-tabs="true">
+	<ion-header-bar class="bar-calm">
+		<div class="buttons">
+	        <button ng-click="$ionicGoBack()" class="button button-icon ion-ios-arrow-left">
+	    	</button>
+        </div>
+ 		<h1 class="title">账户与安全</h1>
+	</ion-header-bar>
+	<ion-content id="setAccountSafe" has-header="true" class="dq_bg_color" padding="false" style="height:100%">
+		<a href="#tab/{{action_flag}}_setPhone1" class="item item-icon-right">
+			    <i class="icon ion-chevron-right icon-accessory"></i>
+				     手机号
+	          <span class="item-note">
+	            {{item.phone}}
+	          </span>
+		</a>
+		<a href="#/tab/{{action_flag}}_setPwd" class="item item-icon-right">
+			  <i class="icon ion-chevron-right icon-accessory"></i>
+				    密码
+	          <span class="item-note">
+	        	   去修改
+	          </span>
+		</a>
+	</ion-content>
+</ion-view>

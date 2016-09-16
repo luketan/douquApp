@@ -1,0 +1,97 @@
+<style type="text/css">
+#conponInfoContent .ciHeard{
+	
+}
+#conponInfoContent .img{
+	width: 80px;
+	height: 80px;
+	-moz-border-radius: 40px;
+    -webkit-border-radius: 40px;
+    border-radius: 40px;
+}
+#conponInfoView .slide_sub_ul li{
+	min-width:12.5% !important;
+	width:12.5%;
+}
+#conponInfoView .slide_sub_ul .slide_sub_cursor {
+	width:12.5%;
+}
+#conponInfoView .item-content{
+	padding-top: 8px;
+	padding-bottom: 8px;
+	padding-right: 10px;
+	padding-left: 56px !important;
+	min-height:0px !important;
+}
+#conponInfoView .item{
+	min-height:0px !important;
+}
+#conponInfoView .item-content img{
+	top:8px;left:8px;
+}
+#conponInfoView .icon{
+	left:0px !important;
+}
+</style>
+<ion-view id="conponInfoView" hide-nav-bar="true" hide-tabs="true">
+	<ion-header-bar class="bar-calm">
+		<div class="buttons">
+	        <button ng-click="$ionicGoBack()" class="button button-icon ion-ios-arrow-left">
+	    	</button>
+        </div>
+ 		<h1 class="title">我的优惠券</h1>
+ 		<div class="buttons">
+	        <button ng-click="data.showDelete = !data.showDelete; data.showReorder = false" class="button">
+	       	 编辑
+	    	</button>
+        </div>
+	</ion-header-bar>
+	<div class="bar-subheader item row" style="text-align:center; padding:0px; margin:0px 0px 8px 0px; height:34px; min-height:34px;">
+		<nav>
+			<ul class="slide_sub_ul">
+				<li></li>
+				<li></li>
+			    <li ng-class="{'dq_slide_activated':slide_type==1}" ng-click="changeSlideType(1)">当前</li>
+			    <li></li>
+			    <li></li>
+			    <li ng-class="{'dq_slide_activated':slide_type==2}" ng-click="changeSlideType(2)">历史</li>
+			    <li></li>
+			    <li></li>
+			    <div class="slide_sub_cursor"></div>
+			</ul>
+		</nav>
+	</div>
+	<ion-content id="conponInfoContent" has-header="true" padding="false" class="dq_bg_color" style="margin-top:33px;">
+		<ion-refresher ng-if="slide_type==1" on-refresh="currRefresh()" pulling-text="下拉刷新..." refreshing-text="刷新" refreshing-icon="ion-loading-c">
+		</ion-refresher>
+		<ion-refresher ng-if="slide_type==2" on-refresh="pastRefresh()" pulling-text="下拉刷新..." refreshing-text="刷新" refreshing-icon="ion-loading-c">
+		</ion-refresher>
+		<ion-list show-delete="data.showDelete" show-option="data.showOption">
+ 		<div ng-if="slide_type==1">
+			 <ion-item ng-repeat="item in coupons.curr track by $index" class="item-remove-animate item-avatar ">
+			 	<ion-delete-button class="ion-minus-circled" ng-click="deleteCurr($index)">
+          		</ion-delete-button>
+				<img class="ion-medkit img" style="border-radius:4px;" ng-src="{{item.image}}">
+				<h2 class="dq_user_header_h2" style="line-height: 20px">{{item.name}}</h2>
+				<p class="font-12" style="color: #999">{{item.detail}}</p>
+				<ion-option-button class="button-assertive" ng-click="deleteCurr($index)">
+			    	删除
+			    </ion-option-button>
+		  	 </ion-item>
+ 		</div>
+ 		<div ng-if="slide_type==2">
+ 			 <ion-item ng-repeat="item in coupons.past track by $index" class="item-remove-animate item-avatar " >
+ 			 	<ion-delete-button class="ion-minus-circled" ng-click="deletePast($index)">
+          		</ion-delete-button>
+				<img class="ion-medkit img" style="border-radius:4px;" ng-src="{{item.image}}">
+				<h2 class="dq_user_header_h2" style="line-height: 20px">{{item.name}}</h2>
+				<p class="font-12" style="color: #999">{{item.detail}}</p>
+				<ion-option-button class="button-assertive" ng-click="deletePast($index)">
+			    	删除
+			    </ion-option-button>
+		  	 </ion-item>
+ 		</div>
+ 		</ion-list>
+        
+	</ion-content>
+</ion-view>

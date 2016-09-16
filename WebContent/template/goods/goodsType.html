@@ -1,0 +1,24 @@
+<style type="text/css">
+
+</style>
+<ion-view id="goodsTypeView" hide-tabs="true" title="info" hide-nav-bar="true"><!--  hide-nav-bar="true"  hide-nav-bar="true" title="info" -->
+	<ion-header-bar align-title="center" class=" bar-calm" >
+		<div class="buttons">
+	        <button ng-click="$ionicGoBack()" class="button button-icon ion-ios-arrow-left">
+	    	</button>
+	    </div>
+		<h1 class="title">商品类别</h1>
+	</ion-header-bar>
+	
+	<ion-content id="goodsTypeContent" class="dq_bg_color" padding="false">
+		<ion-refresher on-refresh="doRefresh()" pulling-text="下拉刷新..." refreshing-text="刷新" refreshing-icon="ion-loading-c">
+		</ion-refresher>
+	    <ion-item ng-repeat="item in goodsTypes track by $index" href="#/tab/{{action_flag}}_goodsList?typeId={{item.id}}&title={{item.name}}" class="item item-avatar item-icon-right item-icon-left" style="min-height:72px;">
+	          <!-- <img class="userHeader" ng-src="{{item.img}}" alt=""> -->
+	          <i class="icon iconfont" style="color: #FFBBFF" ng-bind-html="item.img"></i>
+	          <h3 class="ng-binding">{{item.name}}</h3>
+	          <p class="font-12 ng-binding" style="color: #999">{{item.subName}}</p>
+	          <i class="icon ion-chevron-right icon-accessory"></i>
+	</ion-content>
+	
+</ion-view>

@@ -1,0 +1,108 @@
+<style type="text/css">
+
+#tyrantView .slide_sub_ul li{
+	min-width:12.5% !important;
+	width:12.5%;
+}
+#tyrantView .slide_sub_ul .slide_sub_cursor {
+	width:12.5%;
+}
+</style>
+<ion-view id="tyrantView" class="dq_bg_color" title="item" hide-nav-bar="true" hide-tabs="true"><!--hide-nav-bar="true" hide-tabs="true" hide-back-button="true" -->
+	 <ion-header-bar class="bar-calm">
+      <div class="buttons">
+	      <button ng-click="$ionicGoBack()" class="button button-icon ion-ios-arrow-left">
+	      </button>
+      </div>
+      <h1 class="title">土豪榜</h1>
+      <div class="buttons">
+      <button class="button font-24 ion-ios-information-outline">
+	  </button>	
+      </div>
+    </ion-header-bar>
+    <div class="item row" style="position:relative; top:44px;text-align:center; padding:0px;margin:0px 0px 8px 0px;border-left-width:0;border-right-width:0;">
+    	<nav>
+			<ul class="slide_sub_ul">
+				<li></li>
+				<li></li>
+			    <li ng-class="{'dq_slide_activated':slide_type==1}" ng-click="changeSlideType(1)">周榜</li>
+			    <li></li>
+			    <li></li>
+			    <li ng-class="{'dq_slide_activated':slide_type==2}" ng-click="changeSlideType(2)">总榜</li>
+			    <li></li>
+			    <li></li>
+			    <div class="slide_sub_cursor"></div>
+			</ul>
+		</nav>
+    </div>
+    <ion-content id="tyrantContent" class="dq_bg_color" style="top:80px;">
+	    <div style="margin-top: 8px;">
+		    <div ng-if="slide_type==1" >
+		    	<div class="item" style="text-align: center;border:0;margin:8px 0 0 0;display:table;padding:8px 0 8px 0px;">
+		    		<div style="display:table-cell;width: 30%;vertical-align:top;padding-top:20px;text-align:center;">
+		    			<i class="iconfont font-36" style="color:silver;position:relative;top:4px;">&#xe60d;</i><br>
+		    			<img class="circle" style="position:relative;width:50%;border:2px solid silver" src="http://mallimg01.touchcdn.com/goods-gallery/866976864088af42f9014313d06bbf77.jpg?imageView/2/w/416/interlace/1">
+		    			<br>
+		    			<span style="padding-top:8px;display:inline-block;">123</span>
+		    		</div>
+		    		<div style="display:table-cell;width: 40%;vertical-align:top;text-align:center;">
+		    			<i class="iconfont font-36" style="color:silver;position:relative;top:4px;color:gold;">&#xe60c;</i><br>
+		    			<img class="circle" style="position:relative;width:50%;border:2px solid gold;" src="http://mallimg01.touchcdn.com/goods-gallery/866976864088af42f9014313d06bbf77.jpg?imageView/2/w/416/interlace/1">
+		    			<br>
+		    			<span style="padding-top:8px;display:inline-block;">123</span>
+		    		</div>
+		    		<div style="display:table-cell;width: 30%;vertical-align:top;padding-top:20px;text-align:center;">
+		    			<i class="iconfont font-36" style="color:#B5A642;position:relative;top:4px;">&#xe60e;</i><br>
+		    			<img class="circle" style="position:relative;width:50%;border:2px solid #B5A642" src="http://mallimg01.touchcdn.com/goods-gallery/866976864088af42f9014313d06bbf77.jpg?imageView/2/w/416/interlace/1">
+		    			<br>
+		    			<span style="padding-top:8px;display:inline-block;">123</span>
+		    		</div>
+		    	</div>
+		    	<ion-list>
+			    	<a ng-repeat="item in weekResults track by $index" href="#/tab/{{action_flag}}_account?id={{item.id}}" class="item item-icon-left" style="padding:5px 20px 5px 40px;min-height:0px">
+				        <i class="icon font-16">{{item.rank}}</i>
+				        <div style="position:relative;padding-left:0px;">
+					        <img class="circle" style="width:40px;position: absolute;" ng-src="{{item.img}}">
+					        <h3 style="padding-left:50px;" class="ng-binding">{{item.userName}}</h3>
+					        <p style="padding-left:50px; color:#999" class="font-12 ng-binding">{{item.signature}}</p>
+				        </div>
+			        </a>
+		        </ion-list>
+		        <ion-infinite-scroll ng-if="weekMoreData" on-infinite="weekLoadMore()" distance="0%" ></ion-infinite-scroll>
+			</div>
+			<div ng-if="slide_type==2">
+				<div class="item" style="text-align: center;border:0;margin:8px 0 0 0;display:table;padding:20px 0 20px 0px;">
+		    		<div style="display:table-cell;width: 30%;vertical-align:top;padding-top:20px">
+		    			<i class="iconfont font-36" style="color:silver;position:relative;top:4px;">&#xe60d;</i><br>
+		    			<img class="circle" style="position:relative;width:50%;border:2px solid silver" src="http://mallimg01.touchcdn.com/goods-gallery/866976864088af42f9014313d06bbf77.jpg?imageView/2/w/416/interlace/1">
+		    			<br>
+		    			<span style="padding-top:8px;display:inline-block;">123</span>
+		    		</div>
+		    		<div style="display:table-cell;width: 40%;vertical-align:top;">
+		    			<i class="iconfont font-36" style="color:silver;position:relative;top:4px;color:gold;">&#xe60c;</i><br>
+		    			<img class="circle" style="position:relative;width:50%;border:2px solid gold;" src="http://mallimg01.touchcdn.com/goods-gallery/866976864088af42f9014313d06bbf77.jpg?imageView/2/w/416/interlace/1">
+		    			<br>
+		    			<span style="padding-top:8px;display:inline-block;">123</span>
+		    		</div>
+		    		<div style="display:table-cell;width: 30%;vertical-align:top;padding-top:20px">
+		    			<i class="iconfont font-36" style="color:#B5A642;position:relative;top:4px;">&#xe60e;</i><br>
+		    			<img class="circle" style="position:relative;width:50%;border:2px solid #B5A642" src="http://mallimg01.touchcdn.com/goods-gallery/866976864088af42f9014313d06bbf77.jpg?imageView/2/w/416/interlace/1">
+		    			<br>
+		    			<span style="padding-top:8px;display:inline-block;">123</span>
+		    		</div>
+		    	</div>
+		    	<ion-list>
+			    	<a ng-repeat="item in weekResults track by $index" href="#/tab/{{action_flag}}_account?id={{item.id}}" class="item item-icon-left" style="padding:5px 20px 5px 40px;min-height:0px">
+				        <i class="icon font-16">{{item.rank}}</i>
+				        <div style="position:relative;padding-left:0px;">
+					        <img class="circle" style="width:40px;position: absolute;" ng-src="{{item.img}}">
+					        <h3 style="padding-left:50px;" class="ng-binding">{{item.userName}}</h3>
+					        <p style="padding-left:50px; color:#999" class="font-12 ng-binding">{{item.signature}}</p>
+				        </div>
+			        </a>
+		        </ion-list>
+		        <ion-infinite-scroll ng-if="totalMoreData" on-infinite="totalLoadMore()" distance="0%" ></ion-infinite-scroll>
+			</div>
+		</div>
+	</ion-content>
+</ion-view>

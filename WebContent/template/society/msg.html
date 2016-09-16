@@ -1,0 +1,91 @@
+<style type="text/css">
+	#messageView .slide_sub_ul li{
+		min-width:12.5% !important;
+		width:12.5%;
+	}
+	#messageView .slide_sub_ul .slide_sub_cursor {
+		width:12.5%;
+	}
+</style>
+<ion-view id="messageView" title="item" hide-nav-bar="true" hide-tabs="true"><!--hide-nav-bar="true" hide-tabs="true" hide-back-button="true" -->
+	<ion-header-bar class="bar-calm">
+	    <div class="buttons">
+	    	<button ng-click="$ionicGoBack()" class="button button-icon ion-ios-arrow-left"></button>
+	    </div>
+	    <h1 class="title">消息</h1>
+	    <!-- <div class="buttons">
+	       <button class="button button-icon ion-navicon"></button>
+	    </div> -->
+    </ion-header-bar>
+    <div class="bar bar-subheader item row" style="border:0; text-align:center; padding:0px; position:fixed; margin:0; height:34px; min-height:34px;">
+		<nav>
+			<ul class="slide_sub_ul">
+				<li></li>
+				<li></li>
+			    <li ng-class="{'dq_slide_activated':slide_type==1}" ng-click="changeSlideType(1)">消息</li>
+			    <li></li>
+			    <li></li>
+			    <li ng-class="{'dq_slide_activated':slide_type==2}" ng-click="changeSlideType(2)">好友</li>
+			    <li></li>
+			    <li></li>
+			    <div class="slide_sub_cursor"></div>
+			</ul>
+	  	</nav>
+  	</div>
+    <ion-content class="dq_bg_color" style="margin-top:34px;"><!-- scroll-event-interval="5" 消息。好友《新的好友，关注，粉丝》 -->
+    		  <ion-refresher ng-if="slide_type==1" on-refresh="messageRefresh()" pulling-text="下拉刷新..." refreshing-text="刷新" refreshing-icon="ion-loading-c">
+			  </ion-refresher>
+			  <ion-refresher ng-if="slide_type==2" on-refresh="friendsRefresh()" pulling-text="下拉刷新..." refreshing-text="刷新" refreshing-icon="ion-loading-c">
+			  </ion-refresher>
+    		  <div ng-if="slide_type==1" style="margin-top:8px;">
+					  <a href="#/tab/{{action_flag}}_sysMsg" class="item item-icon-right item-icon-left" style="padding-top:5px;padding-bottom:5px;min-height:0px">
+				          <i class="icon ion-home" style="color:#FFBBFF"></i>
+				          <h3 class="ng-binding" style="height:40px;line-height: 40px;">系统消息</h3>
+				          <i class="icon ion-chevron-right icon-accessory"></i>
+				      </a>
+				      <a href="#/tab/{{action_flag}}_reply" class="item item-icon-right item-icon-left" style="padding-top:5px;padding-bottom:5px;min-height:0px">
+				          <i class="icon ion-ios-refresh" style="color: #FFBBFF"></i>
+				          <h3 class="ng-binding" style="height:40px;line-height: 40px;">回复我的</h3>
+				          <i class="icon ion-chevron-right icon-accessory"></i>
+				      </a>
+				      <a href="#/tab/{{action_flag}}_stranger" class="item item-icon-right item-icon-left" style="padding-top:5px;padding-bottom:5px;min-height:0px">
+				          <i class="icon ion-android-person" style="color: #FFBBFF"></i>
+				          <h3 class="ng-binding" style="height:40px;line-height: 40px;">陌生人</h3>
+				          <i class="icon ion-chevron-right icon-accessory"></i>
+				      </a>
+				      <div style="color: #999;padding:3px 0 3px 16px">最近联系人</div>
+				      <a href="#/tab/{{action_flag}}_chat?userId={{item.userId}}&userName=美女年后" class="item item-avatar item-icon-right" style="padding-top:5px;padding-bottom:5px;min-height:0px">
+				          <img class="userHeader" style="top:5px;" src="http://ionicframework.com/img/docs/mcfly.jpg" alt="">
+				          <h3 class="ng-binding">美女年后</h3>
+				          <p class="font-12 ng-binding" style="color: #999">型男自拍，达人点评，教你逆袭白富美</p>
+				          <i class="icon font-10"><span style="color:#999;position:relative;top:-15px;">42分钟前</span></i>
+				      </a>
+			  </div>
+			  <div ng-if="slide_type==2" style="margin-top:8px;">
+				  	  <a href="#/tab/{{action_flag}}_newFriend" class="item item-icon-right item-icon-left" style="padding-top:5px;padding-bottom:5px;min-height:0px">
+				          <i class="icon ion-person-add" style="color: #FFBBFF"></i>
+				          <h3 class="ng-binding">新的好友</h3>
+				          <p class="font-12 ng-binding" style="color: #999">[还没有人加你哦]</p>
+				                 <i class="icon ion-chevron-right icon-accessory"></i>
+				      </a>
+				      <a href="#/tab/{{action_flag}}_note" class="item item-icon-right item-icon-left" style="padding-top:5px;padding-bottom:5px;min-height:0px">
+				          <i class="icon ion-heart" style="color: #FFBBFF"></i>
+				          <h3 class="ng-binding">关注</h3>
+				          <p class="font-12 ng-binding" style="color: #999">0位</p>
+				          <i class="icon ion-chevron-right icon-accessory"></i>
+				      </a>
+				      <a href="#/tab/{{action_flag}}_fans" class="item item-icon-right item-icon-left" style="padding-top:5px;padding-bottom:5px;min-height:0px">
+				          <i class="icon ion-star" style="color: #FFBBFF"></i>
+				          <h3 class="ng-binding">粉丝</h3>
+				          <p class="font-12 ng-binding" style="color: #999">0位</p>
+				          <i class="icon ion-chevron-right icon-accessory"></i>
+				      </a>
+				      <a href="#/tab/{{action_flag}}_friend" class="item item-icon-right item-icon-left" style="padding-top:5px;padding-bottom:5px;min-height:0px">
+				          <i class="icon ion-android-contacts" style="color: #FFBBFF"></i>
+				          <h3 class="ng-binding">好友</h3>
+				          <p class="font-12 ng-binding" style="color: #999">0位</p>
+				          <i class="icon ion-chevron-right icon-accessory"></i>
+				      </a>
+			  </div>
+    </ion-content>
+</ion-view>

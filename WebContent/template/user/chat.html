@@ -1,0 +1,56 @@
+<link href="http://code.ionicframework.com/contrib/ionic-contrib-frosted-glass/ionic.contrib.frostedGlass.css" rel="stylesheet">
+<script src="http://code.ionicframework.com/contrib/ionic-contrib-frosted-glass/ionic.contrib.frostedGlass.js"></script>
+<style type="text/css">
+body {
+  cursor: url('http://ionicframework.com/img/finger.png'), auto;
+}
+.messages {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+.messages li {
+  display: block;
+  float: left;
+  clear: both;
+  margin: 0 0 1rem 0;
+  padding: 0;
+  max-width: 65%;
+}
+.messages li:nth-child(even) {
+  float: right;
+}
+.messages li:nth-child(even) img {
+  float: right;
+}
+.messages p {
+  margin: 0;
+  padding: .6875rem;
+  border-radius: .75rem;
+  background: #e6e5eb;
+  color: #383641;
+  font-size: .875rem;
+}
+.messages li:nth-child(even) p {
+  background: #158ffe;
+  color: #fff;
+}
+.messages img {
+  display: block;
+  max-width: 65%;
+  border-radius: .75rem;
+}
+</style>
+<ion-pane>
+   <header frosted-bar class="bar bar-header bar-frosted">
+     <h1 class="title">Blurred!</h1>
+   </header>
+   <ion-content padding="true" class="has-header" start-y="120">
+     <ol class="messages">
+       <li ng-repeat="message in messages" ng-bind-html="message.content"></li>
+     </ol>
+   </ion-content>
+   <ion-footer-bar class="bar-frosted">
+     <button class="button button-clear button-positive" ng-click="add()">Add Message</button>
+   </ion-footer-bar>
+</ion-pane>

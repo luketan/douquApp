@@ -1,0 +1,42 @@
+<style type="text/css">
+#addressTemplate .xxx{
+	margin-right: 10;
+	padding-left: 0;
+	width: 100%;
+    margin: 0;
+    /* padding-right: 40px; */
+    
+}
+#addressTemplate input{
+	background-color: #fff;
+}
+</style>
+<ion-view id="newAddressView" title="item" hide-nav-bar="true" hide-tabs="true">
+   <ion-header-bar class="bar bar-header bar-calm">
+   	   <div class="buttons">
+	        <button ng-click="$ionicGoBack()" class="button button-icon ion-ios-arrow-left">
+	    	</button>
+        </div>
+	   <h1 class="title">新地址</h1>
+   </ion-header-bar>
+   <ion-content >
+       <label class="item item-input">
+	       <span class="input-label" style="width:80px;">用户名称</span>
+	       <input type="hidden" ng-model="newAddress.id">
+	       <input ng-model="newAddress.userName" placeholder="请输入用户名" type="text">
+       </label>
+       <label class="item item-input">
+	       <span class="input-label" style="width:80px;">电话号码</span>
+	       <input ng-model="newAddress.phone" placeholder="请输入电话号码"  type="tel">
+       </label>
+       <label class="item item-input">
+	       <span class="input-label" style="width:80px;">地址</span>
+	       <ionic-city-picker placeholder="" tag="" backdrop=true backdrop-click-to-close=true css-class="xxx" class="xxx" okText="确定" citydata="citydata"  button-clicked="vm.cb()" ></ionic-city-picker>
+       </label>
+       <label class="item item-input">
+	       <span style="position:absolute;top:10;width:80px;">详细地址</span>
+	       <textarea ng-model="newAddress.detail" style="height:60px;padding-left:80px;resize:none;" placeholder="请输入详细地址"></textarea>
+       </label>
+       <button class="button button-full button-calm" ng-click="saveUpdate(newAddress)">确定</button>
+   </ion-content>
+ </ion-view>

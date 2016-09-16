@@ -1,0 +1,43 @@
+<style type="text/css">
+#disGoodsView .ion-ios-star-outline{
+	color:#666;
+}
+</style>
+<ion-view id="disGoodsView" hide-tabs="true" title="info" hide-nav-bar="true"><!--  hide-nav-bar="true"  hide-nav-bar="true" title="info" -->
+	<ion-header-bar align-title="center" class="bar-calm" >
+		<div class="buttons">
+	        <button ng-click="$ionicGoBack()" class="button button-icon ion-ios-arrow-left">
+	    	</button>
+        </div>
+		<h1 class="title">发表评价</h1>
+		<div class="buttons">
+	        <button ng-click="submit()" class="button">
+	        	提交
+	    	</button>
+        </div>
+	</ion-header-bar>
+	
+	<ion-content id="disGoodsContent" class="" padding="false">
+		<div class="item" style="padding:12px 8px 12px 8px;"><span style="position:relative;top:-3px;color:#000;">商品评价:</span>&nbsp;&nbsp;
+															 <span class="font-28" style="color:#ADFF2F;">
+															 	<i class="icon ion-star" ng-class="{true:'ion-star',false:'ion-ios-star-outline'}[disLevel>=1]" ng-click="disLevel=1"></i>&nbsp;
+															 	<i class="icon ion-star" ng-class="{true:'ion-star',false:'ion-ios-star-outline'}[disLevel>=2]" ng-click="disLevel=2"></i>&nbsp;
+															 	<i class="icon ion-star" ng-class="{true:'ion-star',false:'ion-ios-star-outline'}[disLevel>=3]" ng-click="disLevel=3"></i>&nbsp;
+															 	<i class="icon ion-star" ng-class="{true:'ion-star',false:'ion-ios-star-outline'}[disLevel>=4]" ng-click="disLevel=4"></i>
+															 	<i class="icon ion-star" ng-class="{true:'ion-star',false:'ion-ios-star-outline'}[disLevel>=5]" ng-click="disLevel=5"></i></span></div>
+		<textarea placeholder="别害羞，分享下您的体验吧~" ng-model="result.detail" style="width:100%;
+				    												min-height:80px;
+				    												max-height:400px;
+				    												padding:8px 8px 8px 8px;
+				    												resize:none;
+				    												onpropertychange="this.style.height=this.scrollHeight + 'px'";
+				    												oninput="this.style.height=this.scrollHeight + 'px'">
+    	</textarea>
+    	<div style="padding:10px 20px 10px 20px;margin-left:8px;border-radius:4px;display:inline-block;border:1px solid #ccc;"><i class="ion-ios-camera-outline" style="font-size:60px;color:#666;"></i></div>
+	</ion-content>
+	<ion-footer-bar style="background-color:#E2E2E2;height:34px;text-align: right;">
+		<span ng-click="noName=!noName" style="position:absolute;right:8px;color:#666;">
+			<i class="icon font-18" ng-class="{true:'ion-ios-checkmark',false:'ion-ios-circle-outline'}[noName]" style="color: red;position:relative;top:1px;right:8px;"></i>匿名评价
+		</span>
+	</ion-footer-bar>
+</ion-view>

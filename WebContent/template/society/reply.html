@@ -1,0 +1,32 @@
+<style type="text/css">
+#replyView .item{
+	margin-top:8px;
+}
+#replyView .item:first-child {
+    margin-top:0px;
+}
+</style>
+<ion-view id="replyView" title="reply" hide-nav-bar="true" hide-tabs="true">
+   <ion-header-bar class="bar-calm">
+	    <div class="buttons">
+	    	<button ng-click="$ionicGoBack()" class="button button-icon ion-ios-arrow-left"></button>
+	    </div>
+	    <h1 class="title">回复我的</h1>
+    </ion-header-bar>
+    <ion-content padding="false" class="has-header dq_bg_color">
+    	 <ion-refresher on-refresh="replyRefresh()" pulling-text="下拉刷新..." refreshing-text="刷新" refreshing-icon="ion-loading-c">
+		 </ion-refresher>
+    	 <a href="#/tab/{{action_flag}}_replyInfo?id=1&disId=12" class="item item-avatar" style="padding:8px 0px 8px 56px;min-height:0px;">
+	          <img class="userHeader" style="top:8px;left:8px;" src="http://ionicframework.com/img/docs/mcfly.jpg" alt="">
+	          <h3 class="" style="margin-top:10px;">小花<span class="font-12" style="position:absolute; right:16px; color:#ccc">1天前</span></h3>
+	          <p class="font-12" style="color: #999;padding:8px 16px 8px 0px;white-space:pre-line;">我特么看完啦我特么看完啦我特么看完啦我特么看完啦我特么看完啦我特么看完啦我特么看完啦我特么看完啦我特么看完啦我特么看完啦</p>
+	          <div class="font-12" style="padding:6px 16px 8px 0;border-top:1px solid #ddd;white-space:pre-line;">回复我的回帖: <span style="color:#999;">我特么看完啦我特么看完啦我特么看完啦我特么看完啦我特么看完啦</span></div>
+	     </a>
+	     <a href="#/tab/{{action_flag}}_replyInfo?id=1&disId=12" class="item item-avatar" style="padding:8px 0px 8px 72px;min-height:0px;">
+	          <img class="userHeader" style="top:8px;" src="http://ionicframework.com/img/docs/mcfly.jpg" alt="">
+	          <h3 class="" style="margin-top:10px;">小花<span class="font-12" style="position:absolute; right:16px; color:#ccc">1天前</span></h3>
+	          <p class="font-12" style="color: #999;padding:8px 16px 8px 0px;white-space:pre-line;">我特么看完啦我特么看完啦我特么看完啦我特么看完啦我特么看完啦我特么看完啦我特么看完啦我特么看完啦我特么看完啦我特么看完啦</p>
+	          <div class="font-12" style="padding:6px 16px 8px 0;border-top:1px solid #ddd;white-space:pre-line;">回复我的回帖: <span style="color:#999;">我特么看完啦我特么看完啦我特么看完啦我特么看完啦我特么看完啦</span></div>
+	     </a>
+    </ion-content>
+</ion-view>

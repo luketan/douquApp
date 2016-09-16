@@ -1,0 +1,73 @@
+<style type="text/css">
+
+</style>
+<ion-view id="confirmOrderView" hide-tabs="true" title="info" hide-nav-bar="true"><!--  hide-nav-bar="true"  hide-nav-bar="true" title="info" -->
+	<ion-header-bar align-title="center" class="bar-calm" >
+		<div class="buttons">
+	        <button ng-click="$ionicGoBack()" class="button button-icon ion-ios-arrow-left">
+	    	</button>
+        </div>
+		<h1 class="title">订单详情</h1>
+		<div class="buttons">
+	        <button ng-click="deleteOrder()" class="button ion-trash-a font-24"></button>
+	        <button ng-click="kefu()" class="button ion-chatbubble font-24"></button>
+        </div>
+	</ion-header-bar>
+	
+	<ion-content id="confirmOrderContent" class="dq_bg_color" padding="false">
+		<div>
+			<div class="item item-icon-left item-icon-right" style="padding:10px 40px 10px 40px;">
+			  		<i class="icon ion-ios-location-outline font-28" style="color: #FFBBFF;left:4px;"></i>
+			    	<h2 class="font-14" style="color: #333;margin-bottom:8px;">收货人：{{address.name}}&nbsp;&nbsp;{{address.phone}}</h2>
+			    	<p class="font-12" style="white-space:pre-line;">收货地址：{{address.address}}&nbsp;&nbsp;{{address.detail}}</p>
+			</div>
+		</div>
+		<div style="margin-top:8px;">
+			<div class="item item-divider" style="padding-left:8px;">
+	        	<h3 style="white-space: normal;color:#333;font-weight:700; ">订单信息</h3>
+	        </div>
+			<div class="item" style="padding:10px 8px 10px 8px;">
+				<h2 class="font-14" style="color:#999;padding-bottom:2px;">订单编号：<span class="">{{result.orderId}}</span></h2>
+				<h2 class="font-14" style="color:#999;padding-bottom:2px;">下单日期：<span class="">{{result.createTime}}</span></h2>
+				<h2 class="font-14" style="color:#999;">付款方式：<span class="">{{result.payMent}}</span></h2>
+		    </div>
+		    <div class="item item-divider font-14" style="background-color:#FFF;color:#999;padding-left:8px;">
+		    	留&nbsp;&nbsp;&nbsp;&nbsp;   言：无
+		    </div>
+	    </div>
+		<div style="margin-top:8px;">
+			<div class="item item-divider" style="padding-left:8px;">
+	        	<h3 style="white-space: normal;color:#333;font-weight:700;">订单商品</h3>
+	        </div>
+			<a ng-repeat="item in result.items track by $index" href="#/tab/{{action_flag}}_goodsItem?id=10016" class="item item-avatar item-icon-right" style="min-height:76px;padding:8px 8px 8px 76px;">
+		          <img style="top:8px;left:8px;width:60px;height:60px;max-height:60px;max-width:60px; border-radius:0px;" src="http://ionicframework.com/img/docs/mcfly.jpg" alt="">
+		          <h3 class="ng-binding" style="height:16px;line-height:16px;">情趣试衣间</h3>
+		          <p class="font-12 ng-binding" style="color: #999;height:16px;line-height:16px;">规格：3只装</p>
+		          <p class="font-12 ng-binding" style="color: #999;height:16px;line-height:16px;">数量：1</p>
+		          <i class="icon font-10" style="right:0;"><span style="padding: 0px 6px 2px 6px;font-weight:700;position:relative;top:-20px;">¥19.90</span></i>
+		    </a>
+	    </div>
+	    <div style="margin-top:8px;">
+		    <div class="item item-divider" style="padding-left:8px;">
+		        <h3 style="white-space: normal;color:#333;font-weight:700; ">结算详情</h3>
+		    </div>
+		    <div>
+			    <div class="item" style="padding:10px 8px 10px 8px;">
+					<h2 class="font-14" style="color:#999;padding-bottom:2px;">商品总价：</h2>
+					<h2 class="font-14" style="color:#999;padding-bottom:2px;">运费：</h2>
+					<h2 class="font-14" style="color:#999;padding-bottom:2px;">运费减免：</h2>
+					<h2 class="font-14" style="color:#999">优惠减免：</h2>
+			    </div>
+		    </div>
+		    <div class="item item-divider" style="background-color:#fff;padding-left:8px;">
+		        <h3 style="white-space: normal;color:#333;font-weight:700; ">订单总额</h3>
+		    </div>
+		 </div>
+	</ion-content>
+	<ion-footer-bar align-title="left" class="bar-stable" style="background-color:#E2E2E2">
+		<div class="buttons" style="width:100%;text-align: center;display:block;">
+			<a href="#/tab/{{action_flag}}_logistics?orderId=34534534543543" class="button button-small font-14" style="color:#11c1f3;border: 1px solid #11c1f3;min-height:0;margin-right:10px;min-width:80px">查看物流</a>
+		  	<a href="#tab/{{action_flag}}_disGoodss?id=123123&itemId=2" class="button button-small button-calm font-14" style="min-height:0;margin-left: 10px;min-width:80px">我要评价<span class="badge badge-assertive font-8" style="font-weight:normal;position:absolute;right:-40px;top:-4px;font-size:6px;">送币哟</span></a>
+		</div>
+	</ion-footer-bar>
+</ion-view>

@@ -1,0 +1,46 @@
+<ion-view title="item" hide-nav-bar="true" hide-tabs="true"><!--hide-nav-bar="true" hide-tabs="true" hide-back-button="true" -->
+	 <ion-header-bar class="bar-calm">
+      <div class="buttons">
+        <button ng-click="$ionicGoBack()" class="button button-icon ion-ios-arrow-left">
+    	</button>
+      </div>
+      <h1 class="title" ng-click="titleClick($event)">{{posts.typeName}} <i  ng-class="{true:'ion-chevron-up',false:'ion-chevron-down'}[showPopover]"></i></h1>
+      <div class="buttons">
+        <button ng-click="submit()" class="button button-icon" ng-class="{true:'',false:'disabled'}[posts.detail.length>8 && !showPopover]">提交</button>
+      </div>
+    </ion-header-bar>
+    <ion-content class="dq_bg_white"><!-- scroll-event-interval="5"  -->
+    	<div class="dq_bg_color item dq_bg_white item-icon-right" style="padding: 0px 28px 0px 8px;color:#aaa">
+    		<input type="text" placeholder="标题(选填，至少4个字)" style="width: 100%;">
+    		<i ng-click="help()" class="icon ion-information-circled icon-accessory"></i>
+    	</div>
+    	<div>
+    		<textarea placeholder="请输入xxx" autofocus ng-model="posts.detail" style="width:100%;
+				    												min-height:40px;
+				    												max-height:400px;
+				    												padding:8px 8px 8px 8px;
+				    												resize:none;
+				    												onpropertychange="this.style.height=this.scrollHeight + 'px'";
+				    												oninput="this.style.height=this.scrollHeight + 'px'">
+    		</textarea>
+    	</div>
+    </ion-content>
+    <button  style="border-radius:12px;position:absolute;bottom:52px;left:8px;border:1px solid #919191;background-color:#E2E2E2;color:#919191;padding-bottom:2px;height:23px;line-height:23px;">
+	    <i class="ion-location font-18" style="margin:0 4px 0 2px;position:relative;top:-2px;"></i>
+	    <span ng-click="location()" style="position:relative;top:-3px;margin-right:4px">{{locationText}}</span>
+	    <i ng-if="locationVal" ng-click="closeLocation()" class="ion-ios-close-empty font-18" style="margin:0 8px 0 8px;position:relative;top:-2px;"></i>
+    </button>
+    <button ng-click="publicDis()" style="border-radius:12px;position:absolute;bottom:52px;right:8px;border:1px solid #919191;background-color:#E2E2E2;color:#919191;padding:0 14px 2px 14px;height:23px;line-height:23px; ">
+	    	<span ng-if="publicVal" style="position:relative;top:-1px;">公开</span>
+	    	<span ng-if="!publicVal" style="position:relative;top:-1px;">匿名</span>
+    </button>
+	<ion-footer-bar align-title="center" style="background-color:#E2E2E2;">
+		<div class="buttons">
+			<button class="button button-icon icon ion-image" ng-click="changeImg()" style="color:#666"></button>
+		</div>
+		<h1 class="title"></h1>
+		<div class="buttons">
+			<button class="button button-icon icon ion-android-happy" ng-click="changeSmile()" style="color:#666"></button>
+		</div>
+	</ion-footer-bar>
+</ion-view>

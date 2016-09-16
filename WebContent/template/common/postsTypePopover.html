@@ -1,0 +1,49 @@
+<style type="text/css">
+#postsTypePropover{
+	margin-top:0px;
+	border-radius: 0px;
+	width: 100%;
+	top:43px !important;
+	left:0 !important;
+	min-height:310px;
+}
+#postsTypePropover h3{
+	color:#333;
+}
+#postsTypePropover .scroll-content{
+	margin:0px;
+	border-radius: 0px;
+	padding-top:0px;
+}
+#postsTypePropover .popover-arrow{
+	display:none;
+}
+
+#postsTypePropover .platform-android{
+	margin:0px;
+}
+#postsTypePropover .item:last-child {
+    border-bottom:1px solid #ddd;
+}
+#postsTypePropover .item:first-child {
+    border-top:1px solid #ddd;
+}
+
+</style>
+<ion-popover-view id="postsTypePropover">
+	<div style="padding:4px 0 4px 8px;color:#aaa">您当前所在的社区</div>
+	   	<div class="item item-avatar " ng-click="selectedPostsType(currPostsType.id,currPostsType.name)" style="padding-top:5px;padding-bottom:5px;min-height:0px">
+	          <img class="circle" style="top:5px;" ng-src="{{currPostsType.icon}}" alt="">
+	          <h3 class="ng-binding">{{currPostsType.name}}</h3>
+	          <p class="font-12 ng-binding" style="color: #999">{{currPostsType.synopsis}}</p>
+	    </div>
+    <div style="padding:4px 0 4px 8px;color:#aaa;border-bottom:1px solid #ddd;">您关注的社区</div>
+	<ion-content style="top:107px">
+	    <div ng-repeat="item in postsTypes track by $index" class="item item-avatar" ng-click="selectedPostsType(item.id, item.name)"  style="padding-top:5px;padding-bottom:5px;min-height:0px">
+	        <img class="circle" style="top:5px;" ng-src="{{item.icon}}" alt="">
+	        <h3 class="ng-binding">{{item.name}}</h3>
+	        <p class="font-12 ng-binding" style="color: #999">{{item.synopsis}}</p>
+    	</div>
+	 </ion-content>
+		
+</ion-popover-view>

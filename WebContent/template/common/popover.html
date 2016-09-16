@@ -1,0 +1,65 @@
+<style type="text/css">
+#main_propover{
+	margin-top:12px;
+}
+#main_propover .popover-arrow{
+	position: absolute;
+    display: block;
+    top: -17px;
+    width: 30px;
+    height: 19px;
+    overflow: hidden;
+}
+#main_propover .popover-arrow:after {
+    position: absolute;
+    top: 12px;
+    left: 5px;
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    border-radius: 3px;
+    content: '';
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+#main_propover .item{
+	border-color: #ddd;
+    background-color: #fff;
+    color: #444;
+    position: relative;
+    z-index: 2;
+    display: block;
+    margin: -1px;
+    padding: 16px;
+    border-width: 1px;
+    border-style: solid;
+    font-size: 16px;
+}
+#main_propover .item:first-child {
+    border-top: 0;
+}
+#main_propover .item:last-child{
+ 	border-bottom: 0;
+}
+</style>
+<ion-popover-view id="main_propover">
+  <ion-content>
+    <div class="list">
+      <a class="item">
+        Learn Ionic
+      </a>
+      <a class="item" href="http://ionicframework.com/docs/" target="_blank">
+        Documentation
+      </a>
+      <a class="item" href="http://showcase.ionicframework.com/" target="_blank">
+        Showcase
+      </a>
+      <a class="item" href="http://ionicframework.com/submit-issue/" target="_blank">
+        Submit an Issue
+      </a>
+      <a class="item" href="https://github.com/driftyco/ionic" target="_blank">
+        Github Repo
+      </a>
+    </div>
+  </ion-content>
+</ion-popover-view>

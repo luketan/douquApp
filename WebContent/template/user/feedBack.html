@@ -1,0 +1,79 @@
+<style type="text/css">
+	#feedBackView .slide_sub_ul li{
+		min-width:20% !important;
+		width:20%;
+	}
+	#feedBackView .slide_sub_ul .slide_sub_cursor {
+		width:20%;
+	}
+</style>
+<ion-view id="feedBackView" hide-tabs="true" title="info" hide-nav-bar="true"><!--  hide-nav-bar="true"  hide-nav-bar="true" title="info" -->
+	<ion-header-bar align-title="center" class="bar-calm" >
+		<div class="buttons">
+	        <button ng-click="$ionicGoBack()" class="button button-icon ion-ios-arrow-left">
+	    	</button>
+        </div>
+		<h1 class="title">意见反馈</h1>
+		<div class="buttons">
+	        <button ng-if="slide_type==1" ng-click="submit()" class="button">
+	        	提交
+	    	</button>
+        </div>
+	</ion-header-bar>
+	<div class="bar bar-subheader item row" style="border:0; text-align:center; padding:0px; position:fixed; margin:0; height:34px; min-height:34px;">
+		<nav>
+			<ul class="slide_sub_ul">
+				<li></li>
+			    <li ng-class="{'dq_slide_activated':slide_type==1}" ng-click="changeSlideType(1)">意见反馈</li>
+			    <li></li>
+			    <li ng-class="{'dq_slide_activated':slide_type==2}" ng-click="changeSlideType(2)">反馈记录</li>
+			    <li></li>
+			    <div class="slide_sub_cursor"></div>
+			</ul>
+	  	</nav>
+  	</div>
+	<ion-content id="feedBackContent" padding="false" style="margin-top:34px;">
+		<ion-refresher ng-if="slide_type==2" on-refresh="feedBackRefresh()" pulling-text="下拉刷新..." refreshing-text="刷新" refreshing-icon="ion-loading-c">
+		</ion-refresher>
+		<div ng-if="slide_type==1">
+			<textarea placeholder="请填写反馈内容~" ng-model="result.detail" style="width:100%;
+					    												min-height:80px;
+					    												max-height:400px;
+					    												padding:8px 8px 8px 8px;
+					    												resize:none;
+					    												onpropertychange="this.style.height=this.scrollHeight + 'px'";
+					    												oninput="this.style.height=this.scrollHeight + 'px'">
+	    	</textarea>
+	    	<div ng-click="addPhoto()" style="padding:10px 20px 10px 20px;margin-left:8px;border-radius:4px;display:inline-block;border:1px solid #ccc;"><i class="ion-ios-camera-outline" style="font-size:60px;color:#666;"></i></div>
+		</div>
+		<div class="dq_bg_color" ng-if="slide_type==2">
+			<a href="#/tab/user_feedBackInfo?id=10011" class="item item-body font-12" style="padding: 0;border-top: 0px;">
+		          <p style="margin:10px 10px 5px 10px;overflow:hidden;text-overflow: ellipsis;display:-webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">
+		            	This is a "Facebook" styled Card. The header is created from a Thumbnail List item, the content is from a card-body consisting of an image and paragraph text. The footer consists of tabs, icons aligned left, within the card-footer.
+				  </p>
+		          <div style="margin:0px 10px 10px 5px;">
+		          	  <img style="width: 30%;margin: 5px 0 0 5px;vertical-align: bottom;" ng-src="http://ionicframework.com/img/docs/delorean.jpg" src="http://ionicframework.com/img/docs/delorean.jpg">
+			          <img style="width: 30%;margin: 5px 0 0 5px;vertical-align: bottom;" ng-src="http://ionicframework.com/img/docs/delorean.jpg" src="http://ionicframework.com/img/docs/delorean.jpg">
+			          <img style="width: 30%;margin: 5px 0 0 5px;vertical-align: bottom;" ng-src="http://ionicframework.com/img/docs/delorean.jpg" src="http://ionicframework.com/img/docs/delorean.jpg">
+			          <img style="width: 30%;margin: 5px 0 0 5px;vertical-align: bottom;" ng-src="http://ionicframework.com/img/docs/delorean.jpg" src="http://ionicframework.com/img/docs/delorean.jpg">
+			          <img style="width: 30%;margin: 5px 0 0 5px;vertical-align: bottom;" ng-src="http://ionicframework.com/img/docs/delorean.jpg" src="http://ionicframework.com/img/docs/delorean.jpg">
+			          <img style="width: 30%;margin: 5px 0 0 5px;vertical-align: bottom;" ng-src="http://ionicframework.com/img/docs/delorean.jpg" src="http://ionicframework.com/img/docs/delorean.jpg">
+		          </div>
+		     </a>
+		     <a href="#/tab/user_feedBackInfo?id=10011" class="item item-body font-12" style="padding: 0;border-top: 0px;margin-top:8px">
+		          <p style="margin:10px 10px 5px 10px;overflow:hidden;text-overflow: ellipsis;display:-webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">
+		            	This is a "Facebook" styled Card. The header is created from a Thumbnail List item, the content is from a card-body consisting of an image and paragraph text. The footer consists of tabs, icons aligned left, within the card-footer.
+				  </p>
+		          <div style="margin:0px 10px 10px 5px;">
+		          	  <img style="width: 30%;margin: 5px 0 0 5px;vertical-align: bottom;" ng-src="http://ionicframework.com/img/docs/delorean.jpg" src="http://ionicframework.com/img/docs/delorean.jpg">
+			          <img style="width: 30%;margin: 5px 0 0 5px;vertical-align: bottom;" ng-src="http://ionicframework.com/img/docs/delorean.jpg" src="http://ionicframework.com/img/docs/delorean.jpg">
+			          <img style="width: 30%;margin: 5px 0 0 5px;vertical-align: bottom;" ng-src="http://ionicframework.com/img/docs/delorean.jpg" src="http://ionicframework.com/img/docs/delorean.jpg">
+			          <img style="width: 30%;margin: 5px 0 0 5px;vertical-align: bottom;" ng-src="http://ionicframework.com/img/docs/delorean.jpg" src="http://ionicframework.com/img/docs/delorean.jpg">
+			          <img style="width: 30%;margin: 5px 0 0 5px;vertical-align: bottom;" ng-src="http://ionicframework.com/img/docs/delorean.jpg" src="http://ionicframework.com/img/docs/delorean.jpg">
+			          <img style="width: 30%;margin: 5px 0 0 5px;vertical-align: bottom;" ng-src="http://ionicframework.com/img/docs/delorean.jpg" src="http://ionicframework.com/img/docs/delorean.jpg">
+		          </div>
+		     </a>
+		</div>
+		<ion-infinite-scroll ng-if="moreData" on-infinite="loadMore()" distance="0%" ></ion-infinite-scroll>
+	</ion-content>
+</ion-view>
