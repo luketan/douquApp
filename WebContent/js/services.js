@@ -34,7 +34,7 @@ angular.module('ionicApp.services', [])
 			           		getUrl:function(name){
 									var perfix = {
 //										"/dev":"http://127.0.0.1:8080/douqu/",//开发 
-										"/dev":"http://192.168.12.85:8080/qq-mall-api/",//开发 
+										"/dev":"http://192.168.12.74:8080/qq-mall-api/",//开发 
 										"/stg":"https://www.honglinktech.com/zbgjapi",//测试
 										"/prd":"http://121.42.176.191:8080/douqu/"//生产
 									};
@@ -43,8 +43,13 @@ angular.module('ionicApp.services', [])
 										
 										userLogin:"user/api/login",
 										userLoginout:"user/api/loginout",
-										userFindCollects:"user/api/findCollects",//用户收藏列表
-										userSaveOrUpdateCollect:"user/api/saveOrUpdateCollect",//用户收藏，取消收藏
+										
+										userFindKeepPage:"user/api/findKeepPage",//用户收藏列表
+										userSaveOrUpdateKeep:"user/api/saveOrUpdateKeep",//用户收藏，取消收藏
+										
+										findAddressById:"user/api/findAddressById",//用户地址
+										findAddressPage:"user/api/findAddressPage",//用户地址，取消收藏
+										updateAddressDefault:"user/api/updateAddressDefault",//用户地址,修改默认
 										
 										goodsListByPage:"tGoods/api/findByPage",
 										goodsItem:"goods/api/findGoodsBeanById",

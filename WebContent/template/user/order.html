@@ -35,11 +35,9 @@
 	<ion-content id="orderContent" has-header="true" class="dq_bg_color" padding="false" style="">
 		  <div ng-repeat="result in results track by $index" style="margin-bottom: 8px">
 		  	  <a href="#/tab/{{action_flag}}_orderInfo?orderId={{result.orderId}}">
-				  <div class="item row font-14" style="padding: 8px;">
-				 	  <span class="col-75" style="text-align: left;font-weight:700;color:#333;">订单号：{{result.orderId}}</span>
-				 	  <span class="col-20" style="text-align: right;">{{result.orderStatus}}</span>
-		 		  </div>
-		 		  
+		 		  <div class="item item-divider">
+			          <h3 style="white-space: normal;font-weight:700;"><span style="color:#333;">订单号：{{result.orderId}}</span><span style="position:absolute;right:16px;">{{result.orderStatus}}</span></h3>
+			      </div>
 		 		  <ion-item ng-repeat="item in result.items track by $index" class="item-remove-animate item-avatar item-icon-right" style="min-height: 76px; padding: 8px 8px 8px 76px;"><!-- -->
 						<img style="border-radius:0;width:60px;height:60px;min-height:60px;min-width:60px;top:7px;left:8px;" ng-src="{{item.imageUrl}}">
 						<h2 class="font-14" style="line-height: 20px;color:#333;">{{item.goodsName}}{{item.imageUrl}}</h2>

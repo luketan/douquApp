@@ -27,7 +27,6 @@ angular.module('ionicApp.userApp', [])
 					})
 					.state('tab.user', {
 					    url: '/user',
-					    cache: false,
 					    views: {
 					      'tab-user': {
 					    	templateUrl : 'template/user/user.html',
@@ -240,7 +239,7 @@ angular.module('ionicApp.userApp', [])
 					})
 					.state('tab.user_address', {//用户地址
 					    url: '/user_address',
-					    cache: false,
+//					    cache: false,
 					    views: {
 						      'tab-user': {
 						    	  templateUrl : 'template/user/address.html',

@@ -76,14 +76,14 @@ angular.module('ionicApp.userServices', [])
 						});
 					}
 			})
-			.service('userCollect',function($http, $state, $ionicLoading, $localstorage, _ajax,_url){
-					this.userFindCollects = function(req,$scope){
+			.service('userKeep',function($http, $state, $ionicLoading, $localstorage, _ajax,_url){
+					this.userFindKeepPage = function(req,$scope){
 							$ionicLoading.show({
 							      template: '请骚等...',
 							});
 							var data = req;
 							_ajax.ajax({
-								  url: _url.getUrl("userFindCollects"),
+								  url: _url.getUrl("userFindKeepPage"),
 								  reqDataType:'jsonstr',
 								  data: data,
 								  success: function(result) {
@@ -111,7 +111,6 @@ angular.module('ionicApp.userServices', [])
 												  $scope.keepSoietys = result.result;  
 											  }
 										  }
-										  result.result;
 										  $scope.$apply();
 										  $ionicLoading.hide();
 									  }else{
@@ -121,9 +120,14 @@ angular.module('ionicApp.userServices', [])
 											  $scope.societyMoreData = false;
 										  }
 										  $scope.$apply();
-										  
+										  var msg = "";
+										  if(req.index>1){
+											  msg = "数据已经加载完毕~";
+										  }else{
+											  msg = "没有查询到数据~";
+										  }
 										  $ionicLoading.show({
-										      template: result.msg,
+										      template: msg,
 										      duration:1500
 										  });
 									  }
@@ -136,14 +140,112 @@ angular.module('ionicApp.userServices', [])
 							   	 }
 							});
 					}
-					this.userSaveOrUpdateCollect = function(req){
+					this.userSaveOrUpdateKeep = function(req){
 						$ionicLoading.show({
 						      template: '请骚等...',
 						});
 						
 						var data = req;
 						_ajax.ajax({
-							  url: _url.getUrl("userSaveOrUpdateCollect"),
+							  url: _url.getUrl("userSaveOrUpdateKeep"),
+							  reqDataType:'jsonstr',
+							  data: data,
+							  success: function(result) {
+								  $ionicLoading.show({
+								      template: result.msg,
+								      duration:2000
+								  });
+								  $ionicLoading.hide();
+						   	  },
+							  error:function(msg){
+								  $ionicLoading.show({
+									      template: msg,
+									      duration:1500
+								  });
+						   	  }
+						});
+					}
+			})
+			.service('userAddress',function($http, $state, $ionicLoading, $localstorage, _ajax,_url){
+					this.findAddressById = function(req,$scope){
+						$ionicLoading.show({
+						      template: '请骚等...',
+						});
+						var data = req;
+						_ajax.ajax({
+							  url: _url.getUrl("findAddressById"),
+							  reqDataType:'jsonstr',
+							  data: data,
+							  success: function(result) {
+								  if(result.code == "000000"){
+									  $scope.address = result.result;
+									  $scope.$apply();
+									  $ionicLoading.hide();
+								  }else{
+									  $ionicLoading.show({
+									      template: result.msg,
+									      duration:1000
+									  });
+								  }
+						   	 },
+							 error:function(msg){
+								  $ionicLoading.show({
+									      template: msg,
+									      duration:1500
+								  });
+						   	 }
+						});
+					}
+					this.userFindAddressPage = function(req,$scope){
+							$ionicLoading.show({
+							      template: '请骚等...',
+							});
+							var data = req;
+							_ajax.ajax({
+								  url: _url.getUrl("findAddressPage"),
+								  reqDataType:'jsonstr',
+								  data: data,
+								  success: function(result) {
+									  if(result.code == "000000" && result.result && result.result.length>0){
+										  if(req.index==1){
+											  $scope.result=[];
+										  }
+										  for(var i in result.result){
+											  $scope.result.push(result.result[i]); 
+										  }
+										  $scope.$apply();
+										  $ionicLoading.hide();
+									  }else{
+										  $scope.moreData = false;
+										  $scope.$apply();
+										  var msg = "";
+										  if(req.index>1){
+											  msg = "数据已经加载完毕~";
+										  }else{
+											  msg = "没有查询到数据~";
+										  }
+										  $ionicLoading.show({
+										      template: msg,
+										      duration:1000
+										  });
+									  }
+							   	 },
+								 error:function(msg){
+									  $ionicLoading.show({
+										      template: msg,
+										      duration:1500
+									  });
+							   	 }
+							});
+					}
+					this.updateDefault = function(req){
+						$ionicLoading.show({
+						      template: '请骚等...',
+						});
+						
+						var data = req;
+						_ajax.ajax({
+							  url: _url.getUrl("updateAddressDefault"),
 							  reqDataType:'jsonstr',
 							  data: data,
 							  success: function(result) {

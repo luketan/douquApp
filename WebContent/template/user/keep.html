@@ -90,12 +90,12 @@
 			  </div>
 			  <div id="keep_society" ng-if="slide_type==2" style="margin-top:8px;">
 				  <ion-list show-delete="data.showDelete" show-option="data.showOption">
-				  	  <ion-item style="min-height:65px;" ng-repeat="item in keepSoietys track by $index" href="#/tab/{{action_flag}}_societyItem?id={{item.id}}">
+				  	  <ion-item style="min-height:65px;" ng-repeat="item in keepSoietys track by $index" href="#/tab/{{action_flag}}_societyItem?id={{item.objId}}">
 				  	  	  <ion-delete-button class="ion-minus-circled" ng-click="deleteSocietyItem($index,item)">
           				  </ion-delete-button>
 				          <h3>{{item.name}}</h3>
 				          <div style="position:relative; bottom:-6px;">
-				          	<button class="button button-small button-calm font-10" style="height:18;line-height:18px;min-height:0;min-width:60px;padding: 1px 4px 2px 4px;background-color:#A9A9A9">{{item.typeName}}</button>
+				          	<button class="button button-small button-calm font-10" style="height:18;line-height:18px;min-height:0;min-width:60px;padding: 1px 4px 2px 4px;background-color:#A9A9A9">{{item.objTypeName}}</button>
 				          	<span style="position:absolute;right:8px;color:#A9A9A9;"><i class="ion-chatbox-working" style="margin-right: 5px"></i>48</span>
 				          </div>
 				          <ion-option-button class="button-assertive" ng-click="deleteSocietyItem($index,item)">

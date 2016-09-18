@@ -15,21 +15,22 @@
         </div>
 	</ion-header-bar>
 	<ion-content id="about" has-header="true" class="dq_bg_color" padding="false" style="">
-		  <div ng-repeat="item in addressList track by $index" class="font-14 dq_bg_white" style="padding: 10px 10px 0px 10px;margin-bottom: 8px">
-		  	<div style=""><label style="padding-right: 20px">{{item.userName}}</label><span>{{item.phone}}</span></div>
-		  	<div class="font-10 font-color2" style="padding: 5px 0 10px 0;border-bottom: 1px solid #ddd;">{{item.address}} {{item.detail}}</div>
-		  	<div class="font-10 row font-color2">
-		  		<div ng-if="item.defaulIs==1" class="col-50">
-		  			<i class="icon ion-ios-checkmark font-18" style="color: red;position: relative;top:2px"></i> 设为默认
-		  		</div>
-		  		<div ng-if="item.defaulIs==0" class="col-50">
-		  			<i class="icon ion-ios-circle-outline font-18" style="color: red;position: relative;top:2px"></i> 设为默认
-		  		</div>
-		  		<div class="col-50" style="text-align: right;">
-		  			<span style="margin-right: 10px" ng-click="updateAddres({{item}})"><i class="icon ion-compose font-18 font-color2" style="position: relative;top:2px"></i> 修改</span>
-		  			<span><i class="icon ion-trash-a font-18 font-color2" style="position: relative;top:2px"></i> 删除</span>
-		  		</div>
-		  	</div>
-		  </div>
+		    <div ng-repeat="item in result track by $index" class="font-14 dq_bg_white" style="padding: 10px 10px 0px 10px;margin-bottom: 8px">
+			  	<div style=""><label style="padding-right: 20px">{{item.userName}}</label><span>{{item.phone}}</span></div>
+			  	<div class="font-10 font-color2" style="padding: 5px 0 10px 0;border-bottom: 1px solid #ddd;">{{item.provinceName}}{{item.cityName}}{{item.cityName}}{{item.regionName}} {{item.road}}</div>
+			  	<div class="font-10 row font-color2">
+			  		<div ng-if="item.defaultIs==1" class="col-50">
+			  			<i class="icon ion-ios-checkmark font-18" style="color: red;position: relative;top:2px"></i> 设为默认
+			  		</div>
+			  		<div ng-if="item.defaultIs==0" class="col-50">
+			  			<i class="icon ion-ios-circle-outline font-18" ng-click="updateDefault(item)" style="color: red;position: relative;top:2px"></i> 设为默认
+			  		</div>
+			  		<div class="col-50" style="text-align: right;">
+			  			<span style="margin-right: 10px" ng-click="updateAddres({{item}})"><i class="icon ion-compose font-18 font-color2" style="position: relative;top:2px"></i> 修改</span>
+			  			<span><i class="icon ion-trash-a font-18 font-color2" style="position: relative;top:2px"></i> 删除</span>
+			  		</div>
+			  	</div>
+		    </div>
+		    <ion-infinite-scroll ng-if="moreData" on-infinite="loadMore()" distance="0%" ></ion-infinite-scroll>
 	</ion-content>
 </ion-view>

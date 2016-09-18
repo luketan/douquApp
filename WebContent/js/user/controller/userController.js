@@ -504,23 +504,23 @@ var app = angular.module('ionicApp.userControllers', ['ionic-citydata','ionic-ci
 			console.log('!!!!!!!!!!!CouponInfoCtrl!!!!!!!!!!!!!!!');
 		})
 		//收藏
-		.controller('KeepCtrl', function($scope,_url,_config,_ajax,$ionicLoading,$timeout,$ionicScrollDelegate,$ionicListDelegate,userCollect) {
+		.controller('KeepCtrl', function($scope,_url,_config,_ajax,$ionicLoading,$timeout,$ionicScrollDelegate,$ionicListDelegate,userKeep) {
 			 $scope.data = {
 					    showDelete: false,
 					    showOption: false
 					  };
 			 $scope.goodsRefresh = function(){
 				 	$scope.goodsMoreData = true;
-				    req.index=1;
-				    userCollect.userFindCollects(req, $scope);
+				 	goods_req.index=1;
+				    userKeep.userFindKeepPage(goods_req, $scope);
 				    $timeout(function() {
 				         $scope.$broadcast('scroll.refreshComplete');
 			        }, 600);
 			 }
 			 $scope.societyRefresh = function(){
 				 	$scope.societyMoreData = true;
-				 	req.index=1;
-				    userCollect.userFindCollects(req, $scope);
+				 	soi_req.index=1;
+				    userKeep.userFindKeepPage(soi_req, $scope);
 				    $timeout(function() {
 				         $scope.$broadcast('scroll.refreshComplete');
 			        }, 600);
@@ -528,27 +528,28 @@ var app = angular.module('ionicApp.userControllers', ['ionic-citydata','ionic-ci
 			 $scope.deleteSocietyItem = function(index,item){
 				  	$ionicListDelegate.closeOptionButtons();
 				  	$scope.keepSoietys.splice(index,1);
-				  	userCollect.userSaveOrUpdateCollect(item);
+				  	userKeep.userSaveOrUpdateKeep(item);
 			 }
 			 $scope.deleteGoodsItem = function(index,item){
 				    $ionicListDelegate.closeOptionButtons();
 				  	$scope.keepGoodss.splice(index,1);
-				  	userCollect.userSaveOrUpdateCollect(item);
+				  	userKeep.userSaveOrUpdateKeep(item);
 			 }
 			 
-			 var req = {type:1,index:1,size:10};
-			 userCollect.userFindCollects(req, $scope);
+			 var goods_req = {type:1,index:1,size:10};
+			 var soi_req = {type:2,index:1,size:10};
+			 userKeep.userFindKeepPage(goods_req, $scope);
 			 $scope.societyMoreData = true;
 			 $scope.societyLoadMore = function(){
-				 req.index+=1;
-				 userCollect.userFindCollects(req, $scope);
+				 soi_req.index+=1;
+				 userKeep.userFindKeepPage(soi_req, $scope);
 				 $scope.$broadcast('scroll.infiniteScrollComplete');
 			 }
 			 
 			 $scope.goodsMoreData = true;
 			 $scope.goodsLoadMore = function(){
-				 req.index+=1;
-				 userCollect.userFindCollects(req, $scope);
+				 goods_req.index+=1;
+				 userKeep.userFindKeepPage(goods_req, $scope);
 				 $scope.$broadcast('scroll.infiniteScrollComplete');
 			 }
 			 
@@ -568,42 +569,53 @@ var app = angular.module('ionicApp.userControllers', ['ionic-citydata','ionic-ci
 						}
 						slideChangeObj[$scope.slide_type] = $ionicScrollDelegate.getScrollPosition();
 						$scope.slide_type = type;
-						req.type = type;
-						if(req.type == 1 && !$scope.keepGoodss){
-							userCollect.userFindCollects(req, $scope);
+						
+						if(type == 1 && !$scope.keepGoodss){
+							userKeep.userFindKeepPage(goods_req, $scope);
 						}
-						if(req.type == 2 && !$scope.keepSoietys){
-							userCollect.userFindCollects(req, $scope);
+						if(type == 2 && !$scope.keepSoietys){
+							userKeep.userFindKeepPage(soi_req, $scope);
 						}
 						
 			 }
 			 console.log('!!!!!!!!!!!KeepCtrl!!!!!!!!!!!!!!!');
 		})
-		.controller('AddressCtrl', function($scope,$rootScope,_url,_config,_ajax,$ionicLoading,$state) {
-				  $scope.addressList=[{id:1,userName:"谭辉",phone:"18666668629",address:"广东省深圳市罗湖区 ",detail:"黄贝岭街道罗芳路龙景花园芳庭苑B栋1003",defaulIs:1},
-			                      {id:2,userName:"李秀煌",phone:"13418578982",address:"广东省深圳市罗湖区  ",detail:"黄贝岭街道罗芳路龙景花园芳庭苑B栋1003",defaulIs:0}];
-		 	  
-			 	  $scope.newAddAddres = function(address){
+		.controller('AddressCtrl', function($scope,$rootScope,_url,_config,_ajax,$ionicLoading,$state,userAddress) {
+				var req = {index:1,size:10};
+				$scope.result = [];
+				userAddress.userFindAddressPage(req, $scope);
+				$scope.moreData = true;
+				$scope.loadMore = function(){
+					req.index+=1;
+					userAddress.userFindAddressPage(req, $scope);
+				    $scope.$broadcast('scroll.infiniteScrollComplete');
+				}
+			 	$scope.newAddAddres = function(address){
 			 		 $state.go('tab.'+$rootScope.action_flag+'_newAddress',{'id':''});
-			 	  }
-			 	  $scope.updateAddres = function(address){
+			 	}
+			 	$scope.updateAddres = function(address){
 			 		 $state.go('tab.'+$rootScope.action_flag+'_newAddress',{'id':1});
-			 	  }
-				  
-			console.log('!!!!!!!!!!!AddressCtrl!!!!!!!!!!!!!!!');
+			 	}
+			 	$scope.updateDefault = function(address){
+			 		for(var i in $scope.result){
+			 			$scope.result[i].defaultIs = 0;
+			 		}
+			 		address.defaultIs = 1;
+			 		userAddress.updateDefault(address, $scope);
+			 	} 
+			 	console.log('!!!!!!!!!!!AddressCtrl!!!!!!!!!!!!!!!');
 		})
-		.controller('NewAddressCtrl', function($scope,_url,_config,_ajax,$ionicLoading,$state,$stateParams) {
+		.controller('NewAddressCtrl', function($scope,_url,_config,_ajax,$ionicLoading,$state,$stateParams,userAddress) {
 				  var id = $stateParams.id;
-				  $scope.addressList=[{id:1,userName:"谭辉",phone:"18666668629",address:"广东省深圳市罗湖区 ",detail:"黄贝岭街道罗芳路龙景花园芳庭苑B栋1003",defaulIs:1},
-				                      {id:2,userName:"李秀煌",phone:"13418578982",address:"广东省深圳市罗湖区  ",detail:"黄贝岭街道罗芳路龙景花园芳庭苑B栋1003",defaulIs:0}];
-			 	  
+				  
 			 	  if(id){
-			 		 $scope.newAddress = $scope.addressList[0]
+			 		 var req={"id":id}
+			 		 userAddress.findAddressById(req, $scope);
 			 	  }else{
-			 		 $scope.newAddress = {};
+			 		 $scope.address = {};
 			 	  }
 			 	  $scope.updateAddres = function(address){
-			 		 $scope.newAddress = address;
+			 		 $scope.address = address;
 			 		 $scope.citydata = address.address;
 			 	  }
 				  $scope.saveUpdate = function(u) {
