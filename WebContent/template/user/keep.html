@@ -85,6 +85,7 @@
 						    	删除
 						  </ion-option-button>
 				      </ion-item>
+				      <div ng-if="!goodsMoreData" class="font-12 loadMoreOver" style="padding:4px;text-align: center;color:#999">数据已加载完毕~</div>
 				      <ion-infinite-scroll ng-if="goodsMoreData" on-infinite="goodsLoadMore()" distance="0%" ></ion-infinite-scroll>
 				  </ion-list>
 			  </div>
@@ -102,6 +103,7 @@
 						    	删除
 						  </ion-option-button>
 				      </ion-item>
+				      <div ng-if="!societyMoreData" class="font-12 loadMoreOver" style="padding:4px;text-align: center;color:#999">数据已加载完毕~</div>
 				      <ion-infinite-scroll ng-if="societyMoreData" on-infinite="societyLoadMore()" distance="0%" ></ion-infinite-scroll>
 				  </ion-list>
 			  </div>

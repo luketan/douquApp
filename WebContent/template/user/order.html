@@ -33,34 +33,45 @@
         </div>
 	</ion-header-bar>
 	<ion-content id="orderContent" has-header="true" class="dq_bg_color" padding="false" style="">
-		  <div ng-repeat="result in results track by $index" style="margin-bottom: 8px">
-		  	  <a href="#/tab/{{action_flag}}_orderInfo?orderId={{result.orderId}}">
-		 		  <div class="item item-divider">
-			          <h3 style="white-space: normal;font-weight:700;"><span style="color:#333;">订单号：{{result.orderId}}</span><span style="position:absolute;right:16px;">{{result.orderStatus}}</span></h3>
-			      </div>
-		 		  <ion-item ng-repeat="item in result.items track by $index" class="item-remove-animate item-avatar item-icon-right" style="min-height: 76px; padding: 8px 8px 8px 76px;"><!-- -->
-						<img style="border-radius:0;width:60px;height:60px;min-height:60px;min-width:60px;top:7px;left:8px;" ng-src="{{item.imageUrl}}">
-						<h2 class="font-14" style="line-height: 20px;color:#333;">{{item.goodsName}}{{item.imageUrl}}</h2>
-						<p class="font-12" style="color: #999;">{{item.formatName}}</p>
-						<i class="icon icon-accessory" style="height: auto;text-align: right;">
-							<span style="padding:4px;">
-								  <br>
-								  <span >x{{item.num}}</span><br>
-								  <span class="font-color1">¥{{item.price}}</span>
-								 <!--  <span style="text-decoration:line-through;">¥{{item.markPrice}}</span><br> -->
-								  
-						    </span>
-						</i>
-				  </ion-item>
-				  <div class="item font-12 row" style="padding: 4px;">
-					  <div class="col-25" style="text-align:left;">
-					  		<!-- <a class="button button-calm font-12" style="min-height:10px;line-height: 22px;" href="#/tab/{{action_flag}}_logistics?orderId={{result.orderId}}">查看物流</a> -->
-					  </div>
-					  <div class="col-75" style="text-align:right;color:#333;">
-				 	     	共{{result.totalNum}}件商品 合计¥{{result.totalPrice}}（含运费¥{{result.shipPrice}}）
-				 	  </div>
-		 		  </div>
-	 		  </a>
+		  <div ng-if="results && results.length>0">
+			  <div ng-repeat="result in results track by $index" style="margin-bottom: 8px">
+			  	  <a href="#/tab/{{action_flag}}_orderInfo?id={{result.id}}">
+			 		  <div class="item item-divider">
+				          <h3 style="white-space: normal;font-weight:700;"><span style="color:#333;">订单号：{{result.orderCode}}</span><span style="position:absolute;right:16px;">{{result.orderStatus}}</span></h3>
+				      </div>
+			 		  <ion-item ng-repeat="item in result.orderItemList track by $index" class="item-avatar item-icon-right" style="min-height: 76px; padding: 8px 8px 8px 76px;"><!-- -->
+							<img style="border-radius:0;width:60px;height:60px;min-height:60px;min-width:60px;top:7px;left:8px;" ng-src="{{item.goodsImg}}">
+							<h2 class="font-14" style="line-height: 20px;color:#333;">{{item.goodsName}}</h2>
+							<p class="font-12" style="color: #999;">{{item.formatName}}</p>
+							<i class="icon icon-accessory" style="height: auto;text-align: right;">
+								<span style="padding:10px 4px 4px 4px;">
+									  <br>
+									  <span >x{{item.number}}</span><br>
+									  <span class="font-color1">¥{{item.price|number:2}}</span>
+									 <!--  <span style="text-decoration:line-through;">¥{{item.markPrice}}</span><br> -->
+									  
+							    </span>
+							</i>
+					  </ion-item>
+					  <div class="item font-12 row" style="padding:4px;">
+						  <div class="col-25" style="text-align:left;">
+						  		<!-- <a class="button button-calm font-12" style="min-height:10px;line-height: 22px;" href="#/tab/{{action_flag}}_logistics?orderId={{result.orderId}}">查看物流</a> -->
+						  </div>
+						  <div class="col-75" style="text-align:right;color:#333;">
+					 	     	共{{result.totalNum}}件商品 合计¥{{result.money|number:2}}（含运费¥{{result.postMoney|number:2}}）
+					 	  </div>
+			 		  </div>
+		 		  </a>
+	 		  </div>
+	 		  <div ng-if="!moreData" class="font-12 loadMoreOver" style="padding:4px;text-align: center;color:#999">数据已加载完毕~</div>
+	 		  <ion-infinite-scroll ng-if="moreData" on-infinite="loadMore()" distance="0%" ></ion-infinite-scroll>
+ 		  </div>
+ 		  <div ng-if="!results || results.length==0" style="text-align:center;padding-top:40px;">
+ 		  	  <span class="circle" style="color:#fff;background-color:#aaa;display:inline-block;width:37px;height:37px;">
+ 		  	  	<i class="ion-ios-copy-outline font-28 " style="position:relative;top:4px;"></i>
+ 		  	  </span>
+ 		  	  <div>暂无订单</div>
+ 		  	  <div style="color:#aaa">快去选购商品吧，让您的生活性福起来</div>
  		  </div>
 	</ion-content>
 </ion-view>

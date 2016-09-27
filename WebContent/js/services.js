@@ -33,8 +33,8 @@ angular.module('ionicApp.services', [])
 						var url = {
 			           		getUrl:function(name){
 									var perfix = {
-//										"/dev":"http://127.0.0.1:8080/douqu/",//开发 
-										"/dev":"http://192.168.12.74:8080/qq-mall-api/",//开发 
+										"/dev":"http://127.0.0.1:8080/qq-mall-api/",//开发 
+//										"/dev":"http://192.168.12.70:8080/qq-mall-api/",//开发 
 										"/stg":"https://www.honglinktech.com/zbgjapi",//测试
 										"/prd":"http://121.42.176.191:8080/douqu/"//生产
 									};
@@ -47,9 +47,13 @@ angular.module('ionicApp.services', [])
 										userFindKeepPage:"user/api/findKeepPage",//用户收藏列表
 										userSaveOrUpdateKeep:"user/api/saveOrUpdateKeep",//用户收藏，取消收藏
 										
-										findAddressById:"user/api/findAddressById",//用户地址
-										findAddressPage:"user/api/findAddressPage",//用户地址，取消收藏
-										updateAddressDefault:"user/api/updateAddressDefault",//用户地址,修改默认
+										userFindAddressById:"user/api/findAddressById",//用户地址
+										userFindAddressPage:"user/api/findAddressPage",//用户地址，取消收藏
+										userUpdateAddressDefault:"user/api/updateAddressDefault",//用户地址,修改默认
+										
+										orderFindOrders:"order/api/findOrderBeanByPage",
+										orderFindOrderBeanById:"order/api/findOrderBeanById",
+										orderFindPostDetail:"order/api/findPostDetail",
 										
 										goodsListByPage:"tGoods/api/findByPage",
 										goodsItem:"goods/api/findGoodsBeanById",
@@ -221,5 +225,49 @@ angular.module('ionicApp.services', [])
 							}
 						}
 						return ajax;
-			})			
+			})
+			.factory('authInterceptor', function($q,$rootScope,$localstorage){
+			    return {
+			        request: function(config){
+//			        	$ionicLoading.show({
+//						      template: '请骚等...',
+//						});
+			            config.headers = config.headers || {};
+			            if(config.method=='POST'){//请求配置头部
+			            	var userInfo = $localstorage.getObject("userInfo");
+							userInfo = userInfo?userInfo:{};
+							var token = $localstorage.get("token");
+							token = token?token:"";
+							if(token){
+				                config.headers.token = token;
+				            }
+							if(userInfo && userInfo.id){
+				                config.headers.userId = userInfo.id;
+				            }
+			            }
+			           
+			            return config;
+			        },
+			        requestError:function(rejection){
+				            // do something on error
+//				            If(canRecover(rejection)){
+//				             return responseOrNewPromise
+//				            }
+				            return $q.reject(rejection);
+			         },
+			         response:function(response){
+//			        	 	$ionicLoading.hide();
+//			        	 	console.log(response);
+				            // do something on success
+				            return response;
+			         },
+			         responseError:function(rejection){
+				            // do something on error
+//				            If(canRecover(rejection)){
+//				              return responseOrNewPromise
+//				            }
+				            return $q.reject(rejection);
+			         }
+			    };
+			})
 			.value('version', '1.0');

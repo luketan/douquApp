@@ -61,7 +61,7 @@ var app = angular.module('ionicApp.userControllers', ['ionic-citydata','ionic-ci
 			}
 			console.log('!!!!!!!!!!!Register1Ctrl!!!!!!!!!!!!!!!');
 		})
-		.controller('UserCtrl', function($rootScope,$scope,_url,_config,_ajax,$stateParams,$ionicHistory,$ionicLoading, $localstorage) {
+		.controller('UserCtrl', function($rootScope,$state,$scope,$stateParams,$ionicHistory,$ionicLoading, $localstorage) {
 			$scope.userInfo = $localstorage.getObject("userInfo");
 			if(!$scope.userInfo){
 				$state.go('tab.user_login');
@@ -217,104 +217,19 @@ var app = angular.module('ionicApp.userControllers', ['ionic-citydata','ionic-ci
 		.controller('UserGouCtrl', function($rootScope,$scope,_url,_config,_ajax,$stateParams,$ionicHistory,$ionicLoading) {
 			console.log('!!!!!!!!!!!UserGouCtrl!!!!!!!!!!!!!!!');
 		})
-		.controller('OrderCtrl', function($rootScope,$scope,_url,_config,_ajax,$ionicLoading) {
-			  var goods={
-					  id:1,
-					  goodsId:10001,
-					  goodsName:"霏慕 中国古典肚兜性感挂脖绑带情趣诱惑肚兜T裤 2件套",
-					  imageUrl:"http://ionicframework.com/img/docs/mcfly.jpg",
-					  formatName:"玫红色（肚兜+系带T裤）",
-					  markPrice:44,
-					  price:19.9,
-					  num:1,
-					  };
-			  var goods2={
-					  id:2,
-					  goodsId:10010,
-					  goodsName:"久慕雅黛 古典复古和服风深V开衩短裙日式情趣内衣",
-					  imageUrl:"http://mallimg01.touchcdn.com/goods-gallery/e2d09b3577f70bcbf769bca6666c3c43.jpg?imageView/2/w/416/interlace/1",
-					  formatName:"大红色（肚兜+系带T裤）",
-					  markPrice:47,
-					  price:11,
-					  num:1};
-			  var goods3={
-					  id:3,
-					  goodsId:10011,
-					  goodsName:"性感日式印花和服宽松深V蝴蝶结复古和服风东京美娘款",
-					  imageUrl:"http://mallimg01.touchcdn.com/goods-gallery/0e65fea48479e7da41432b9bb774bca0.jpg?imageView/2/w/416/interlace/1",
-					  formatName:"2件特惠（黑色+紫色）",
-					  markPrice:34,
-					  price:16,
-					  num:1};
-			  var goods4={
-					  id:4,
-					  goodsId:10012,
-					  goodsName:"古典高档绣花年年有鱼喜庆露乳性感肚兜 2件套",
-					  imageUrl:"http://mallimg01.touchcdn.com/goods-gallery/b75134196cccd1a6fc88c1bfe2627b43.jpg?imageView/2/w/416/interlace/1",
-					  formatName:"四合一+珍珠内裤",
-					  markPrice:37,
-					  price:15,
-					  num:1};
-			  var order = {orderId:"34534534543543",orderStatus:"运送中",status:1,items:[goods4,goods2,goods],totalNum:10,totalPrice:134.00,shipPrice:15};
-			  var order1 = {orderId:"45667838657845",orderStatus:"已送达",status:2,items:[goods3,goods,goods2],totalNum:8,totalPrice:254.00,shipPrice:0};
-			  var orders=[order,order1]
-			
-			  
-			  $scope.results =orders;
+		.controller('OrderCtrl', function($rootScope,$scope,_url,_config,_ajax,$ionicLoading,userOrder) {
+			  var req = {index:1,size:10};
+			  $scope.moreData = true;
+			  $scope.$scope = function(){
+				  req.index += 1;
+				  userOrder.findOrders(req,$scope);
+			  }
+			  userOrder.findOrders(req,$scope);
 			  console.log('!!!!!!!!!!!OrderCtrl!!!!!!!!!!!!!!!');
 		})
-		.controller('OrderInfoCtrl', function($rootScope,$scope,_url,_config,_ajax,$ionicLoading,$stateParams) {
-			 var id = $stateParams.id;
-			  $scope.address={id:1,name:"谭辉",phone:"18666668629",address:"广东省深圳市罗湖区",detail:"黄贝岭街道龙景花园芳庭苑B1003"}
-			  var goods={
-					  id:1,
-					  goodsId:10001,
-					  goodsName:"霏慕 中国古典肚兜性感挂脖绑带情趣诱惑肚兜T裤 2件套",
-					  imageUrl:"http://ionicframework.com/img/docs/mcfly.jpg",
-					  formatName:"玫红色（肚兜+系带T裤）",
-					  markPrice:44,
-					  price:19.9,
-					  num:1,
-					  };
-			  var goods2={
-					  id:2,
-					  goodsId:10010,
-					  goodsName:"久慕雅黛 古典复古和服风深V开衩短裙日式情趣内衣",
-					  imageUrl:"http://mallimg01.touchcdn.com/goods-gallery/e2d09b3577f70bcbf769bca6666c3c43.jpg?imageView/2/w/416/interlace/1",
-					  formatName:"大红色（肚兜+系带T裤）",
-					  markPrice:47,
-					  price:11,
-					  num:1};
-			  var goods3={
-					  id:3,
-					  goodsId:10011,
-					  goodsName:"性感日式印花和服宽松深V蝴蝶结复古和服风东京美娘款",
-					  imageUrl:"http://mallimg01.touchcdn.com/goods-gallery/0e65fea48479e7da41432b9bb774bca0.jpg?imageView/2/w/416/interlace/1",
-					  formatName:"2件特惠（黑色+紫色）",
-					  markPrice:34,
-					  price:16,
-					  num:1};
-			  var goods4={
-					  id:4,
-					  goodsId:10012,
-					  goodsName:"古典高档绣花年年有鱼喜庆露乳性感肚兜 2件套",
-					  imageUrl:"http://mallimg01.touchcdn.com/goods-gallery/b75134196cccd1a6fc88c1bfe2627b43.jpg?imageView/2/w/416/interlace/1",
-					  formatName:"四合一+珍珠内裤",
-					  markPrice:37,
-					  price:15,
-					  num:1};
-			  var order = {orderId:"34534534543543",
-					  	   orderStatus:"运送中",
-					  	   payMent:"微信支付",
-					  	   status:1,
-					  	   items:[goods4,goods2,goods],
-					  	   totalNum:10,
-					  	   totalPrice:134.00,
-					  	   shipPrice:15,
-					  	   createTime:'2016-05-23 22:33'};
-			
-			  
-			  $scope.result =order;
+		.controller('OrderInfoCtrl', function($rootScope,$scope,_url,_config,_ajax,$ionicLoading,$stateParams,userOrder) {
+			  var req = {id:$stateParams.id}
+			  userOrder.findOrderById(req,$scope);
 			  
 			  $scope.deleteOrder = function(){
 				  console.log('deleteOrder');
@@ -385,23 +300,11 @@ var app = angular.module('ionicApp.userControllers', ['ionic-citydata','ionic-ci
 			  }
 			  console.log('!!!!!!!!!!!DisGoodssCtrl!!!!!!!!!!!!!!!');
 		})
-		.controller('LogisticsCtrl', function($rootScope,$scope,_url,_config,_ajax,$ionicLoading,$stateParams) {
-			$scope.express = {"companyName":"圆通","expressNo":"807067953031"}
-			$scope.results=[
-			                {content:"客户 签收人：邮件收发章 已签收感谢使用圆通速递，期待再次为你服务",time:"2016-05-26 12:54:38",status:'Y'},
-			                {content:"广东省深圳市国贸公司石**派件中，派件员电话15920579059",time:"2016-05-26 08:54:38",status:'N'},
-			                {content:"广东省深圳市国贸公司 已收入",time:"2016-05-26 06:52:28",status:'N'},
-			                {content:"深圳转运中心 已发出，下一站 广东省深圳市国贸",time:"2016-05-25 23:01:36",status:'N'},
-			                {content:"深圳转运中心已收入",time:"2016-05-25 22:48:57",status:'N'},
-			                {content:"上海转运中心已发出，下一站深圳转运中心",time:"2016-05-24 21:17:38",status:'N'},
-			                {content:"上海转运中心 已收入",time:"2016-05-24 21:13:38",status:'N'},
-			                {content:"上海市场二部公司 已打包",time:"2016-05-24 19:17:38",status:'N'},
-			                {content:"上海市场二部公司已揽收",time:"2016-05-24 19:02:38",status:'N'},
-			                
-			                ];
-			//查看物流
-			var orderId = $stateParams.orderId;
-			console.log('!!!!!!!!!!!LogisticsCtrl!!!!!!!!!!!!!!!'+orderId);
+		.controller('LogisticsCtrl', function($rootScope,$scope,_url,_config,_ajax,$ionicLoading,$stateParams,userOrder) {
+			$scope.post = {"postName":$stateParams.postName,"postCode":$stateParams.postCode};
+			var req = {"postCode":$stateParams.postCode};
+			userOrder.postDetail(req,$scope);
+			console.log('!!!!!!!!!!!LogisticsCtrl!!!!!!!!!!!!!!!'+$stateParams.postCode);
 		})
 		.controller('ForgetPwdCtrl', function($rootScope,$scope,_url,_config,_ajax,$ionicLoading) {
 			$scope.item={pwd:"",nPwd:"",nPwds:""};

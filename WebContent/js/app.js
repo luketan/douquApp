@@ -9,7 +9,9 @@ angular.module('ionicApp', [ 'ionic','ionicApp.userApp','ionicApp.directives','i
                              ,'ionicApp.cartApp','ionicApp.cartControllers','ionicApp.cartServices'
                              ,'ionicApp.gouApp','ionicApp.gouControllers','ionicApp.gouServices'
                              ])
-	.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+	.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, $httpProvider) {
+	  //服务注册到$httpProvider.interceptors中,http token
+	  $httpProvider.interceptors.push('authInterceptor');
 	  $ionicConfigProvider.tabs.style("standard"); // 参数可以是： standard | striped
 	  $ionicConfigProvider.backButton.text("");
 	  $ionicConfigProvider.backButton.previousTitleText(false).icon('ion-ios-arrow-left');
@@ -242,13 +244,14 @@ angular.module('ionicApp', [ 'ionic','ionicApp.userApp','ionicApp.directives','i
 					$urlRouterProvider.otherwise("/tab/main");
 					//
 					
-		}).run(function ($rootScope, $window, $location, $log, $ionicPlatform) {  
+		}).run(function ($rootScope, $window, $location, $log, $ionicPlatform, $localstorage) {  
 		  var locationChangeStartOff = $rootScope.$on('$locationChangeStart', locationChangeStart);  
 		  var locationChangeSuccessOff = $rootScope.$on('$locationChangeSuccess', locationChangeSuccess);  
 		  var routeChangeStartOff = $rootScope.$on('$routeChangeStart', routeChangeStart);  
 		  var routeChangeSuccessOff = $rootScope.$on('$routeChangeSuccess', routeChangeSuccess); 
 		  
 		  console.log("run.......");
+		  
 		  
 		  $rootScope.goback = function() {
 				 $ionicHistory.goBack();

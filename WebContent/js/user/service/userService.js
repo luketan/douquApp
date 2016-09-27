@@ -18,10 +18,11 @@ angular.module('ionicApp.userServices', [])
 								  reqDataType:'jsonstr',
 								  data: data,
 								  success: function(result) {
+									  $ionicLoading.hide();
 									  if(result.result){
 										  $localstorage.setObject("userInfo",result.result.tuser);
 										  $localstorage.set("token",result.result.token);
-										  $state.go('tab.user');
+										  $state.go('tab.user',{},{reload:true});
 										  return result.result;
 									  }else{
 										  $ionicLoading.show({
@@ -29,7 +30,7 @@ angular.module('ionicApp.userServices', [])
 										      duration:2000
 										  });
 									  }
-									  $ionicLoading.hide();
+									 
 							   	 },
 								 error:function(msg){
 									  $ionicLoading.show({
@@ -50,20 +51,20 @@ angular.module('ionicApp.userServices', [])
 							  reqDataType:'jsonstr',
 							  data: data,
 							  success: function(result) {
+								  $ionicLoading.hide();
+								  
+								  $localstorage.setObject("userInfo",'');
+								  $localstorage.set("token",'');
+								  $state.go('tab.user');
+								  
 								  if(result.result){
-									  $localstorage.setObject("userInfo",result.result);
-									  $state.go('tab.user');
-									  return result.result;
+									  $state.go('tab.user',{},{reload:true});  
 								  }else{
 									  $ionicLoading.show({
 									      template: result.msg,
 									      duration:2000
 									  });
 								  }
-								  $ionicLoading.hide();
-								  $localstorage.setObject("userInfo",'');
-								  $localstorage.set("token",'');
-								  $state.go('tab.user');
 						   	 },
 							 error:function(msg){
 								  $localstorage.setObject("userInfo",'');
@@ -82,87 +83,70 @@ angular.module('ionicApp.userServices', [])
 							      template: '请骚等...',
 							});
 							var data = req;
-							_ajax.ajax({
-								  url: _url.getUrl("userFindKeepPage"),
-								  reqDataType:'jsonstr',
-								  data: data,
-								  success: function(result) {
-									  if(result.code == "000000" && result.result && result.result.length>0){
+							$http.post(_url.getUrl("userFindKeepPage"), data )
+							.success(function(data, status, headers, config) {
+									$ionicLoading.hide();
+									if(data.code == "000000" ){
 										  if(req.type === 1){
+											  if(data.result.length<req.size){
+												  $scope.goodsMoreData = false;
+											  }
 											  if(req.index==1){
 												  $scope.keepGoodss=[];
 											  }
 											  if($scope.keepGoodss){
-												  for(var i in result.result){
-													  $scope.keepGoodss.push(result.result[i]);
+												  for(var i in data.result){
+													  $scope.keepGoodss.push(data.result[i]);
 												  }
 											  }else{
-												  $scope.keepGoodss = result.result; 
+												  $scope.keepGoodss = data.result; 
 											  }
 										  }else{
+											  if(data.result.length<req.size){
+												  $scope.societyMoreData = false;
+											  }
 											  if(req.index==1){
 												  $scope.keepSoietys=[];
 											  }
 											  if($scope.keepSoietys){
-												  for(var i in result.result){
-													  $scope.keepSoietys.push(result.result[i]);
+												  for(var i in data.result){
+													  $scope.keepSoietys.push(data.result[i]);
 												  }
 											  }else{
-												  $scope.keepSoietys = result.result;  
+												  $scope.keepSoietys = data.result;  
 											  }
 										  }
-										  $scope.$apply();
-										  $ionicLoading.hide();
-									  }else{
-										  if(req.type === 1){
-											  $scope.goodsMoreData = false;
-										  }else{
-											  $scope.societyMoreData = false;
-										  }
-										  $scope.$apply();
-										  var msg = "";
-										  if(req.index>1){
-											  msg = "数据已经加载完毕~";
-										  }else{
-											  msg = "没有查询到数据~";
-										  }
-										  $ionicLoading.show({
-										      template: msg,
+									}else{
+										c
+										$ionicLoading.show({
+										      template: data.msg,
 										      duration:1500
-										  });
-									  }
-							   	 },
-								 error:function(msg){
-									  $ionicLoading.show({
-										      template: msg,
-										      duration:1500
-									  });
-							   	 }
+										});
+									}
+								   
+							}).error(function(data, status, headers, config ) {
+								  $ionicLoading.show({
+								      template: data,
+								      duration:1500
+								  });
 							});
 					}
 					this.userSaveOrUpdateKeep = function(req){
 						$ionicLoading.show({
 						      template: '请骚等...',
 						});
-						
 						var data = req;
-						_ajax.ajax({
-							  url: _url.getUrl("userSaveOrUpdateKeep"),
-							  reqDataType:'jsonstr',
-							  data: data,
-							  success: function(result) {
-								  $ionicLoading.show({
-								      template: result.msg,
-								      duration:2000
-								  });
-								  $ionicLoading.hide();
-						   	  },
-							  error:function(msg){
-								  $ionicLoading.show({
-									      template: msg,
-									      duration:1500
-								  });
-						   	  }
+						$http.post(_url.getUrl("userFindKeepPage"), data)
+						.success(function(data, status, headers, config) {
+								$ionicLoading.show({
+								      template: data.msg,
+								      duration:1500
+								});
+						}).error(function(data, status, headers, config ) {
+							    $ionicLoading.show({
+							    	template: data,
+							    	duration:1500
+							    });
 						});
 					}
 			})
@@ -173,7 +157,7 @@ angular.module('ionicApp.userServices', [])
 						});
 						var data = req;
 						_ajax.ajax({
-							  url: _url.getUrl("findAddressById"),
+							  url: _url.getUrl("userFindAddressById"),
 							  reqDataType:'jsonstr',
 							  data: data,
 							  success: function(result) {
@@ -202,11 +186,14 @@ angular.module('ionicApp.userServices', [])
 							});
 							var data = req;
 							_ajax.ajax({
-								  url: _url.getUrl("findAddressPage"),
+								  url: _url.getUrl("userFindAddressPage"),
 								  reqDataType:'jsonstr',
 								  data: data,
 								  success: function(result) {
-									  if(result.code == "000000" && result.result && result.result.length>0){
+									  if(result.code == "000000"){
+										  if(result.result.length<req.size){
+											  $scope.moreData = false;
+										  }
 										  if(req.index==1){
 											  $scope.result=[];
 										  }
@@ -217,13 +204,6 @@ angular.module('ionicApp.userServices', [])
 										  $ionicLoading.hide();
 									  }else{
 										  $scope.moreData = false;
-										  $scope.$apply();
-										  var msg = "";
-										  if(req.index>1){
-											  msg = "数据已经加载完毕~";
-										  }else{
-											  msg = "没有查询到数据~";
-										  }
 										  $ionicLoading.show({
 										      template: msg,
 										      duration:1000
@@ -231,6 +211,7 @@ angular.module('ionicApp.userServices', [])
 									  }
 							   	 },
 								 error:function(msg){
+									  $scope.moreData = false;
 									  $ionicLoading.show({
 										      template: msg,
 										      duration:1500
@@ -242,25 +223,124 @@ angular.module('ionicApp.userServices', [])
 						$ionicLoading.show({
 						      template: '请骚等...',
 						});
-						
 						var data = req;
-						_ajax.ajax({
-							  url: _url.getUrl("updateAddressDefault"),
-							  reqDataType:'jsonstr',
-							  data: data,
-							  success: function(result) {
-								  $ionicLoading.show({
-								      template: result.msg,
-								      duration:2000
-								  });
-								  $ionicLoading.hide();
-						   	  },
-							  error:function(msg){
-								  $ionicLoading.show({
-									      template: msg,
-									      duration:1500
-								  });
-						   	  }
+						$http.post(_url.getUrl("userUpdateAddressDefault"), data)
+						.success(function(data, status, headers, config) {
+								$ionicLoading.show({
+								      template: data.msg,
+								      duration:1500
+								});
+						}).error(function(data, status, headers, config ) {
+							    $ionicLoading.show({
+							    	template: data,
+							    	duration:1500
+							    });
 						});
 					}
+			})
+			.service('userOrder',function($http, $state, $ionicLoading, $localstorage,_url){
+					this.findOrders = function(req,$scope){
+						$ionicLoading.show({
+						      template: '请骚等...',
+						});
+						var data = req;
+						$http.post(_url.getUrl("orderFindOrders"), data)
+						.success(function(data, status, headers, config) {
+								$ionicLoading.hide();
+								if(data.code == "000000"){
+									if(data.result.length<req.size){
+										$scope.moreData = false;
+									}
+									if(req.index==1){
+										$scope.results=[];
+									}
+									for(var i in data.result){
+										$scope.results.push(data.result[i]); 
+									}
+									if(data.result){
+										for(var i in data.result){
+											var result = data.result[i];
+											var totalNum = 0;
+											for(var j in result.orderItemList){
+												var item = result.orderItemList[j];
+												totalNum += item.number;
+											}
+											data.result[i].totalNum = totalNum;
+										}
+									}
+								}else{
+									$scope.moreData = false;
+									$ionicLoading.show({
+								    	 template: data.msg,
+								    	 duration:1500
+								    });
+								}
+						}).error(function(data, status, headers, config ) {
+								$scope.moreData = false;
+							    $ionicLoading.show({
+							    	template: data,
+							    	duration:1500
+							    });
+						});
+					}
+					this.findOrderById = function(req,$scope){
+						$ionicLoading.show({
+						      template: '请骚等...',
+						});
+						var data = req;
+						$http.post(_url.getUrl("orderFindOrderBeanById"), data)
+						.success(function(data, status, headers, config) {
+								$ionicLoading.hide();
+								if(data.code == "000000"){
+									$scope.result = data.result;
+									if(data.result){
+										 var result = data.result;
+										 var totalNum = 0;
+										 for(var j in result.orderItemList){
+											 var item = result.orderItemList[j];
+											 totalNum += item.number;
+										 }
+										 data.result.totalNum = totalNum;
+									}
+								}else{
+									$scope.moreData = false;
+									$ionicLoading.show({
+								    	 template: data.msg,
+								    	 duration:1500
+								    });
+								}
+						}).error(function(data, status, headers, config ) {
+								$scope.moreData = false;
+							    $ionicLoading.show({
+							    	template: data,
+							    	duration:1500
+							    });
+						});
+					}
+					this.postDetail = function(req,$scope){
+						$ionicLoading.show({
+						      template: '请骚等...',
+						});
+						var data = req;
+						$http.post(_url.getUrl("orderFindPostDetail"), data)
+						.success(function(data, status, headers, config) {
+								$ionicLoading.hide();
+								if(data.code == "000000"){
+									$scope.results = data.result;
+								}else{
+									$scope.moreData = false;
+									$ionicLoading.show({
+								    	 template: data.msg,
+								    	 duration:1500
+								    });
+								}
+						}).error(function(data, status, headers, config ) {
+								$scope.moreData = false;
+							    $ionicLoading.show({
+							    	template: data,
+							    	duration:1500
+							    });
+						});
+					}
+					
 			});

@@ -27,6 +27,7 @@ angular.module('ionicApp.userApp', [])
 					})
 					.state('tab.user', {
 					    url: '/user',
+//					    cache: false,
 					    views: {
 					      'tab-user': {
 					    	templateUrl : 'template/user/user.html',
@@ -107,7 +108,7 @@ angular.module('ionicApp.userApp', [])
 					    }
 					})
 					.state('tab.user_logistics', {//物流
-					    url: '/user_logistics?:orderId',
+					    url: '/user_logistics?:postCode:postName',
 					    views: {
 					      'tab-user': {
 					    	templateUrl : 'template/user/logistics.html',
